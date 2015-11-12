@@ -14,8 +14,13 @@
 
 #import <MapKit/MapKit.h>
 
-
-@interface LCLHomeViewController () <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate>
+#define contentImageViewTag 1000
+#define dateBtnTag 2000
+#define homeBtnTag 3000
+#define phoneBtnTag 4000
+#define cellSubViewTag 5000
+#define contentLableTag 6000
+@interface LCLHomeViewController () <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate,UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 
@@ -46,7 +51,12 @@
         self.locationManager.delegate=self;
         self.locationManager.desiredAccuracy=kCLLocationAccuracyBest;
         self.locationManager.distanceFilter=10;
-        [self.locationManager requestWhenInUseAuthorization];//添加这句
+        //add by duanran begin
+        if ([UIDevice currentDevice].systemVersion.floatValue>=8.0) {
+            [self.locationManager requestWhenInUseAuthorization];//添加这句
+        }
+        //end
+        
         [self.locationManager startUpdatingLocation];
         
     }else {
@@ -123,7 +133,7 @@
 
 - (IBAction)tapHomeButton:(UIButton *)sender{
 
-    NSDictionary *dic = [self.dataArray objectAtIndex:sender.tag];
+    NSDictionary *dic = [self.dataArray objectAtIndex:sender.tag-homeBtnTag];
 
     LCLPeopleInfoViewController *people = [[LCLPeopleInfoViewController alloc] initWithNibName:@"LCLPeopleInfoViewController" bundle:nil];
     [people setUserInfo:dic];
@@ -135,7 +145,7 @@
 
 - (IBAction)tapYueHuiButton:(UIButton *)sender{
     
-    NSDictionary *dic = [self.dataArray objectAtIndex:sender.tag];
+    NSDictionary *dic = [self.dataArray objectAtIndex:sender.tag-dateBtnTag];
     LCLIndexObject *indexObj = [LCLIndexObject allocModelWithDictionary:dic];
 
     if ([indexObj.style integerValue]==2) {
@@ -181,7 +191,7 @@
     
     @weakify(self);
 
-    NSDictionary *dic = [self.dataArray objectAtIndex:sender.tag];
+    NSDictionary *dic = [self.dataArray objectAtIndex:sender.tag-phoneBtnTag];
     LCLIndexObject *indexObj = [LCLIndexObject allocModelWithDictionary:dic];
     
     if ([indexObj.phone integerValue]==0) {
@@ -245,20 +255,68 @@
     if (cell==nil) {
         cell = (LCLHomeTableViewCell *)[[[NSBundle mainBundle] loadNibNamed:@"LCLHomeTableViewCell" owner:self options:nil] lastObject];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        
+        //add by duanran begin
+        UIImageView *cellContentImageView=[[UIImageView alloc]init];
+        [cellContentImageView setFrame:cell.contentImageView.frame];
+        cellContentImageView.tag=indexPath.row+contentImageViewTag;
+        [cell addSubview:cellContentImageView];
+        UIView *CellSubView=cell.cellSubView;
+        CellSubView.tag=indexPath.row+cellSubViewTag;
+        [cell addSubview:CellSubView];
+
+        UIButton *homeBtn=cell.homeButton;
+        [homeBtn setFrame:cell.homeButton.frame];
+        homeBtn.tag=indexPath.row+homeBtnTag;
+        [CellSubView addSubview:homeBtn];
+        
+        UIButton *yueHuiBtn=[[UIButton alloc]init];
+        [yueHuiBtn setFrame:cell.yuehuiButton.frame];
+        yueHuiBtn.tag=indexPath.row+dateBtnTag;
+        [CellSubView addSubview:yueHuiBtn];
+        
+        UIButton *phoneBtn=[[UIButton alloc]init];
+        [phoneBtn setFrame:cell.phoneButton.frame];
+        phoneBtn.tag=indexPath.row+phoneBtnTag;
+        [CellSubView addSubview:phoneBtn];
+        
+        UILabel *contentLabel=cell.contentLabel;
+        [contentLabel setFrame:cell.contentLabel.frame];
+        contentLabel.tag=indexPath.row+contentLableTag;
+        [CellSubView addSubview:contentLabel];
+        
+        
+        
+        
     }
     
-    [cell.homeButton setTag:indexPath.row];
-    [cell.yuehuiButton setTag:indexPath.row];
-    [cell.phoneButton setTag:indexPath.row];
+    
 
-    [cell.homeButton addTarget:self action:@selector(tapHomeButton:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.yuehuiButton addTarget:self action:@selector(tapYueHuiButton:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.phoneButton addTarget:self action:@selector(tapPhoneButton:) forControlEvents:UIControlEventTouchUpInside];
+//    [cell.homeButton setTag:indexPath.row];
+//    [cell.yuehuiButton setTag:indexPath.row];
+//    [cell.phoneButton setTag:indexPath.row];
+    
+    UIButton *homeBtn=(UIButton *)[cell viewWithTag:indexPath.row+homeBtnTag];
+    UIButton *yeHuiBtn=(UIButton *)[cell viewWithTag:indexPath.row+dateBtnTag];
+    UIButton *phoneBtn=(UIButton *)[cell viewWithTag:indexPath.row+phoneBtnTag];
+    UILabel *contentLabel=[(UILabel *)cell viewWithTag:indexPath.row+contentLableTag];
 
+    
+    
+
+    [homeBtn addTarget:self action:@selector(tapHomeButton:) forControlEvents:UIControlEventTouchUpInside];
+    [yeHuiBtn addTarget:self action:@selector(tapYueHuiButton:) forControlEvents:UIControlEventTouchUpInside];
+    [phoneBtn addTarget:self action:@selector(tapPhoneButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
+    
+    
+    
     NSDictionary *dic = [self.dataArray objectAtIndex:indexPath.row];
     LCLIndexObject *indexObj = [LCLIndexObject allocModelWithDictionary:dic];
     
-    [cell.contentLabel setText:indexObj.title];
+    [contentLabel setText:indexObj.title];
     [cell setPeopleNameWithName:indexObj.nickname];
     [cell.peopleInfoLabel setText:[NSString stringWithFormat:@"%@岁  %@cm  %@kg", indexObj.age, indexObj.height, indexObj.weight]];
     [cell.imageNumberLabel setText:[NSString stringWithFormat:@"%@张", indexObj.pic_count]];
@@ -283,32 +341,57 @@
     }
     
     [cell.addressLabel setText:indexObj.place];
-    [cell.timeLabel setTitle:[NSString stringWithFormat:@"%@ km|%@", indexObj.len, indexObj.times] forState:UIControlStateNormal];
+    [cell.timeLabel setTitle:[NSString stringWithFormat:@"%@ |%@", indexObj.len, indexObj.times] forState:UIControlStateNormal];
     if ([[NSString stringWithFormat:@"%@", indexObj.len] isEqualToString:@"未知"]) {
         [cell.timeLabel setTitle:[NSString stringWithFormat:@"%@|%@", indexObj.len, indexObj.times] forState:UIControlStateNormal];
     }
+    
+    
+    
+    
+    
     
     CGRect frame = cell.contentImageView.frame;
     frame.size.height = kDeviceWidth*270/360.0;
     [cell.contentImageView setFrame:frame];
     
+    UIImageView *contentImageView=(UIImageView *)[cell viewWithTag:indexPath.row+1000];
+    [contentImageView setFrame:frame];
+    
+    
+    
+    
     NSDictionary *picInfo = indexObj.pic;
     NSString *cansee = [picInfo objectForKey:@"see"];
     if ([cansee integerValue]==1) {
-        [cell.contentImageView setImageWithURL:[picInfo objectForKey:@"thumb_360"] defaultImagePath:DefaultImagePath];
+        [contentImageView setImageWithURL:[picInfo objectForKey:@"thumb_360"] defaultImagePath:DefaultImagePath];
     }else{
-        [cell.contentImageView setImageWithURL:[picInfo objectForKey:@"thumb_360"] defaultImagePath:DefaultImagePath];
+        [contentImageView setImageWithURL:[picInfo objectForKey:@"thumb_360"] defaultImagePath:DefaultImagePath];
 //        [cell.contentImageView setImageWithURL:[picInfo objectForKey:@"thumb_360"] defaultImagePath:DefaultImagePath blur:0.1];
     }
     
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImageViewGesture:)];
-    [cell.contentImageView setUserInteractionEnabled:YES];
-    [cell.contentImageView addGestureRecognizer:tapGesture];
-    [cell.contentImageView setRestorationIdentifier:indexObj.uid];
     
+    
+//    UIImageView *contentImageView=[]
+    
+
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImageViewGesture:)];
+    tapGesture.delegate=self;
+    
+
+
+    [contentImageView setUserInteractionEnabled:YES];
+    [contentImageView addGestureRecognizer:tapGesture];
+    [contentImageView setRestorationIdentifier:indexObj.uid];
+
     NSString *peopleURL = GetDownloadPicURL(indexObj.headimg);
     [cell.peopleHeadButton setBackgroundImageWithURL:peopleURL
                              defaultImagePath:DefaultImagePath];
+    
+    
+    
+
+    
     
     return cell;
 }
@@ -316,11 +399,45 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+ 
+//    LCLHomeTableViewCell *cell=(LCLHomeTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+//    [cell.contentImageView setUserInteractionEnabled:YES];
+//    NSDictionary *dic = [self.dataArray objectAtIndex:indexPath.row];
+//    LCLIndexObject *indexObj = [LCLIndexObject allocModelWithDictionary:dic];
+//    NSString *peopleURL = GetDownloadPicURL(indexObj.headimg);
+//    [cell.peopleHeadButton setBackgroundImageWithURL:peopleURL
+//                                    defaultImagePath:DefaultImagePath];
+//    [cell.contentImageView setRestorationIdentifier:indexObj.uid];
+//
+//    
+//    
+//    UIImageView *imageView = (UIImageView *)cell.imageView;
+//    NSString *uid = ind.restorationIdentifier;
+//    
+//    [self lookPicWithUID:uid fromImageView:imageView index:0];
+
+    
+    
+    
     
     
     
 }
+//add by duanran begin
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+//    
+//    if ([otherGestureRecognizer.view isKindOfClass:[UITableView class]]) {
+//        return YES;
+//    }
+//    return NO;
+//}
+//- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+//{
+//    
+//    return YES;
+//}
 
+//add by duanran end
 - (void)locationManager:(CLLocationManager *)manager
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation{

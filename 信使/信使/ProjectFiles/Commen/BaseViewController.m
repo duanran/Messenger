@@ -207,6 +207,9 @@
     
     NSString *listURL = [NSString stringWithFormat:@"%@", LookUserPhotosURL(myObj.ukey, uid)];
     
+    
+    
+    
     LCLDownloader *downloader = [[LCLDownloader alloc] initWithURLString:listURL];
     [downloader setHttpMehtod:LCLHttpMethodGet];
     [downloader setDownloadCompleteBlock:^(NSString *err, NSMutableData *fileData, NSString *url){
@@ -228,6 +231,7 @@
                 
                 MJPhoto *photo = [[MJPhoto alloc] init];
                 photo.url = [NSURL URLWithString:photoObj.path]; // 图片路径
+                
                 photo.srcImageView = imageView; // 来源于哪个UIImageView
                 [photos addObject:photo];
             }

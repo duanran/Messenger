@@ -34,6 +34,21 @@
 		180E2F5E1BC548A7002B721F /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = 180E2F421BC548A7002B721F /* UIImage+WebP.m */; };
 		180E2F5F1BC548A7002B721F /* UIImageView+MJWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 180E2F441BC548A7002B721F /* UIImageView+MJWebCache.m */; };
 		180E2F601BC548A7002B721F /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 180E2F461BC548A7002B721F /* UIImageView+WebCache.m */; };
+		18765B511BF478E5000721BD /* kr-video-player-close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18765B3F1BF478E5000721BD /* kr-video-player-close@2x.png */; };
+		18765B521BF478E5000721BD /* kr-video-player-close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18765B401BF478E5000721BD /* kr-video-player-close@3x.png */; };
+		18765B531BF478E5000721BD /* kr-video-player-fullscreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18765B411BF478E5000721BD /* kr-video-player-fullscreen@2x.png */; };
+		18765B541BF478E5000721BD /* kr-video-player-fullscreen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18765B421BF478E5000721BD /* kr-video-player-fullscreen@3x.png */; };
+		18765B551BF478E5000721BD /* kr-video-player-pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18765B431BF478E5000721BD /* kr-video-player-pause@2x.png */; };
+		18765B561BF478E5000721BD /* kr-video-player-pause@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18765B441BF478E5000721BD /* kr-video-player-pause@3x.png */; };
+		18765B571BF478E5000721BD /* kr-video-player-play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18765B451BF478E5000721BD /* kr-video-player-play@2x.png */; };
+		18765B581BF478E5000721BD /* kr-video-player-play@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18765B461BF478E5000721BD /* kr-video-player-play@3x.png */; };
+		18765B591BF478E5000721BD /* kr-video-player-point@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18765B471BF478E5000721BD /* kr-video-player-point@2x.png */; };
+		18765B5A1BF478E5000721BD /* kr-video-player-point@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18765B481BF478E5000721BD /* kr-video-player-point@3x.png */; };
+		18765B5B1BF478E5000721BD /* kr-video-player-shrinkscreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18765B491BF478E5000721BD /* kr-video-player-shrinkscreen@2x.png */; };
+		18765B5C1BF478E5000721BD /* kr-video-player-shrinkscreen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18765B4A1BF478E5000721BD /* kr-video-player-shrinkscreen@3x.png */; };
+		18765B5D1BF478E5000721BD /* KrVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18765B4D1BF478E5000721BD /* KrVideoPlayerController.m */; };
+		18765B5E1BF478E5000721BD /* KrVideoPlayerControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18765B4F1BF478E5000721BD /* KrVideoPlayerControlView.m */; };
+		18765B5F1BF478E5000721BD /* READEME.md in Sources */ = {isa = PBXBuildFile; fileRef = 18765B501BF478E5000721BD /* READEME.md */; };
 		18A4C5541BF0CDE6001755DE /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A4C5531BF0CDE6001755DE /* libstdc++.tbd */; };
 		18A4C5561BF0CE09001755DE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A4C5551BF0CE09001755DE /* JavaScriptCore.framework */; };
 		18A4C5581BF0CE52001755DE /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A4C5571BF0CE52001755DE /* libsqlite3.0.tbd */; };
@@ -491,6 +506,23 @@
 		180E2F441BC548A7002B721F /* UIImageView+MJWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+MJWebCache.m"; sourceTree = "<group>"; };
 		180E2F451BC548A7002B721F /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
 		180E2F461BC548A7002B721F /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
+		18765B3F1BF478E5000721BD /* kr-video-player-close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kr-video-player-close@2x.png"; sourceTree = "<group>"; };
+		18765B401BF478E5000721BD /* kr-video-player-close@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kr-video-player-close@3x.png"; sourceTree = "<group>"; };
+		18765B411BF478E5000721BD /* kr-video-player-fullscreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kr-video-player-fullscreen@2x.png"; sourceTree = "<group>"; };
+		18765B421BF478E5000721BD /* kr-video-player-fullscreen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kr-video-player-fullscreen@3x.png"; sourceTree = "<group>"; };
+		18765B431BF478E5000721BD /* kr-video-player-pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kr-video-player-pause@2x.png"; sourceTree = "<group>"; };
+		18765B441BF478E5000721BD /* kr-video-player-pause@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kr-video-player-pause@3x.png"; sourceTree = "<group>"; };
+		18765B451BF478E5000721BD /* kr-video-player-play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kr-video-player-play@2x.png"; sourceTree = "<group>"; };
+		18765B461BF478E5000721BD /* kr-video-player-play@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kr-video-player-play@3x.png"; sourceTree = "<group>"; };
+		18765B471BF478E5000721BD /* kr-video-player-point@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kr-video-player-point@2x.png"; sourceTree = "<group>"; };
+		18765B481BF478E5000721BD /* kr-video-player-point@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kr-video-player-point@3x.png"; sourceTree = "<group>"; };
+		18765B491BF478E5000721BD /* kr-video-player-shrinkscreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kr-video-player-shrinkscreen@2x.png"; sourceTree = "<group>"; };
+		18765B4A1BF478E5000721BD /* kr-video-player-shrinkscreen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kr-video-player-shrinkscreen@3x.png"; sourceTree = "<group>"; };
+		18765B4C1BF478E5000721BD /* KrVideoPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KrVideoPlayerController.h; sourceTree = "<group>"; };
+		18765B4D1BF478E5000721BD /* KrVideoPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KrVideoPlayerController.m; sourceTree = "<group>"; };
+		18765B4E1BF478E5000721BD /* KrVideoPlayerControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KrVideoPlayerControlView.h; sourceTree = "<group>"; };
+		18765B4F1BF478E5000721BD /* KrVideoPlayerControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KrVideoPlayerControlView.m; sourceTree = "<group>"; };
+		18765B501BF478E5000721BD /* READEME.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = READEME.md; sourceTree = "<group>"; };
 		18A4C5531BF0CDE6001755DE /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		18A4C5551BF0CE09001755DE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		18A4C5571BF0CE52001755DE /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
@@ -1116,6 +1148,7 @@
 		180E2F101BC548A7002B721F /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				18765B3D1BF478E5000721BD /* KrVideoPlayer */,
 				180E2F111BC548A7002B721F /* MBProgressHUD */,
 				180E2F171BC548A7002B721F /* MJPhotoBrowser */,
 				180E2F251BC548A7002B721F /* SDWebImage */,
@@ -1193,6 +1226,46 @@
 				180E2F461BC548A7002B721F /* UIImageView+WebCache.m */,
 			);
 			path = SDWebImage;
+			sourceTree = "<group>";
+		};
+		18765B3D1BF478E5000721BD /* KrVideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				18765B3E1BF478E5000721BD /* Assets */,
+				18765B4B1BF478E5000721BD /* Classes */,
+				18765B501BF478E5000721BD /* READEME.md */,
+			);
+			path = KrVideoPlayer;
+			sourceTree = "<group>";
+		};
+		18765B3E1BF478E5000721BD /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				18765B3F1BF478E5000721BD /* kr-video-player-close@2x.png */,
+				18765B401BF478E5000721BD /* kr-video-player-close@3x.png */,
+				18765B411BF478E5000721BD /* kr-video-player-fullscreen@2x.png */,
+				18765B421BF478E5000721BD /* kr-video-player-fullscreen@3x.png */,
+				18765B431BF478E5000721BD /* kr-video-player-pause@2x.png */,
+				18765B441BF478E5000721BD /* kr-video-player-pause@3x.png */,
+				18765B451BF478E5000721BD /* kr-video-player-play@2x.png */,
+				18765B461BF478E5000721BD /* kr-video-player-play@3x.png */,
+				18765B471BF478E5000721BD /* kr-video-player-point@2x.png */,
+				18765B481BF478E5000721BD /* kr-video-player-point@3x.png */,
+				18765B491BF478E5000721BD /* kr-video-player-shrinkscreen@2x.png */,
+				18765B4A1BF478E5000721BD /* kr-video-player-shrinkscreen@3x.png */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		18765B4B1BF478E5000721BD /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				18765B4C1BF478E5000721BD /* KrVideoPlayerController.h */,
+				18765B4D1BF478E5000721BD /* KrVideoPlayerController.m */,
+				18765B4E1BF478E5000721BD /* KrVideoPlayerControlView.h */,
+				18765B4F1BF478E5000721BD /* KrVideoPlayerControlView.m */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		18DA53FE1BA7053000609D30 /* 类型 */ = {
@@ -2480,6 +2553,7 @@
 				TargetAttributes = {
 					B58B147D1B1406F30019C822 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = D25543FMWA;
 					};
 					B58B14961B1406F40019C822 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -2581,20 +2655,24 @@
 				B54042F41B1CAC4700E9CCA5 /* LCLMeHeaderView.xib in Resources */,
 				18DEAD871B9DBFDA003CEA5E /* Logo_144_144.png in Resources */,
 				B58B15181B1423450019C822 /* bottom.png in Resources */,
+				18765B551BF478E5000721BD /* kr-video-player-pause@2x.png in Resources */,
 				18EB29F81BB5A58C0040758B /* LCLSelectPickerView.xib in Resources */,
 				18DEAD321B9DBD17003CEA5E /* VIP2@2x.png in Resources */,
 				180E2F481BC548A7002B721F /* MBProgressHUD.bundle in Resources */,
 				B58B14AC1B1407270019C822 /* Default@2x.png in Resources */,
+				18765B5C1BF478E5000721BD /* kr-video-player-shrinkscreen@3x.png in Resources */,
 				18DFDB8F1BB2E5E2008FA2F6 /* userInfoBg.jpg in Resources */,
 				18DEAD811B9DBFDA003CEA5E /* icon.png in Resources */,
 				18DFDB901BB2E5E2008FA2F6 /* delete.png in Resources */,
 				B58B15121B141F1F0019C822 /* lclChatZixun@2x.png in Resources */,
+				18765B511BF478E5000721BD /* kr-video-player-close@2x.png in Resources */,
 				18E543051BD9275F00FB462F /* LCLMyMeetDetailsViewController.xib in Resources */,
 				18DEADCE1B9DD7ED003CEA5E /* menu_my_b.png in Resources */,
 				18FAB2C21BA8796D00FD6143 /* LCLPayListAndMoneyListViewController.xib in Resources */,
 				18DEAD5A1B9DBD17003CEA5E /* publish_date_ico3@3x.png in Resources */,
 				180E2F4B1BC548A7002B721F /* MJPhotoBrowser.bundle in Resources */,
 				18FAB2D51BA87C5B00FD6143 /* LCLPeopleHeaderView.xib in Resources */,
+				18765B581BF478E5000721BD /* kr-video-player-play@3x.png in Resources */,
 				B570E61E1B14D70C007A07F4 /* Info.plist in Resources */,
 				18EB29E01BB595450040758B /* rsa_private_key.pkcs8 in Resources */,
 				18A4C5661BF0D5F8001755DE /* Localizable.strings in Resources */,
@@ -2609,6 +2687,7 @@
 				18DEADC91B9DD7ED003CEA5E /* menu_my_a@2x.png in Resources */,
 				18DEAD4C1B9DBD17003CEA5E /* left@3x.png in Resources */,
 				18DEADBD1B9DD715003CEA5E /* menu_fruit_a@2x.png in Resources */,
+				18765B5A1BF478E5000721BD /* kr-video-player-point@3x.png in Resources */,
 				18DFDB9C1BB2FD1B008FA2F6 /* LCLPhotoButton.xib in Resources */,
 				18DEAD521B9DBD17003CEA5E /* my_A@3x.png in Resources */,
 				18DEAD221B9DBD17003CEA5E /* pic_num_bg@2x.png in Resources */,
@@ -2640,6 +2719,7 @@
 				18DEADAD1B9DD371003CEA5E /* LCLNotifyCenterViewController.xib in Resources */,
 				18DEACED1B9DBD17003CEA5E /* phone_ico.png in Resources */,
 				18FAB2CE1BA87C1700FD6143 /* LCLPeopleInfoViewController.xib in Resources */,
+				18765B591BF478E5000721BD /* kr-video-player-point@2x.png in Resources */,
 				18DA54031BA7055F00609D30 /* LCLMeetTypeView.xib in Resources */,
 				18EB29CF1BB595450040758B /* rsa_private_key.pkcs8 in Resources */,
 				18DEAD261B9DBD17003CEA5E /* publish_date_ico3@2x.png in Resources */,
@@ -2647,6 +2727,7 @@
 				18DEAD251B9DBD17003CEA5E /* publish_date_ico2@2x.png in Resources */,
 				B573BEA61B1B7133000A1196 /* LCLMeetingMineTableViewCell.xib in Resources */,
 				18FAB2AA1BA872E000FD6143 /* LCLMyPictureInfoViewController.xib in Resources */,
+				18765B531BF478E5000721BD /* kr-video-player-fullscreen@2x.png in Resources */,
 				18DEACF51B9DBD17003CEA5E /* search_B.png in Resources */,
 				18DEADCC1B9DD7ED003CEA5E /* menu_my_b@3x.png in Resources */,
 				18FAB2B61BA8775F00FD6143 /* LCLMyFocusTableViewCell.xib in Resources */,
@@ -2677,6 +2758,7 @@
 				18DEAD2A1B9DBD17003CEA5E /* shop_A@2x.png in Resources */,
 				18DEADCB1B9DD7ED003CEA5E /* menu_my_b@2x.png in Resources */,
 				18DEAD081B9DBD17003CEA5E /* date_B@2x.png in Resources */,
+				18765B561BF478E5000721BD /* kr-video-player-pause@3x.png in Resources */,
 				B58B15141B1422960019C822 /* b_sanjiao.png in Resources */,
 				18DEAD1B1B9DBD17003CEA5E /* login_phone@2x.png in Resources */,
 				18DEACF11B9DBD17003CEA5E /* publish_date_ico2.png in Resources */,
@@ -2695,6 +2777,7 @@
 				18DEAD7E1B9DBFDA003CEA5E /* icon_28_28.png in Resources */,
 				18DEAD531B9DBD17003CEA5E /* my_B@3x.png in Resources */,
 				18DEAD071B9DBD17003CEA5E /* date_A@2x.png in Resources */,
+				18765B521BF478E5000721BD /* kr-video-player-close@3x.png in Resources */,
 				18DEAD041B9DBD17003CEA5E /* Check_no@2x.png in Resources */,
 				B570E6201B14D78E007A07F4 /* LaunchScreen.xib in Resources */,
 				18DEACD61B9DBD17003CEA5E /* date_info_ico.png in Resources */,
@@ -2717,10 +2800,12 @@
 				18DEACF61B9DBD17003CEA5E /* shop_A.png in Resources */,
 				B54042F91B1CAD5600E9CCA5 /* LCLMeFooterView.xib in Resources */,
 				18DEACEA1B9DBD17003CEA5E /* my_A.png in Resources */,
+				18765B541BF478E5000721BD /* kr-video-player-fullscreen@3x.png in Resources */,
 				18DEAD7D1B9DBFDA003CEA5E /* icon_16_16.png in Resources */,
 				18DEAD501B9DBD17003CEA5E /* map_point2@3x.png in Resources */,
 				18DEACF81B9DBD17003CEA5E /* thaw_ico.png in Resources */,
 				18DEAD451B9DBD17003CEA5E /* date_type7@3x.png in Resources */,
+				18765B571BF478E5000721BD /* kr-video-player-play@2x.png in Resources */,
 				18DEAD5D1B9DBD17003CEA5E /* search_B@3x.png in Resources */,
 				B58B14AA1B1407270019C822 /* Default-568h@2x.png in Resources */,
 				18DEADC01B9DD715003CEA5E /* menu_fruit_b@3x.png in Resources */,
@@ -2781,6 +2866,7 @@
 				18DEAD2D1B9DBD17003CEA5E /* title_message_a@2x.png in Resources */,
 				18DFDB941BB2E5E2008FA2F6 /* success.png in Resources */,
 				18DEAD0B1B9DBD17003CEA5E /* date_type1@2x.png in Resources */,
+				18765B5B1BF478E5000721BD /* kr-video-player-shrinkscreen@2x.png in Resources */,
 				18DEACE01B9DBD17003CEA5E /* home_A.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2893,6 +2979,7 @@
 				18FAB2AF1BA876E200FD6143 /* LCLMyFocusViewController.m in Sources */,
 				180E2F5A1BC548A7002B721F /* SDWebImagePrefetcher.m in Sources */,
 				18EB29D91BB595450040758B /* DataVerifier.m in Sources */,
+				18765B5D1BF478E5000721BD /* KrVideoPlayerController.m in Sources */,
 				18EB29DD1BB595450040758B /* RSADataSigner.m in Sources */,
 				180E2F511BC548A7002B721F /* MKAnnotationView+WebCache.m in Sources */,
 				180E2F4F1BC548A7002B721F /* MJPhotoToolbar.m in Sources */,
@@ -2904,6 +2991,7 @@
 				18DEAD8C1B9DC1E6003CEA5E /* LCLForgetPassowrdViewController.m in Sources */,
 				180E2F541BC548A7002B721F /* SDWebImageCompat.m in Sources */,
 				B58B14C61B140C4B0019C822 /* LCLTapMenuView.m in Sources */,
+				18765B5E1BF478E5000721BD /* KrVideoPlayerControlView.m in Sources */,
 				18DEAD9A1B9DC5D9003CEA5E /* LCLRegistPhoneViewController.m in Sources */,
 				B58B15081B141A6E0019C822 /* LCLMeetingViewController.m in Sources */,
 				B54042E51B1CA8E900E9CCA5 /* LCLShopHeader.m in Sources */,
@@ -2916,6 +3004,7 @@
 				18DEADA31B9DC61F003CEA5E /* LCLWebViewController.m in Sources */,
 				B570E5EC1B14D437007A07F4 /* SectionsViewController.m in Sources */,
 				18EB29F01BB5956B0040758B /* WXUtil.mm in Sources */,
+				18765B5F1BF478E5000721BD /* READEME.md in Sources */,
 				B58B14E31B140C7A0019C822 /* UIScrollView+Refresh.m in Sources */,
 				B570E5EB1B14D437007A07F4 /* NSDictionary-DeepMutableCopy.m in Sources */,
 				18EB29F61BB5A5820040758B /* LCLSelectPickerView.m in Sources */,
@@ -3003,7 +3092,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer: ran duan (M66785LA85)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: CAIWEN ZHOU (D25543FMWA)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -3028,6 +3117,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_MODULE_NAME = "";
 				PRODUCT_NAME = "";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -3049,8 +3139,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer: ran duan (M66785LA85)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: CAIWEN ZHOU (D25543FMWA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: CAIWEN ZHOU (D25543FMWA)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -3067,6 +3157,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_MODULE_NAME = "";
 				PRODUCT_NAME = "";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3077,7 +3168,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "Mac Developer: ran duan (M66785LA85)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3110,8 +3201,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "Mac Developer: ran duan (M66785LA85)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: CAIWEN ZHOU (D25543FMWA)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3142,7 +3233,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "Mac Developer: ran duan (M66785LA85)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: CAIWEN ZHOU (D25543FMWA)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -3154,6 +3245,7 @@
 				INFOPLIST_FILE = "信使Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = Messenger;
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Messenger.app/Messenger";
 			};
 			name = Debug;
@@ -3162,7 +3254,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "Mac Developer: ran duan (M66785LA85)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: CAIWEN ZHOU (D25543FMWA)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -3170,6 +3262,7 @@
 				INFOPLIST_FILE = "信使Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = Messenger;
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Messenger.app/Messenger";
 			};
 			name = Release;

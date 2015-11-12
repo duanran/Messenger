@@ -19,4 +19,11 @@
 // 是否已经保存到相册
 @property (nonatomic, assign) BOOL save;
 @property (nonatomic, assign) int index; // 索引
+
+
+
+
+@property(nonatomic,strong)NSString *photoStyle;
+@property(nonatomic,strong)NSString *videoUrl;
+
 @end

@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *phoneButton;
 @property (weak, nonatomic) IBOutlet UIButton *yuehuiButton;
 @property (weak, nonatomic) IBOutlet UIButton *peopleHeadButton;
+@property (weak,nonatomic) IBOutlet UIView *cellSubView;
 
 - (void)setPeopleNameWithName:(NSString *)name;
 

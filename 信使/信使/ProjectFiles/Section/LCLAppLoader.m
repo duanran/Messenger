@@ -115,15 +115,15 @@
 //登录成功
 - (UIViewController *)getLoginViewController{
     
-    UIImage *firstImage = [[UIImage imageNamed:@"menu_fruit_a"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
-    UIImage *secondImage = [[UIImage imageNamed:@"menu_fruit_a"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
-    UIImage *thirdImage = [[UIImage imageNamed:@"menu_fruit_a"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
+    UIImage *firstImage = [[UIImage imageNamed:@"home_A"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
+    UIImage *secondImage = [[UIImage imageNamed:@"date_A"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
+    UIImage *thirdImage = [[UIImage imageNamed:@"search_A"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
     UIImage *fourthImage = [[UIImage imageNamed:@"menu_fruit_a"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
     UIImage *fivethImage = [[UIImage imageNamed:@"menu_my_a"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
 
-    UIImage *firstSelectImage = [[UIImage imageNamed:@"menu_fruit_b"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
-    UIImage *secondSelectImage = [[UIImage imageNamed:@"menu_fruit_b"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
-    UIImage *thirdSelectImage = [[UIImage imageNamed:@"menu_fruit_b"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
+    UIImage *firstSelectImage = [[UIImage imageNamed:@"home_B"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
+    UIImage *secondSelectImage = [[UIImage imageNamed:@"date_B"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
+    UIImage *thirdSelectImage = [[UIImage imageNamed:@"search_B"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
     UIImage *fourthSelectImage = [[UIImage imageNamed:@"menu_fruit_b"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
     UIImage *fivethSelectImage = [[UIImage imageNamed:@"menu_my_b"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
 
