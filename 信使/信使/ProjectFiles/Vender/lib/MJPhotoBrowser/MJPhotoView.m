@@ -11,12 +11,20 @@
 #import "UIImageView+WebCache.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface MJPhotoView ()
+#import "AFNetworking.h"
+#import "MBProgressHUD.h"
+#import "WatchVideoRequest.h"
+
+
+
+@interface MJPhotoView ()<UIAlertViewDelegate>
 {
     BOOL _doubleTap;
     UIImageView *_imageView;
     MJPhotoLoadingView *_photoLoadingView;
+    BOOL isVideo;
 }
+
 @end
 
 @implementation MJPhotoView
@@ -68,6 +76,7 @@
         _imageView.image = _photo.placeholder; // 占位图片
         _photo.srcImageView.image = nil;
         
+        
         // 不是gif，就马上开始下载
         if (![_photo.url.absoluteString hasSuffix:@"gif"]) {
             __unsafe_unretained MJPhotoView *photoView = self;
@@ -85,6 +94,96 @@
 
     // 调整frame参数
     [self adjustFrame];
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex==1) {
+        WatchVideoRequest *request=[[WatchVideoRequest alloc]init];
+        NSDictionary *myInfo = [LCLGetToken checkHaveLoginWithShowLoginView:NO];
+        LCLUserInfoObject *myObj = [LCLUserInfoObject allocModelWithDictionary:myInfo];
+
+        request.parameters=@{@"uKey":myObj.ukey,
+                             @"id":_photo.videoId
+                             };
+        
+        [request GETRequest:^(id reponseObject) {
+            
+            NSString *pathStr=[NSString stringWithFormat:@"%@",[reponseObject objectForKey:@"path"]];
+            NSURL *url=[NSURL URLWithString:pathStr];
+            [self videoStartDownLoad:url fileName:pathStr];
+        } failureCallback:^(NSString *errorMessage) {
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:errorMessage delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+
+        }];
+    }
+}
+#pragma mark 下载视频
+-(void)videoStartDownLoad:(NSURL *)Url fileName:(NSString *)fileName
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDir = [paths objectAtIndex:0];
+    NSString *lastCoponet=[fileName lastPathComponent];
+    NSString *filePath=[docDir stringByAppendingPathComponent:lastCoponet];
+    
+    NSLog(@"filePath=%@",filePath);
+    
+    
+    //判断文件是否已存在
+    NSFileManager *fileManger=[NSFileManager defaultManager];
+    
+    if ([fileManger fileExistsAtPath:filePath]) {
+        //文件已经存在无需下载
+        if (self.photoViewDelegate&&[self.photoViewDelegate respondsToSelector:@selector(photoViewPlayVideo:)]) {
+            _doubleTap = NO;
+            [self performSelector:@selector(hide) withObject:nil afterDelay:0.2];
+            [self.photoViewDelegate photoViewPlayVideo:_photo.videoUrl];
+        }
+        return;
+
+    }
+    
+
+    NSURLRequest *request = [NSURLRequest requestWithURL:Url];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.inputStream   = [NSInputStream inputStreamWithURL:Url];
+    operation.outputStream  = [NSOutputStream outputStreamToFileAtPath:filePath append:NO];
+    
+//    [_photoLoadingView showLoading];
+//    __unsafe_unretained MJPhotoView *photoView = self;
+//    __unsafe_unretained MJPhotoLoadingView *loading = _photoLoadingView;
+//
+//    [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
+//        NSLog(@"is download：%f", (float)totalBytesRead/totalBytesExpectedToRead);
+//            loading.progress = (float)totalBytesRead/totalBytesExpectedToRead;
+//
+//        
+//    }];
+
+    
+    
+    
+    [MBProgressHUD showHUDAddedTo:self animated:YES];
+    //已完成下载
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [MBProgressHUD hideAllHUDsForView:self animated:YES];
+
+        if (self.photoViewDelegate&&[self.photoViewDelegate respondsToSelector:@selector(photoViewPlayVideo:)]) {
+            _doubleTap = NO;
+            [self performSelector:@selector(hide) withObject:nil afterDelay:0.2];
+            [self.photoViewDelegate photoViewPlayVideo:_photo.videoUrl];
+        }
+
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [MBProgressHUD hideAllHUDsForView:self animated:YES];
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:@"下载失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        //下载失败
+    }];
+    
+    [operation start];
+
 }
 
 #pragma mark 开始加载图片
@@ -191,8 +290,22 @@
 
 #pragma mark - 手势处理
 - (void)handleSingleTap:(UITapGestureRecognizer *)tap {
-    _doubleTap = NO;
-    [self performSelector:@selector(hide) withObject:nil afterDelay:0.2];
+    if ([_photo.photoStyle isEqualToString:@"video"]) {
+        
+        if ([_photo.IsSee integerValue]==1) {
+                [self videoStartDownLoad:_photo.url fileName:[NSString stringWithFormat:@"%@",_photo.videoUrl]];
+        }
+        else
+        {
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"查看视频需要%@【信用豆】，确定观看？",_photo.videoCoin] message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            [alert show];
+        }
+    }
+    else{
+        _doubleTap = NO;
+        [self performSelector:@selector(hide) withObject:nil afterDelay:0.2];
+    }
+    
 }
 - (void)hide
 {

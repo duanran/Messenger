@@ -13,6 +13,8 @@
 - (void)photoViewImageFinishLoad:(MJPhotoView *)photoView;
 - (void)photoViewSingleTap:(MJPhotoView *)photoView;
 - (void)photoViewDidEndZoom:(MJPhotoView *)photoView;
+-(void)photoViewPlayVideo:(NSString *)videoPath;
+
 @end
 
 @interface MJPhotoView : UIScrollView <UIScrollViewDelegate>

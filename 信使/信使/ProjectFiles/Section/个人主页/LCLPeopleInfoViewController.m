@@ -14,8 +14,10 @@
 #import "LCLPeopleInfoPicTableViewCell.h"
 
 #import "LCLCreateMeetingViewController.h"
+#import "MJPhotoBrowser.h"
+#import "LCLVideoViewController.h"
 
-@interface LCLPeopleInfoViewController ()<LCLPeopleInfoPicTableViewCellDelegate>
+@interface LCLPeopleInfoViewController ()<LCLPeopleInfoPicTableViewCellDelegate,MJPhotoBrowserDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *photoButton;
 @property (weak, nonatomic) IBOutlet UIButton *communicationButton;
@@ -405,6 +407,73 @@
     LCLUserInfoObject *userObj = [LCLUserInfoObject allocModelWithDictionary:self.userInfo];
 
     [self lookPicWithUID:userObj.uid fromImageView:button.blurImageView index:button.tag];
+}
+- (void)lookPicWithUID:(NSString *)uid fromImageView:(UIImageView *)imageView index:(NSInteger)index{
+    
+    [LCLWaitView showIndicatorView:YES];
+    
+    @weakify(self);
+    
+    NSDictionary *myInfo = [LCLGetToken checkHaveLoginWithShowLoginView:NO];
+    LCLUserInfoObject *myObj = [LCLUserInfoObject allocModelWithDictionary:myInfo];
+    
+    NSString *listURL = [NSString stringWithFormat:@"%@", LookUserPhotosURL(myObj.ukey, uid)];
+    
+    
+    
+    
+    LCLDownloader *downloader = [[LCLDownloader alloc] initWithURLString:listURL];
+    [downloader setHttpMehtod:LCLHttpMethodGet];
+    [downloader setDownloadCompleteBlock:^(NSString *err, NSMutableData *fileData, NSString *url){
+        
+        [LCLWaitView showIndicatorView:NO];
+        
+        NSDictionary *dataSourceDic = [self_weak_.view getResponseDataDictFromResponseData:fileData withSuccessString:nil error:@""];
+        if (dataSourceDic) {
+            
+            NSArray *picArray = [[NSMutableArray alloc] initWithArray:[dataSourceDic objectForKey:@"list"]];
+            NSString *videoConin=[NSString stringWithFormat:@"%@",[dataSourceDic objectForKey:@"video_coin"]];
+            // 1.封装图片数据
+            NSMutableArray *photos = [NSMutableArray arrayWithCapacity:picArray.count];
+            for (int i = 0; i<picArray.count; i++) {
+                // 替换为中等尺寸图片
+                
+                NSDictionary *dic = [picArray objectAtIndex:i];
+                LCLPhotoObject *photoObj = [LCLPhotoObject allocModelWithDictionary:dic];
+                
+                MJPhoto *photo = [[MJPhoto alloc] init];
+                photo.url = [NSURL URLWithString:photoObj.path]; // 图片路径
+                //添加图片类型和视频路径
+                photo.photoStyle=photoObj.style;
+                photo.videoUrl=photoObj.video_path;
+                photo.IsSee=photoObj.see;
+                photo.videoCoin=videoConin;
+                photo.videoId=photoObj.iD;
+                photo.srcImageView = imageView; // 来源于哪个UIImageView
+                [photos addObject:photo];
+            }
+            
+            NSInteger t = index;
+            if (index>=photos.count) {
+                t = photos.count-1;
+            }
+            
+            // 2.显示相册
+            MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+            browser.currentPhotoIndex = t; // 弹出相册时显示的第一张图片是？
+            browser.photos = photos; // 设置所有的图片
+            browser.delegate=self;
+            [browser show];
+            
+        }
+    }];
+    [downloader startToDownloadWithIntelligence:NO];
+}
+-(void)playVideo:(NSString *)videoPath
+{
+    LCLVideoViewController *videoController=[[LCLVideoViewController alloc]init];
+    videoController.videoUrl=videoPath;
+    [self.navigationController pushViewController:videoController animated:YES];
 }
 
 #pragma mark -下载数据

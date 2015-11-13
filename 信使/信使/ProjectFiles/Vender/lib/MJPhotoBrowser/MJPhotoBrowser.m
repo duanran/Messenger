@@ -15,7 +15,7 @@
 #define kPhotoViewTagOffset 1000
 #define kPhotoViewIndex(photoView) ([photoView tag] - kPhotoViewTagOffset)
 
-@interface MJPhotoBrowser () <MJPhotoViewDelegate>
+@interface MJPhotoBrowser () <MJPhotoViewDelegate,PhotoToolBarDelegate>
 {
     // 滚动的view
 	UIScrollView *_photoScrollView;
@@ -73,13 +73,19 @@
     CGFloat barY = self.view.frame.size.height - barHeight;
     _toolbar = [[MJPhotoToolbar alloc] init];
     _toolbar.frame = CGRectMake(0, barY, self.view.frame.size.width, barHeight);
+    _toolbar.delegate=self;
     _toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     _toolbar.photos = _photos;
     [self.view addSubview:_toolbar];
     
     [self updateTollbarState];
 }
+-(void)colsePhoto
+{
+    [self.view removeFromSuperview];
+    [self removeFromParentViewController];
 
+}
 #pragma mark 创建UIScrollView
 - (void)createScrollView
 {
@@ -152,7 +158,13 @@
 {
     _toolbar.currentPhotoIndex = _currentPhotoIndex;
 }
+-(void)photoViewPlayVideo:(NSString *)videoPath
+{
+    if (self.delegate&&[self.delegate respondsToSelector:@selector(playVideo:)]) {
+        [self.delegate playVideo:videoPath];
+    }
 
+}
 #pragma mark 显示照片
 - (void)showPhotos
 {

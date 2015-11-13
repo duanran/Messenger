@@ -47,20 +47,30 @@
     // 保存图片按钮
     CGFloat btnWidth = self.bounds.size.height;
     _saveImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _saveImageBtn.frame = CGRectMake(20, 0, btnWidth, btnWidth);
+    _saveImageBtn.frame = CGRectMake(15, 0, btnWidth, btnWidth);
     _saveImageBtn.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    [_saveImageBtn setImage:[UIImage imageNamed:@"MJPhotoBrowser.bundle/save_icon.png"] forState:UIControlStateNormal];
-    [_saveImageBtn setImage:[UIImage imageNamed:@"MJPhotoBrowser.bundle/save_icon_highlighted.png"] forState:UIControlStateHighlighted];
+//    [_saveImageBtn setImage:[UIImage imageNamed:@"MJPhotoBrowser.bundle/save_icon.png"] forState:UIControlStateNormal];
+//    [_saveImageBtn setImage:[UIImage imageNamed:@"MJPhotoBrowser.bundle/save_icon_highlighted.png"] forState:UIControlStateHighlighted];
+    [_saveImageBtn setTitle:@"关闭" forState:UIControlStateNormal];
+    [_saveImageBtn setTitle:@"关闭" forState:UIControlStateHighlighted];
+
     [_saveImageBtn addTarget:self action:@selector(saveImage) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_saveImageBtn];
 }
 
 - (void)saveImage
 {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        MJPhoto *photo = _photos[_currentPhotoIndex];
-        UIImageWriteToSavedPhotosAlbum(photo.image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
-    });
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        MJPhoto *photo = _photos[_currentPhotoIndex];
+//        UIImageWriteToSavedPhotosAlbum(photo.image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+//    });
+    
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(colsePhoto)]) {
+        [self.delegate colsePhoto];
+    }
+    
+    
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
@@ -84,7 +94,8 @@
     
     MJPhoto *photo = _photos[_currentPhotoIndex];
     // 按钮
-    _saveImageBtn.enabled = photo.image != nil && !photo.save;
+    _saveImageBtn.enabled=YES;
+//    _saveImageBtn.enabled = photo.image != nil && !photo.save;
 }
 
 @end

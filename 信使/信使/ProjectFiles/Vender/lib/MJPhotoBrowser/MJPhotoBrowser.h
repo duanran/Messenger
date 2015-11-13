@@ -5,7 +5,7 @@
 //  Copyright (c) 2013年 itcast. All rights reserved.
 
 #import <UIKit/UIKit.h>
-
+#import "MJPhoto.h"
 @protocol MJPhotoBrowserDelegate;
 @interface MJPhotoBrowser : UIViewController <UIScrollViewDelegate>
 // 代理
@@ -23,4 +23,5 @@
 @optional
 // 切换到某一页图片
 - (void)photoBrowser:(MJPhotoBrowser *)photoBrowser didChangedToPageAtIndex:(NSUInteger)index;
+- (void)playVideo:(NSString *)videoPath;
 @end

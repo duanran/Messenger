@@ -25,5 +25,8 @@
 
 @property(nonatomic,strong)NSString *photoStyle;
 @property(nonatomic,strong)NSString *videoUrl;
+@property(nonatomic,strong)NSString *IsSee;
+@property(nonatomic,strong)NSString *videoCoin;
+@property(nonatomic,strong)NSString *videoId;
 
 @end

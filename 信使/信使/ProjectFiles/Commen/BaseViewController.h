@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol returnToSubControllerDelegate <NSObject>
+
+-(void)navitoVideoController:(NSString *)videoPath;
+
+@end
+
+
 @interface BaseViewController : UIViewController
 
 //是否显示navigationBar
@@ -21,8 +28,11 @@
  *
  *  @param backgroundImage 目标背景图片
  */
-@property (nonatomic, strong) UIImageView *lclBackgroundImageView;
 
+
+
+@property (nonatomic, strong) UIImageView *lclBackgroundImageView;
+@property(nonatomic,weak)id <returnToSubControllerDelegate> delegate;
 
 //设置左消息item
 - (void)setNotifyMessageNavigationItem;
@@ -32,6 +42,10 @@
 
 //查看相册图片
 - (void)lookPicWithUID:(NSString *)uid fromImageView:(UIImageView *)imageView index:(NSInteger)index;
+
+
+
+
 
 @end
 

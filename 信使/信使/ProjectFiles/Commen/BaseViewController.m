@@ -13,8 +13,8 @@
 #import "UIImageView+MJWebCache.h"
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
-
-@interface BaseViewController ()
+#import "LCLVideoViewController.h"
+@interface BaseViewController ()<MJPhotoBrowserDelegate>
 
 @property (strong, nonatomic) UIButton *messageBtn;
 
@@ -231,7 +231,9 @@
                 
                 MJPhoto *photo = [[MJPhoto alloc] init];
                 photo.url = [NSURL URLWithString:photoObj.path]; // 图片路径
-                
+                //添加图片类型和视频路径
+                photo.photoStyle=photoObj.style;
+                photo.videoUrl=photoObj.video_path;
                 photo.srcImageView = imageView; // 来源于哪个UIImageView
                 [photos addObject:photo];
             }
@@ -245,12 +247,14 @@
             MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
             browser.currentPhotoIndex = t; // 弹出相册时显示的第一张图片是？
             browser.photos = photos; // 设置所有的图片
+//            browser.delegate=self;
             [browser show];
             
         }
     }];
     [downloader startToDownloadWithIntelligence:NO];
 }
+
 
 #pragma mark -Gettter
 /**

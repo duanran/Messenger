@@ -19,5 +19,6 @@
 @property (strong, nonatomic) NSString *see;
 @property (strong, nonatomic) NSString *style;
 @property (strong, nonatomic) NSString *thumb_360;
+@property (strong,nonatomic) NSString *video_path;
 
 @end

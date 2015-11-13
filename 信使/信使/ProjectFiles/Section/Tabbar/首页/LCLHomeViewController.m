@@ -13,6 +13,9 @@
 #import "LCLCreateMeetingViewController.h"
 
 #import <MapKit/MapKit.h>
+#import "MJPhoto.h"
+#import "MJPhotoBrowser.h"
+#import "LCLVideoViewController.h"
 
 #define contentImageViewTag 1000
 #define dateBtnTag 2000
@@ -20,7 +23,7 @@
 #define phoneBtnTag 4000
 #define cellSubViewTag 5000
 #define contentLableTag 6000
-@interface LCLHomeViewController () <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate,UIGestureRecognizerDelegate>
+@interface LCLHomeViewController () <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate,UIGestureRecognizerDelegate,MJPhotoBrowserDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 
@@ -37,6 +40,15 @@
 
 @implementation LCLHomeViewController
 
+-(instancetype)init
+{
+    self=[super init];
+    if (self) {
+    
+    
+    }
+    return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -186,6 +198,14 @@
     
     [self lookPicWithUID:uid fromImageView:imageView index:0];
 }
+-(void)playVideo:(NSString *)videoPath
+{
+    LCLVideoViewController *videoController=[[LCLVideoViewController alloc]init];
+    videoController.videoUrl=videoPath;
+    [self.navigationController pushViewController:videoController animated:YES];
+}
+
+
 
 - (IBAction)tapPhoneButton:(UIButton *)sender{
     
@@ -399,45 +419,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
- 
-//    LCLHomeTableViewCell *cell=(LCLHomeTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-//    [cell.contentImageView setUserInteractionEnabled:YES];
-//    NSDictionary *dic = [self.dataArray objectAtIndex:indexPath.row];
-//    LCLIndexObject *indexObj = [LCLIndexObject allocModelWithDictionary:dic];
-//    NSString *peopleURL = GetDownloadPicURL(indexObj.headimg);
-//    [cell.peopleHeadButton setBackgroundImageWithURL:peopleURL
-//                                    defaultImagePath:DefaultImagePath];
-//    [cell.contentImageView setRestorationIdentifier:indexObj.uid];
-//
-//    
-//    
-//    UIImageView *imageView = (UIImageView *)cell.imageView;
-//    NSString *uid = ind.restorationIdentifier;
-//    
-//    [self lookPicWithUID:uid fromImageView:imageView index:0];
 
-    
-    
-    
-    
     
     
 }
-//add by duanran begin
-//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-//    
-//    if ([otherGestureRecognizer.view isKindOfClass:[UITableView class]]) {
-//        return YES;
-//    }
-//    return NO;
-//}
-//- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
-//{
-//    
-//    return YES;
-//}
-
-//add by duanran end
 - (void)locationManager:(CLLocationManager *)manager
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation{
@@ -674,6 +659,71 @@
             [self_weak_.tableView headerEndRefreshing];
         });
     }
+}
+- (void)lookPicWithUID:(NSString *)uid fromImageView:(UIImageView *)imageView index:(NSInteger)index{
+    
+    [LCLWaitView showIndicatorView:YES];
+    
+    @weakify(self);
+    
+    NSDictionary *myInfo = [LCLGetToken checkHaveLoginWithShowLoginView:NO];
+    LCLUserInfoObject *myObj = [LCLUserInfoObject allocModelWithDictionary:myInfo];
+    
+    NSString *listURL = [NSString stringWithFormat:@"%@", LookUserPhotosURL(myObj.ukey, uid)];
+    
+    
+    
+    
+    LCLDownloader *downloader = [[LCLDownloader alloc] initWithURLString:listURL];
+    [downloader setHttpMehtod:LCLHttpMethodGet];
+    [downloader setDownloadCompleteBlock:^(NSString *err, NSMutableData *fileData, NSString *url){
+        
+        [LCLWaitView showIndicatorView:NO];
+        
+        NSDictionary *dataSourceDic = [self_weak_.view getResponseDataDictFromResponseData:fileData withSuccessString:nil error:@""];
+        if (dataSourceDic) {
+            
+            NSArray *picArray = [[NSMutableArray alloc] initWithArray:[dataSourceDic objectForKey:@"list"]];
+            
+            NSString *videoConin=[NSString stringWithFormat:@"%@",[dataSourceDic objectForKey:@"video_coin"]];
+            
+            
+            
+            // 1.封装图片数据
+            NSMutableArray *photos = [NSMutableArray arrayWithCapacity:picArray.count];
+            for (int i = 0; i<picArray.count; i++) {
+                // 替换为中等尺寸图片
+                
+                NSDictionary *dic = [picArray objectAtIndex:i];
+                LCLPhotoObject *photoObj = [LCLPhotoObject allocModelWithDictionary:dic];
+                
+                MJPhoto *photo = [[MJPhoto alloc] init];
+                photo.url = [NSURL URLWithString:photoObj.path]; // 图片路径
+                //添加图片类型和视频路径
+                photo.photoStyle=photoObj.style;
+                photo.videoUrl=photoObj.video_path;
+                photo.IsSee=photoObj.see;
+                photo.videoCoin=videoConin;
+                photo.videoId=photoObj.iD;
+                photo.srcImageView = imageView; // 来源于哪个UIImageView
+                [photos addObject:photo];
+            }
+            
+            NSInteger t = index;
+            if (index>=photos.count) {
+                t = photos.count-1;
+            }
+            
+            // 2.显示相册
+            MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+            browser.currentPhotoIndex = t; // 弹出相册时显示的第一张图片是？
+            browser.photos = photos; // 设置所有的图片
+            browser.delegate=self;
+            [browser show];
+            
+        }
+    }];
+    [downloader startToDownloadWithIntelligence:NO];
 }
 
 /*
