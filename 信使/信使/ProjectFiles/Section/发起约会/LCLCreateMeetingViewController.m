@@ -69,13 +69,13 @@
             self_weak_.isGetMoneyType = NO;
         }
         
-        [self_weak_.coinButton setTitle:[NSString stringWithFormat:@"%@[%@金币]", type, self_weak_.money] forState:UIControlStateNormal];
+        [self_weak_.coinButton setTitle:[NSString stringWithFormat:@"%@[%@信用豆]", type, self_weak_.money] forState:UIControlStateNormal];
         
     } moneyCompleteBlock:^(NSString *m) {
         
         self_weak_.money = m;
 
-        [self_weak_.coinButton setTitle:[NSString stringWithFormat:@"%@[%@金币]", self_weak_.isGetMoneyType ? @"获取红包" : @"赠送红包", self_weak_.money] forState:UIControlStateNormal];
+        [self_weak_.coinButton setTitle:[NSString stringWithFormat:@"%@[%@信用豆]", self_weak_.isGetMoneyType ? @"获取红包" : @"赠送红包", self_weak_.money] forState:UIControlStateNormal];
     }];
 }
 

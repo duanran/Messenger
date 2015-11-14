@@ -1,23 +1,30 @@
 {
-  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "E1DE7897D8D3B03F2E4A739D4564838ED3D63979+++71184C0",
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "E1DE7897D8D3B03F2E4A739D4564838ED3D63979+++55EF6D9",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "E1DE7897D8D3B03F2E4A739D4564838ED3D63979+++E07E971" : 0,
+    "E1DE7897D8D3B03F2E4A739D4564838ED3D63979+++55EF6D9" : 0,
     "E1DE7897D8D3B03F2E4A739D4564838ED3D63979+++EE79404" : 0,
-    "E1DE7897D8D3B03F2E4A739D4564838ED3D63979+++71184C0" : 0,
-    "E1DE7897D8D3B03F2E4A739D4564838ED3D63979+++E07E971" : 0
+    "E1DE7897D8D3B03F2E4A739D4564838ED3D63979+++71184C0" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "DFDA230D-9677-413A-A5F7-305A09ACD2CC",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "E1DE7897D8D3B03F2E4A739D4564838ED3D63979+++E07E971" : "",
+    "E1DE7897D8D3B03F2E4A739D4564838ED3D63979+++55EF6D9" : "..\/%E4%BF%A1%E4%BD%BF\/%E4%BF%A1%E4%BD%BF",
     "E1DE7897D8D3B03F2E4A739D4564838ED3D63979+++EE79404" : "",
-    "E1DE7897D8D3B03F2E4A739D4564838ED3D63979+++71184C0" : "%E4%BF%A1%E4%BD%BF\/",
-    "E1DE7897D8D3B03F2E4A739D4564838ED3D63979+++E07E971" : ""
+    "E1DE7897D8D3B03F2E4A739D4564838ED3D63979+++71184C0" : "%E4%BF%A1%E4%BD%BF\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "Messenger",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Messenger.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/duanran\/Messenger.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E1DE7897D8D3B03F2E4A739D4564838ED3D63979+++55EF6D9"
+    },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/duanran\/Messenger.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",

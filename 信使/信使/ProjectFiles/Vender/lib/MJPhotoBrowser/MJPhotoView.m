@@ -15,7 +15,7 @@
 #import "MBProgressHUD.h"
 #import "WatchVideoRequest.h"
 
-
+#import "RequestURL.h"
 
 @interface MJPhotoView ()<UIAlertViewDelegate>
 {
@@ -109,7 +109,7 @@
         [request GETRequest:^(id reponseObject) {
             
             NSString *pathStr=[NSString stringWithFormat:@"%@",[reponseObject objectForKey:@"path"]];
-            NSURL *url=[NSURL URLWithString:pathStr];
+            NSURL *url=[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseUrl,pathStr]];
             [self videoStartDownLoad:url fileName:pathStr];
         } failureCallback:^(NSString *errorMessage) {
             UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:errorMessage delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
@@ -126,7 +126,6 @@
     NSString *lastCoponet=[fileName lastPathComponent];
     NSString *filePath=[docDir stringByAppendingPathComponent:lastCoponet];
     
-    NSLog(@"filePath=%@",filePath);
     
     
     //判断文件是否已存在

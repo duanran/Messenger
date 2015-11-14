@@ -260,13 +260,15 @@
                 NSDictionary *dataSourceDic = [self_weak_.view getResponseDataDictFromResponseData:fileData withSuccessString:nil error:@""];
                 if (dataSourceDic) {
                     
-                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"查看手机需要%@金币，确定查看？", [dataSourceDic objectForKey:@"coin"]] delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"查看手机需要%@信用豆，确定查看？", [dataSourceDic objectForKey:@"coin"]] delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
                     [alertView.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
                         if ([index integerValue]==1) {
                             [self_weak_ lookPhoneWithUID:userObj.uid phone:userObj.mobile];
                         }
                     }];
                     [alertView show];
+                    
+                    
                 }
             }];
             [downloader startToDownloadWithIntelligence:NO];
@@ -643,6 +645,12 @@
                 
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[dataSourceDic objectForKey:@"phone"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alert show];
+                
+                if (self.UpDatedelegate && [self.UpDatedelegate respondsToSelector:@selector(upDateLookPhoneData)]) {
+                    [self.UpDatedelegate upDateLookPhoneData];
+                }
+                
+                
             }
         }];
         [downloader startToDownloadWithIntelligence:NO];

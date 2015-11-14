@@ -84,7 +84,7 @@
                 NSString *alipayPrice = [info objectForKey:@"money"];
                 NSString *wechatPayPrice = [NSString stringWithFormat:@"%i", [alipayPrice intValue]*100];
                 NSString *coin = [info objectForKey:@"coin"];
-                NSString *subject = [NSString stringWithFormat:@"充值金币%@", coin];
+                NSString *subject = [NSString stringWithFormat:@"充值信用豆%@", coin];
                 if ([type integerValue]==2) {
                     subject = @"购买VIP";
                 }
@@ -130,7 +130,7 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
 
     if (section==0) {
-        return @"金币充值";
+        return @"信用豆充值";
     }else{
         return @"账户升级";
     }
@@ -140,7 +140,7 @@
 
     LCLShopSectionHeaderView *header = (LCLShopSectionHeaderView *)[[[NSBundle mainBundle] loadNibNamed:@"LCLShopSectionHeaderView" owner:self options:nil] lastObject];
     if (section==0) {
-        [header.titleLabel setText:@"金币充值"];
+        [header.titleLabel setText:@"信用豆充值"];
     }else{
         [header.titleLabel setText:@"账户升级"];
     }

@@ -240,7 +240,7 @@
     if (indexPath.section==0) {
         [cell.switchButton setHidden:YES];
         if (indexPath.row==0) {
-            [cell.nameLabel setText:[NSString stringWithFormat:@"金币：%@", userObj.coin]];
+            [cell.nameLabel setText:[NSString stringWithFormat:@"信用豆：%@", userObj.coin]];
             [cell.actionButton setTitle:@"马上充值" forState:UIControlStateNormal];
             [cell.actionButton setEnabled:NO];
         }else{

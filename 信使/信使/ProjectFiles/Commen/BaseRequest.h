@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "RequestURL.h"
 
 typedef void(^onSuccessCallback)(id reponseObject);
 typedef void(^onFailureCallback)(NSString *errorMessage);

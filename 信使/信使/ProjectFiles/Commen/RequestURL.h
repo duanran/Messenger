@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 //临时域名
-#define BaseUrl @"http://fille.wbteam.cn/"
+#define BaseUrl @"http://fille.wbteam.cn"
 
 @interface RequestURL : NSObject
 typedef NS_ENUM(NSInteger, URLType){
     URLTypeWatchVideo,                   /* 查看视频 */
+    URLTypeLookPhoneUpDate,              /* 更新查看手机号码 */
 };
 /*
  * 根据URL类型获取url

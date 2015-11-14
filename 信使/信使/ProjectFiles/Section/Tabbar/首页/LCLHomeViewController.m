@@ -16,6 +16,7 @@
 #import "MJPhoto.h"
 #import "MJPhotoBrowser.h"
 #import "LCLVideoViewController.h"
+#import "updateLookPhoneDate.h"
 
 #define contentImageViewTag 1000
 #define dateBtnTag 2000
@@ -23,7 +24,10 @@
 #define phoneBtnTag 4000
 #define cellSubViewTag 5000
 #define contentLableTag 6000
-@interface LCLHomeViewController () <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate,UIGestureRecognizerDelegate,MJPhotoBrowserDelegate>
+
+
+
+@interface LCLHomeViewController () <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate,UIGestureRecognizerDelegate,MJPhotoBrowserDelegate,UIAlertViewDelegate,LCLPeopinfoDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 
@@ -92,7 +96,7 @@
     @weakify(self);
     
     [self_weak_.tableView addHeaderWithCallback:^{
-        
+    
         [self_weak_ loadServerData];
     }];
     
@@ -105,7 +109,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -150,11 +154,15 @@
     LCLPeopleInfoViewController *people = [[LCLPeopleInfoViewController alloc] initWithNibName:@"LCLPeopleInfoViewController" bundle:nil];
     [people setUserInfo:dic];
     [people setTitle:@"个人主页"];
+    people.UpDatedelegate=self;
     [people setHidesBottomBarWhenPushed:YES];
     [people setIsFromMe:NO];
     [self.navigationController pushViewController:people animated:YES];
 }
-
+-(void)upDateLookPhoneData
+{
+    [self updateData];
+}
 - (IBAction)tapYueHuiButton:(UIButton *)sender{
     
     NSDictionary *dic = [self.dataArray objectAtIndex:sender.tag-dateBtnTag];
@@ -173,7 +181,7 @@
     
         @weakify(self);
         
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"报名约会需要%@金币，确定报名？", indexObj.redbag] delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"报名约会需要%@信用豆，确定报名？", indexObj.redbag] delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         [alertView.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
             if ([index integerValue]==1) {
                 [self_weak_ baomingWithID:indexObj.iD];
@@ -232,9 +240,10 @@
                 [LCLWaitView showIndicatorView:NO];
                 
                 NSDictionary *dataSourceDic = [self_weak_.view getResponseDataDictFromResponseData:fileData withSuccessString:nil error:@""];
+                
                 if (dataSourceDic) {
                     
-                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"查看手机需要%@金币，确定查看？", [dataSourceDic objectForKey:@"coin"]] delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"查看手机需要%@信用豆，确定查看？", [dataSourceDic objectForKey:@"coin"]] delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
                     [alertView.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
                         if ([index integerValue]==1) {
                             [self_weak_ lookPhoneWithUID:indexObj.uid phone:indexObj.phone];
@@ -250,7 +259,6 @@
         [self_weak_ lookPhoneWithUID:indexObj.uid phone:indexObj.phone];
     }
 }
-
 #pragma mark - UITableView delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
@@ -600,10 +608,81 @@
                 
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[dataSourceDic objectForKey:@"phone"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alert show];
+                
+                [self updateData];
+
             }
         }];
         [downloader startToDownloadWithIntelligence:NO];
     }
+}
+
+-(void)updateData
+{
+    
+    @weakify(self);
+    
+    [self_weak_.tableView hideEmptyDataTips];
+    
+    NSDictionary *userInfo = [LCLGetToken checkHaveLoginWithShowLoginView:NO];
+    if (userInfo) {
+        
+        LCLUserInfoObject *userObj = [LCLUserInfoObject allocModelWithDictionary:userInfo];
+        NSInteger currentPage=self.page-1;
+        
+        
+        NSString *listURL = [NSString stringWithFormat:@"%@?num=5&page=%li", IndexListURL(userObj.ukey), currentPage];
+        
+        if (self_weak_.lng && self_weak_.lat) {
+            listURL = [NSString stringWithFormat:@"%@&lon=%@&lat=%@", listURL, self.lng, self.lat];
+        }
+        updateLookPhoneDate *request=[[updateLookPhoneDate alloc]init];
+        request.parameters=@{
+                             @"ukey":userObj.ukey,
+                             @"num":@"5",
+                             @"page":[NSNumber numberWithInteger:currentPage],
+                             @"lon":self.lng,
+                             @"lat":self.lat
+                
+                             };
+        [request GETRequest:^(id reponseObject) {
+            
+            NSDictionary *dataSourceDic = (NSDictionary *)reponseObject;
+            if (dataSourceDic) {
+                self_weak_.dataArray = [[NSMutableArray alloc] initWithArray:[dataSourceDic objectForKey:@"list"]];
+                [self_weak_.tableView reloadData];
+            }
+
+        } failureCallback:^(NSString *errorMessage) {
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:errorMessage message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+        }];
+        
+        
+        
+        
+        LCLDownloader *downloader = [[LCLDownloader alloc] initWithURLString:listURL];
+        [downloader setHttpMehtod:LCLHttpMethodGet];
+        [downloader setDownloadCompleteBlock:^(NSString *err, NSMutableData *fileData, NSString *url){
+            
+            NSDictionary *dataSourceDic = [self_weak_.view getResponseDataDictFromResponseData:fileData withSuccessString:nil error:@""];
+            if (dataSourceDic) {
+                self_weak_.dataArray = [[NSMutableArray alloc] initWithArray:[dataSourceDic objectForKey:@"list"]];
+                [self_weak_.tableView reloadData];
+            }
+            
+        }];
+    }else{
+        
+        [self_weak_.tableView hideEmptyDataTips];
+        [self_weak_.view showUnloginInfoView:YES];
+        
+        LCLMainQueue(^{
+            [self_weak_.tableView headerEndRefreshing];
+        });
+    }
+
+    
 }
 
 

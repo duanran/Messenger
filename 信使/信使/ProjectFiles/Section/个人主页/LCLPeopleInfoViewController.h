@@ -8,11 +8,19 @@
 
 #import "BaseViewController.h"
 
+@protocol LCLPeopinfoDelegate <NSObject>
+
+-(void)upDateLookPhoneData;
+
+@end
+
+
+
 @interface LCLPeopleInfoViewController : BaseViewController
 
 @property (nonatomic) BOOL isFromMe;
 @property (nonatomic) BOOL refresh;
 
 @property (nonatomic, strong) NSDictionary *userInfo;
-
+@property(nonatomic,weak)id<LCLPeopinfoDelegate>UpDatedelegate;
 @end

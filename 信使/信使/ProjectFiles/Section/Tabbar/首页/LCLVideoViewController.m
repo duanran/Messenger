@@ -19,6 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title=@"视频播放";
     [self playVideo];
 
     

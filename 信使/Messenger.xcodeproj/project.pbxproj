@@ -356,6 +356,7 @@
 		18EB29F11BB5956B0040758B /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EB29EB1BB5956B0040758B /* libWeChatSDK.a */; };
 		18EB29F61BB5A5820040758B /* LCLSelectPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB29F51BB5A5820040758B /* LCLSelectPickerView.m */; };
 		18EB29F81BB5A58C0040758B /* LCLSelectPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EB29F71BB5A58C0040758B /* LCLSelectPickerView.xib */; };
+		18EE6D981BF6ED7C00D8D14A /* updateLookPhoneDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE6D971BF6ED7C00D8D14A /* updateLookPhoneDate.m */; };
 		18EFD4D11BAF09D200BA372D /* LCLSelectDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EFD4CF1BAF09D200BA372D /* LCLSelectDateView.m */; };
 		18EFD4D21BAF09D200BA372D /* LCLSelectDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EFD4D01BAF09D200BA372D /* LCLSelectDateView.xib */; };
 		18FAB29F1BA86F7F00FD6143 /* LCLEditMyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FAB29D1BA86F7F00FD6143 /* LCLEditMyInfoViewController.m */; };
@@ -1004,6 +1005,8 @@
 		18EB29F41BB5A5820040758B /* LCLSelectPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCLSelectPickerView.h; sourceTree = "<group>"; };
 		18EB29F51BB5A5820040758B /* LCLSelectPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCLSelectPickerView.m; sourceTree = "<group>"; };
 		18EB29F71BB5A58C0040758B /* LCLSelectPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LCLSelectPickerView.xib; sourceTree = "<group>"; };
+		18EE6D961BF6ED7C00D8D14A /* updateLookPhoneDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = updateLookPhoneDate.h; sourceTree = "<group>"; };
+		18EE6D971BF6ED7C00D8D14A /* updateLookPhoneDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = updateLookPhoneDate.m; sourceTree = "<group>"; };
 		18EFD4CE1BAF09D200BA372D /* LCLSelectDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCLSelectDateView.h; sourceTree = "<group>"; };
 		18EFD4CF1BAF09D200BA372D /* LCLSelectDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCLSelectDateView.m; sourceTree = "<group>"; };
 		18EFD4D01BAF09D200BA372D /* LCLSelectDateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LCLSelectDateView.xib; sourceTree = "<group>"; };
@@ -2637,6 +2640,8 @@
 				18765B601BF48462000721BD /* LCLVideoViewController.h */,
 				18765B611BF48462000721BD /* LCLVideoViewController.m */,
 				18765B621BF48462000721BD /* LCLVideoViewController.xib */,
+				18EE6D961BF6ED7C00D8D14A /* updateLookPhoneDate.h */,
+				18EE6D971BF6ED7C00D8D14A /* updateLookPhoneDate.m */,
 			);
 			path = "首页";
 			sourceTree = "<group>";
@@ -3049,6 +3054,7 @@
 				18DF44BD1BB80E8C00B3035D /* LCLAddressPickerView.m in Sources */,
 				180E2F5C1BC548A7002B721F /* UIImage+GIF.m in Sources */,
 				18FAB2C71BA879C800FD6143 /* LCLPayListTableViewCell.m in Sources */,
+				18EE6D981BF6ED7C00D8D14A /* updateLookPhoneDate.m in Sources */,
 				B58064191B161F95009C45C2 /* LCLARCImagePickerController.m in Sources */,
 				18FAB2C11BA8796D00FD6143 /* LCLPayListAndMoneyListViewController.m in Sources */,
 				18765B961BF48EDD000721BD /* UIActivityIndicatorView+AFNetworking.m in Sources */,

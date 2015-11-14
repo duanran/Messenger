@@ -15,8 +15,8 @@
     static NSDictionary *urlDictionary = nil;
     if (!urlDictionary) {
         urlDictionary = @{
-                          Number(URLTypeWatchVideo)                 :     @"index.php/Api/User/getVideo",
-                          
+                          Number(URLTypeWatchVideo)                 :     @"/index.php/Api/User/getVideo",
+                          Number(URLTypeLookPhoneUpDate)                 :     @"/index.php/Api/Date/lists",
                           };
     }
     NSString *urlString = [urlDictionary objectForKey:Number(urltype)];

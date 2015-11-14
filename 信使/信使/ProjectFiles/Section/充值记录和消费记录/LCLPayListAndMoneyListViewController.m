@@ -75,9 +75,9 @@
     [cell.desLabel setText:[LCLTimeHelper getDateTimeStringFromTime:[payObj.create_time longLongValue]]];
     
     if (self.isPayList) {
-        [cell.coinLabel setText:[NSString stringWithFormat:@"+%@金币", payObj.coin]];
+        [cell.coinLabel setText:[NSString stringWithFormat:@"+%@信用豆", payObj.coin]];
         if ([payObj.type integerValue]==2) {
-            [cell.coinLabel setText:[NSString stringWithFormat:@"-%@金币", payObj.coin]];
+            [cell.coinLabel setText:[NSString stringWithFormat:@"-%@信用豆", payObj.coin]];
         }
     }else{
         [cell.coinLabel setText:[NSString stringWithFormat:@"%@", payObj.coin]];

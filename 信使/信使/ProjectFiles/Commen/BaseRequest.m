@@ -8,7 +8,7 @@
 
 #import "BaseRequest.h"
 #import "AFNetworking.h"
-#import "RequestURL.h"
+//#import "RequestURL.h"
 
 @implementation BaseRequest
 
@@ -101,7 +101,7 @@
 
 #pragma mark ----- 获取请求 URL -----
 - (NSString *)requestURL{
-    NSAssert(NO, @"请重载");
+    
     return @"";
     
 //    //子类使用示例
