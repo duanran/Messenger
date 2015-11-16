@@ -13,7 +13,7 @@
 #import "LCLSelectDateView.h"
 #import "LCLSelectAddressView.h"
 
-@interface LCLCreateMeetingViewController () <LCLMapViewControllerDelegate,LCLMeetTypeViewDelegate>
+@interface LCLCreateMeetingViewController () <LCLMapViewControllerDelegate,LCLMeetTypeViewDelegate,UIAlertViewDelegate>
 
 @property (strong, nonatomic) NSString *cid;
 
@@ -82,9 +82,23 @@
 
 - (IBAction)createAction:(id)sender{
 
-    [self createMeeting];
+    
+    NSDictionary *userDic=[[LCLCacheDefaults standardCacheDefaults] objectForCacheKey:UserInfoKey];
+    
+    NSString *freezCoin=[userDic objectForKey:@"freezing_coin"];
+    NSString *sxf=[userDic objectForKey:@"sxf"];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"发布约会" message:[NSString stringWithFormat:@"将冻结保证金【%@信用豆】，约会成功将扣除手续费【%@信用豆】",freezCoin,sxf] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    alertView.delegate=self;
+    [alertView show];
+    
+    
 }
-
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex==1) {
+        [self createMeeting];
+    }
+}
 - (IBAction)tapTimeButton:(id)sender{
 
 //    @weakify(self);
@@ -138,7 +152,10 @@
         [self_weak_ selectMeetTypeButton:button];
     }];
     [meet getMeetType];
+    
+    
     [meet setFrame:CGRectMake(0, 0, kDeviceWidth, kDeviceHeight)];
+    
     [LCLAlertController alertFromWindowWithView:meet alertStyle:LCLAlertStyleCustom tag:SelectMeetTypeViewTag];
 }
 -(void)goBackView

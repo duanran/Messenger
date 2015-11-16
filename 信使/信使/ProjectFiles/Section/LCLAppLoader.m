@@ -22,8 +22,8 @@
 #import <SMS_SDK/SMSSDK+DeprecatedMethods.h>
 
 
-#define appKey @"7b65f8119630"
-#define appSecret @"baba7f527fea16c7758190ca20609c7d"
+#define appKey @"c5ba6a3c9de0"
+#define appSecret @"0a4b257a32c1dd7e0472c001ca6c21fe"
 
 @interface LCLAppLoader () <UITabBarControllerDelegate>
 

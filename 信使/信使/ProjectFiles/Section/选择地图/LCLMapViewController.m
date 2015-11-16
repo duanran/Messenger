@@ -90,8 +90,11 @@
         self.locationManager.delegate=self;
         self.locationManager.desiredAccuracy=kCLLocationAccuracyBest;
         self.locationManager.distanceFilter=10;
-        [self.locationManager requestWhenInUseAuthorization];//添加这句
-        [self.locationManager startUpdatingLocation];
+        //add by duanran begin
+        if ([UIDevice currentDevice].systemVersion.floatValue>=8.0) {
+            [self.locationManager requestWhenInUseAuthorization];//添加这句
+        }
+        //end        [self.locationManager startUpdatingLocation];
         
     }else {
         //提示用户无法进行定位操作
@@ -295,6 +298,7 @@
     
     [self endKeyboardEditting];
     
+    defaultSelectIndex=-1;
     @weakify(self);
     
     //地理编码

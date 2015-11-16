@@ -420,6 +420,10 @@
         [cell.meetAddressLabel setText:[NSString stringWithFormat:@"地点：%@", meetObj.place]];
         [cell.meetTimeLabel setText:[NSString stringWithFormat:@"时间：%@", meetObj.date_time]];
         
+        if ([meetObj.style integerValue]==1) {
+            [cell.meeButton setTitle:@"已报名" forState:UIControlStateNormal];
+        }
+        
         [cell.meeButton setTag:[meetObj.iD integerValue]];
         [cell.meeButton addTarget:self action:@selector(tapBaomingAction:) forControlEvents:UIControlEventTouchUpInside];
         if (self.isFromMe) {

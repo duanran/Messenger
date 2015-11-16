@@ -24,7 +24,7 @@
 #define phoneBtnTag 4000
 #define cellSubViewTag 5000
 #define contentLableTag 6000
-
+#define headBtnTag 7000
 
 
 @interface LCLHomeViewController () <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate,UIGestureRecognizerDelegate,MJPhotoBrowserDelegate,UIAlertViewDelegate,LCLPeopinfoDelegate>
@@ -149,7 +149,18 @@
 
 - (IBAction)tapHomeButton:(UIButton *)sender{
 
-    NSDictionary *dic = [self.dataArray objectAtIndex:sender.tag-homeBtnTag];
+    NSDictionary *dic;
+    if (sender.tag>=7000) {
+        dic= [self.dataArray objectAtIndex:sender.tag-headBtnTag];
+    }
+    else
+    {
+        dic = [self.dataArray objectAtIndex:sender.tag-homeBtnTag];
+
+    }
+    
+    
+    
 
     LCLPeopleInfoViewController *people = [[LCLPeopleInfoViewController alloc] initWithNibName:@"LCLPeopleInfoViewController" bundle:nil];
     [people setUserInfo:dic];
@@ -178,7 +189,12 @@
         [createMeet setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:createMeet animated:NO];
         
-    }else{
+    }
+    else if([indexObj.style integerValue]==1)
+    {
+        return;
+    }
+    else{
     
         @weakify(self);
         
@@ -188,7 +204,6 @@
         
         NSString *freezCoin=[userDic objectForKey:@"freezing_coin"];
         NSString *sxf=[userDic objectForKey:@"sxf"];
-        
         
         
         
@@ -300,7 +315,10 @@
         
         //add by duanran begin
         UIImageView *cellContentImageView=[[UIImageView alloc]init];
-        [cellContentImageView setFrame:cell.contentImageView.frame];
+        
+        CGRect oriFrame=cell.contentImageView.frame;
+        
+        [cellContentImageView setFrame:CGRectMake(oriFrame.origin.x, oriFrame.origin.y, [UIScreen mainScreen].bounds.size.width, oriFrame.size.height)];
         cellContentImageView.tag=indexPath.row+contentImageViewTag;
         [cell addSubview:cellContentImageView];
         UIView *CellSubView=cell.cellSubView;
@@ -327,8 +345,11 @@
         contentLabel.tag=indexPath.row+contentLableTag;
         [CellSubView addSubview:contentLabel];
         
-        
-        
+        UIButton *headBtn=cell.peopleHeadButton;
+        [headBtn setFrame:cell.peopleHeadButton.frame];
+        headBtn.tag=indexPath.row+headBtnTag;
+        headBtn.backgroundColor=[UIColor yellowColor];
+        [cell addSubview:headBtn];
         
     }
     
@@ -352,8 +373,10 @@
     
     
     
+    UIButton *headBtn=(UIButton *)[cell viewWithTag:indexPath.row+headBtnTag];
     
     
+    [headBtn addTarget:self action:@selector(tapHeadImg:) forControlEvents:UIControlEventTouchUpInside];
     
     NSDictionary *dic = [self.dataArray objectAtIndex:indexPath.row];
     LCLIndexObject *indexObj = [LCLIndexObject allocModelWithDictionary:dic];
@@ -378,9 +401,21 @@
         [cell.movieImageView setHidden:YES];
     }
     
+    
+    
+
+    
+    
     if ([indexObj.style integerValue]==2) {
         [cell.yuehuiButton setTitle:@"邀请约会" forState:UIControlStateNormal];
     }
+    
+    
+    if ([indexObj.style integerValue]==1) {
+        [cell.yuehuiButton setTitle:@"已报名" forState:UIControlStateNormal];
+
+    }
+    
     
     [cell.addressLabel setText:indexObj.place];
     [cell.timeLabel setTitle:[NSString stringWithFormat:@"%@ |%@", indexObj.len, indexObj.times] forState:UIControlStateNormal];
@@ -395,13 +430,16 @@
     
     CGRect frame = cell.contentImageView.frame;
     frame.size.height = kDeviceWidth*270/360.0;
+    CGRect oriFrame=cell.contentImageView.frame;
+    
+    
+
     [cell.contentImageView setFrame:frame];
     
     UIImageView *contentImageView=(UIImageView *)[cell viewWithTag:indexPath.row+1000];
-    [contentImageView setFrame:frame];
     
     
-    
+    [contentImageView setFrame:CGRectMake(oriFrame.origin.x, oriFrame.origin.y, [UIScreen mainScreen].bounds.size.width, frame.size.height)];
     
     NSDictionary *picInfo = indexObj.pic;
     NSString *cansee = [picInfo objectForKey:@"see"];
@@ -437,6 +475,12 @@
     
     return cell;
 }
+-(void)tapHeadImg:(UIButton *)btn
+{
+ 
+    [self tapHomeButton:btn];
+}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     

@@ -58,7 +58,7 @@
                 <outlet property="meetTimeLabel" destination="3VH-J7-Mnq" id="ki8-0O-fiR"/>
                 <outlet property="meetTitleLabel" destination="mP5-tO-ReQ" id="RPM-EM-P8v"/>
             </connections>
-            <point key="canvasLocation" x="245" y="451"/>
+            <point key="canvasLocation" x="239" y="230"/>
         </view>
     </objects>
     <resources>
