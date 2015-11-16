@@ -359,6 +359,7 @@
 		18EE6D981BF6ED7C00D8D14A /* updateLookPhoneDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE6D971BF6ED7C00D8D14A /* updateLookPhoneDate.m */; };
 		18EE6D9C1BF9895300D8D14A /* MapTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE6D9A1BF9895300D8D14A /* MapTableViewCell.m */; };
 		18EE6D9D1BF9895300D8D14A /* MapTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EE6D9B1BF9895300D8D14A /* MapTableViewCell.xib */; };
+		18EE6DA01BF9C5EF00D8D14A /* GiveCoinRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE6D9F1BF9C5EF00D8D14A /* GiveCoinRequest.m */; };
 		18EFD4D11BAF09D200BA372D /* LCLSelectDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EFD4CF1BAF09D200BA372D /* LCLSelectDateView.m */; };
 		18EFD4D21BAF09D200BA372D /* LCLSelectDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EFD4D01BAF09D200BA372D /* LCLSelectDateView.xib */; };
 		18FAB29F1BA86F7F00FD6143 /* LCLEditMyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FAB29D1BA86F7F00FD6143 /* LCLEditMyInfoViewController.m */; };
@@ -1012,6 +1013,8 @@
 		18EE6D991BF9895300D8D14A /* MapTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapTableViewCell.h; sourceTree = "<group>"; };
 		18EE6D9A1BF9895300D8D14A /* MapTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapTableViewCell.m; sourceTree = "<group>"; };
 		18EE6D9B1BF9895300D8D14A /* MapTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapTableViewCell.xib; sourceTree = "<group>"; };
+		18EE6D9E1BF9C5EE00D8D14A /* GiveCoinRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GiveCoinRequest.h; sourceTree = "<group>"; };
+		18EE6D9F1BF9C5EF00D8D14A /* GiveCoinRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GiveCoinRequest.m; sourceTree = "<group>"; };
 		18EFD4CE1BAF09D200BA372D /* LCLSelectDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCLSelectDateView.h; sourceTree = "<group>"; };
 		18EFD4CF1BAF09D200BA372D /* LCLSelectDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCLSelectDateView.m; sourceTree = "<group>"; };
 		18EFD4D01BAF09D200BA372D /* LCLSelectDateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LCLSelectDateView.xib; sourceTree = "<group>"; };
@@ -2057,6 +2060,8 @@
 				18FAB2CA1BA87C1700FD6143 /* LCLPeopleInfoViewController.h */,
 				18FAB2CB1BA87C1700FD6143 /* LCLPeopleInfoViewController.m */,
 				18FAB2CC1BA87C1700FD6143 /* LCLPeopleInfoViewController.xib */,
+				18EE6D9E1BF9C5EE00D8D14A /* GiveCoinRequest.h */,
+				18EE6D9F1BF9C5EF00D8D14A /* GiveCoinRequest.m */,
 			);
 			path = "个人主页";
 			sourceTree = "<group>";
@@ -3186,6 +3191,7 @@
 				18EB29F61BB5A5820040758B /* LCLSelectPickerView.m in Sources */,
 				18DEADB61B9DD3EC003CEA5E /* LCLNotifyModel.m in Sources */,
 				180E2F581BC548A7002B721F /* SDWebImageManager+MJ.m in Sources */,
+				18EE6DA01BF9C5EF00D8D14A /* GiveCoinRequest.m in Sources */,
 				B58B14FB1B1419E90019C822 /* LCLRegistDetailsViewController.m in Sources */,
 				18DF44C11BB834C000B3035D /* LCLPickerView.m in Sources */,
 				180E2F5F1BC548A7002B721F /* UIImageView+MJWebCache.m in Sources */,

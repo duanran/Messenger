@@ -17,6 +17,7 @@
         urlDictionary = @{
                           Number(URLTypeWatchVideo)                 :     @"/index.php/Api/User/getVideo",
                           Number(URLTypeLookPhoneUpDate)                 :     @"/index.php/Api/Date/lists",
+                          Number(URLTypeGiveCoin)                 :     @"/index.php/Api/Pay/giveCoin",
                           };
     }
     NSString *urlString = [urlDictionary objectForKey:Number(urltype)];

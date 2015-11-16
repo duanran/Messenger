@@ -10,11 +10,13 @@
 #import "RequestURL.h"
 @implementation WatchVideoRequest
 
+
+
+
+
 - (NSString *)requestURL{
     
-    NSString *ukey=[self.parameters objectForKey:@"uKey"];
-    NSString *videoId=[self.parameters objectForKey:@"id"];
-    NSString *url=[NSString stringWithFormat:@"%@/ukey/%@/id/%@",[RequestURL urlWithTpye:URLTypeWatchVideo],ukey,videoId];
+    NSString *url=[NSString stringWithFormat:@"%@/ukey/%@/id/%@",[RequestURL urlWithTpye:URLTypeWatchVideo],self.uKey,self.videoId];
     return url;
 }
 

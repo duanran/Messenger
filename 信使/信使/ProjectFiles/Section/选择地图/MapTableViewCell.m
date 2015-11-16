@@ -16,7 +16,15 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
+    if (selected) {
+        self.selectImageView.image = [UIImage imageNamed:@"Check_yes"];
+    }
+    else
+        
+    {
+        self.selectImageView.image = [UIImage imageNamed:@"icon_unSelect_filter"];
+    }
     // Configure the view for the selected state
 }
 

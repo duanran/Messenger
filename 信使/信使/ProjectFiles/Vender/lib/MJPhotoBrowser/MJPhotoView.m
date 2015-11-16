@@ -102,9 +102,8 @@
         NSDictionary *myInfo = [LCLGetToken checkHaveLoginWithShowLoginView:NO];
         LCLUserInfoObject *myObj = [LCLUserInfoObject allocModelWithDictionary:myInfo];
 
-        request.parameters=@{@"uKey":myObj.ukey,
-                             @"id":_photo.videoId
-                             };
+        request.uKey=myObj.ukey;
+        request.videoId=_photo.videoId;
         
         [request GETRequest:^(id reponseObject) {
             

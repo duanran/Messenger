@@ -7,9 +7,12 @@
 //
 
 #import "LCLMapViewController.h"
+#import "MapTableViewCell.h"
+
 
 @interface LCLMapViewController ()<MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>{
 
+    NSInteger defaultSelectIndex;
     CLGeocoder *_geocoder;
 }
 
@@ -31,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+    defaultSelectIndex=-1;
     [self.navigationItem setTitle:@"选择地点"];
     UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStyleBordered target:self action:@selector(clickOk)];
     
@@ -53,7 +56,19 @@
 }
 -(void)clickOk
 {
-    
+    if (defaultSelectIndex>-1) {
+        if (self.mapDelegate && [self.mapDelegate respondsToSelector:@selector(didSelectLng:lat:place:)]) {
+            CLPlacemark *placemark = [self.dataArray objectAtIndex:defaultSelectIndex];
+            CLLocation *location = placemark.location;//位置
+            NSDictionary *addressDic = placemark.addressDictionary;//详细
+            
+            [self.mapDelegate didSelectLng:location.coordinate.longitude lat:location.coordinate.latitude place:[NSString stringWithFormat:@"%@", [addressDic objectForKey:@"Name"]]];
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+
+    }
+
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -193,34 +208,44 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return 45;
+    return 60;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"homecell";
     
-    UITableViewCell  *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-        [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
+    MapTableViewCell *cell=[[MapTableViewCell alloc]init];
+    
+    cell=[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    
+//    UITableViewCell  *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    if (cell == nil){
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+//        [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
+//    }
+    
+    NSArray *cellArr=[[NSBundle mainBundle]loadNibNamed:@"MapTableViewCell" owner:self options:nil];
+    if (cell==nil) {
+        cell=[cellArr objectAtIndex:0];
     }
     
     
-    
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
     
     CLPlacemark *placemark = [self.dataArray objectAtIndex:indexPath.row];
     NSDictionary *addressDic= placemark.addressDictionary;//详细
 
-    [cell.textLabel setText:[addressDic objectForKey:@"Name"]];
-    [cell.detailTextLabel setText:[NSString stringWithFormat:@"%@ %@", [addressDic objectForKey:@"Country"], [addressDic objectForKey:@"Name"]]];
+    [cell.titleLabel setText:[addressDic objectForKey:@"Name"]];
+    [cell.detialLabel setText:[NSString stringWithFormat:@"%@ %@", [addressDic objectForKey:@"Country"], [addressDic objectForKey:@"Name"]]];
 
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     CLLocationCoordinate2D coordinate;
 
@@ -235,6 +260,7 @@
     MKCoordinateRegion region = MKCoordinateRegionMake(coordinate, MKCoordinateSpanMake(zoomLevel, zoomLevel));
     [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
 
+    defaultSelectIndex=indexPath.row;
     
     
 //    if (self.mapDelegate && [self.mapDelegate respondsToSelector:@selector(didSelectLng:lat:place:)]) {

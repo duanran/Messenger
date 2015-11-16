@@ -198,6 +198,7 @@
         [alertView.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
             if ([index integerValue]==1) {
                 [self_weak_ baomingWithID:indexObj.iD];
+                [self updateData];
             }
         }];
         [alertView show];
@@ -650,14 +651,12 @@
             listURL = [NSString stringWithFormat:@"%@&lon=%@&lat=%@", listURL, self.lng, self.lat];
         }
         updateLookPhoneDate *request=[[updateLookPhoneDate alloc]init];
-        request.parameters=@{
-                             @"ukey":userObj.ukey,
-                             @"num":@"5",
-                             @"page":[NSNumber numberWithInteger:currentPage],
-                             @"lon":self.lng,
-                             @"lat":self.lat
-                
-                             };
+        request.uKey=userObj.ukey;
+        request.num=@"5";
+        request.page=[NSNumber numberWithInteger:currentPage];
+        request.lon=self.lng;
+        request.lat=self.lat;
+        
         [request GETRequest:^(id reponseObject) {
             
             NSDictionary *dataSourceDic = (NSDictionary *)reponseObject;

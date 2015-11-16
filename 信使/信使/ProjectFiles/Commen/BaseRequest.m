@@ -26,29 +26,38 @@
 -(void)POSTRequest:(onSuccessCallback)success failureCallback:(onFailureCallback)failed{
 
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    if (self.HTTPHeader) {
-        [self.HTTPHeader enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            NSAssert([key isKindOfClass:[NSString class]], @"key must be an string");
-            NSAssert([obj isKindOfClass:[NSString class]], @"key must be an string");
+    manager.requestSerializer.timeoutInterval=20.0f;
+    manager.requestSerializer=[AFJSONRequestSerializer serializerWithWritingOptions:0];
+    if(_HTTPHeader!=nil){
+        [_HTTPHeader enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             [manager.requestSerializer setValue:obj forHTTPHeaderField:key];
         }];
     }
-    
+    manager.securityPolicy.allowInvalidCertificates=YES;
+    NSLog(@"requestURL = %@",self.requestURL);
+
     [manager POST:self.requestURL
                         parameters:self.parameters
                            success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//                               //                               NSLog(@"responseObject = %@",responseObject);
-//                               responseModel *response = [responseModel objectWithKeyValues: [responseObject objectForKey:@"result"]];
-//                               if ([response.code isEqualToString:@"100000"]) {
-//                                   success([self assembleResponseModel:[responseObject objectForKey:@"resultData"]]);
-//                               }
-//     else{
-//                                   failure([self handleRequestError:response]);
+                               if ([[responseObject objectForKey:@"success"]integerValue]==1) {
+                                   
+                                   NSDictionary *infoDic=[responseObject objectForKey:@"info"];
+                                   if (infoDic) {
+                                       success([self assembleResponseModel:infoDic]);
+                                   }
+                                   else
+                                   {
+                                       success([self assembleResponseModel:responseObject]);
+                                   }
+                               }
+                               else
+                               {
+                                   failed([responseObject objectForKey:@"message"]);
+                               }
+
                                }
                             failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                               //                               NSLog(@"%@",error);
-//                               failure([self handleErrorMessage:error]);
+                                failed(error.description);
                            }];
     
     
@@ -67,7 +76,7 @@
     manager.securityPolicy.allowInvalidCertificates=YES;
         NSLog(@"requestURL = %@",self.requestURL);
      [manager GET:self.requestURL
-                       parameters:nil
+                       parameters:self.parameters
                           success:^(AFHTTPRequestOperation *operation, id responseObject) {
                               if ([[responseObject objectForKey:@"success"]integerValue]==1) {
                                   

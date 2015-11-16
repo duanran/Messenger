@@ -165,7 +165,7 @@
                 <outlet property="timeLabel" destination="shS-fb-jm8" id="guE-tu-Cxz"/>
                 <outlet property="yuehuiButton" destination="khQ-2Y-JjW" id="nNK-EO-LJZ"/>
             </connections>
-            <point key="canvasLocation" x="393" y="233"/>
+            <point key="canvasLocation" x="22" y="232"/>
         </view>
     </objects>
     <resources>

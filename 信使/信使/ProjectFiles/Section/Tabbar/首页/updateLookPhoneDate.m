@@ -11,15 +11,8 @@
 @implementation updateLookPhoneDate
 - (NSString *)requestURL{
     
-    NSString *ukey=[self.parameters objectForKey:@"ukey"];
-    NSString *num=[self.parameters objectForKey:@"num"];
-    NSString *page=[self.parameters objectForKey:@"page"];
-    NSString *lon=[self.parameters objectForKey:@"lon"];
-    NSString *lat=[self.parameters objectForKey:@"lat"];
     
-    
-    
-    NSString *url=[NSString stringWithFormat:@"%@/ukey/%@?num=%@&page=%@&lon=%@&lat=%@",[RequestURL urlWithTpye:URLTypeLookPhoneUpDate],ukey,num,page,lon,lat];
+    NSString *url=[NSString stringWithFormat:@"%@/ukey/%@?num=%@&page=%@&lon=%@&lat=%@",[RequestURL urlWithTpye:URLTypeLookPhoneUpDate],self.uKey,self.num,self.page,self.lon,self.lat];
     return url;
 }
 

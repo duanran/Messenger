@@ -10,4 +10,6 @@
 
 @interface WatchVideoRequest : BaseRequest
 
+@property(nonatomic,strong)NSString *uKey;
+@property(nonatomic,strong)NSString *videoId;
 @end

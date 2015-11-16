@@ -16,13 +16,14 @@
 #import "LCLCreateMeetingViewController.h"
 #import "MJPhotoBrowser.h"
 #import "LCLVideoViewController.h"
+#import "GiveCoinRequest.h"
 
-@interface LCLPeopleInfoViewController ()<LCLPeopleInfoPicTableViewCellDelegate,MJPhotoBrowserDelegate>
+@interface LCLPeopleInfoViewController ()<LCLPeopleInfoPicTableViewCellDelegate,MJPhotoBrowserDelegate,UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *photoButton;
 @property (weak, nonatomic) IBOutlet UIButton *communicationButton;
 @property (weak, nonatomic) IBOutlet UIButton *InviteMeetButton;
-
+@property (weak,nonatomic) IBOutlet UIButton *presentBtn;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 
@@ -41,7 +42,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    CGFloat width = kDeviceWidth/3.0;
+    CGFloat width = kDeviceWidth/4.0;
     CGRect frame = self.communicationButton.frame;
     frame.origin.x = 0;
     frame.size.width = width;
@@ -49,6 +50,8 @@
     frame.origin.x = width;
     [self.photoButton setFrame:frame];
     frame.origin.x = width*2;
+    [self.presentBtn setFrame:frame];
+    frame.origin.x = width*3;
     [self.InviteMeetButton setFrame:frame];
     
     UILabel *oneLabel = [[UILabel alloc] initWithFrame:CGRectMake(width, frame.origin.y, 1, frame.size.height)];
@@ -58,6 +61,10 @@
     UILabel *twoLabel = [[UILabel alloc] initWithFrame:CGRectMake(2*width, frame.origin.y, 1, frame.size.height)];
     [twoLabel setBackgroundColor:[UIColor lightGrayColor]];
     [self.bottomView addSubview:twoLabel];
+    UILabel *threeLabel = [[UILabel alloc] initWithFrame:CGRectMake(3*width, frame.origin.y, 1, frame.size.height)];
+    [threeLabel setBackgroundColor:[UIColor lightGrayColor]];
+
+    [self.bottomView addSubview:threeLabel];
 
     
     self.isMeeting = NO;
@@ -233,7 +240,49 @@
     [createMeet setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:createMeet animated:YES];
 }
+-(IBAction)tapPresentBtn:(id)sender
+{
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"向他赠送多少信用豆" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
 
+    [alert show];
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex==1) {
+        UITextField *TextField=[alertView textFieldAtIndex:0];
+
+        if ([TextField.text integerValue]<=0||TextField.text==NULL||[TextField.text isEqualToString:@"(null)"]||TextField.text==nil||[TextField.text isEqualToString:@""]) {
+            return;
+        }
+        
+        GiveCoinRequest *request=[[GiveCoinRequest alloc]init];
+        
+        NSDictionary *userInfo=[[LCLCacheDefaults standardCacheDefaults]objectForCacheKey:UserInfoKey];
+        
+        NSString *uKey=[userInfo objectForKey:@"ukey"];
+        request.uKey=uKey;
+        LCLUserInfoObject *userObj = [LCLUserInfoObject allocModelWithDictionary:self.userInfo];
+        
+        request.uid=userObj.uid;
+        request.coin=TextField.text;
+        
+        
+        [request GETRequest:^(id reponseObject) {
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:@"赠送成功" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+
+        } failureCallback:^(NSString *errorMessage) {
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:errorMessage delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+
+        }];
+        
+        
+        
+        
+    }
+}
 - (IBAction)tapPhoneButton:(id)sender{
 
     if (self.userInfo) {
@@ -399,7 +448,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
     
     
 }

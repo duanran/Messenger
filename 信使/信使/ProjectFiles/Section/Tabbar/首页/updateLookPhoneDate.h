@@ -10,4 +10,11 @@
 
 @interface updateLookPhoneDate : BaseRequest
 
+@property(nonatomic,strong)NSString *uKey;
+@property(nonatomic,strong)NSString *num;
+@property(nonatomic,strong)NSNumber *page;
+@property(nonatomic,strong)NSString *lon;
+@property(nonatomic,strong)NSString *lat;
+
+
 @end
