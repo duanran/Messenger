@@ -33,7 +33,10 @@
     // Do any additional setup after loading the view from its nib.
     
     [self.navigationItem setTitle:@"选择地点"];
+    UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStyleBordered target:self action:@selector(clickOk)];
     
+    [barItem setTintColor:[UIColor whiteColor]];
+    self.navigationItem.rightBarButtonItem = barItem;
     CLLocationCoordinate2D coordinate;
     coordinate.latitude = 23.126055;
     coordinate.longitude = 113.290995;
@@ -48,7 +51,10 @@
     [self locationAction:self.locationButton];
 
 }
-
+-(void)clickOk
+{
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -200,6 +206,9 @@
         [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
     }
     
+    
+    
+    
     CLPlacemark *placemark = [self.dataArray objectAtIndex:indexPath.row];
     NSDictionary *addressDic= placemark.addressDictionary;//详细
 
@@ -213,16 +222,31 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (self.mapDelegate && [self.mapDelegate respondsToSelector:@selector(didSelectLng:lat:place:)]) {
-        
-        CLPlacemark *placemark = [self.dataArray objectAtIndex:indexPath.row];
-        CLLocation *location = placemark.location;//位置
-        NSDictionary *addressDic = placemark.addressDictionary;//详细
-        
-        [self.mapDelegate didSelectLng:location.coordinate.longitude lat:location.coordinate.latitude place:[NSString stringWithFormat:@"%@", [addressDic objectForKey:@"Name"]]];
-        
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+    CLLocationCoordinate2D coordinate;
+
+    
+    
+    CLPlacemark *placemark = [self.dataArray objectAtIndex:indexPath.row];
+    CLLocation *location = placemark.location;//位置
+
+    
+    coordinate=location.coordinate;
+    float zoomLevel = 0.05;
+    MKCoordinateRegion region = MKCoordinateRegionMake(coordinate, MKCoordinateSpanMake(zoomLevel, zoomLevel));
+    [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
+
+    
+    
+//    if (self.mapDelegate && [self.mapDelegate respondsToSelector:@selector(didSelectLng:lat:place:)]) {
+//        
+//        CLPlacemark *placemark = [self.dataArray objectAtIndex:indexPath.row];
+//        CLLocation *location = placemark.location;//位置
+//        NSDictionary *addressDic = placemark.addressDictionary;//详细
+//        
+//        [self.mapDelegate didSelectLng:location.coordinate.longitude lat:location.coordinate.latitude place:[NSString stringWithFormat:@"%@", [addressDic objectForKey:@"Name"]]];
+//        
+//        [self.navigationController popViewControllerAnimated:YES];
+//    }
 
 }
 

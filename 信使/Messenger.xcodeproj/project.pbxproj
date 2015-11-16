@@ -357,6 +357,8 @@
 		18EB29F61BB5A5820040758B /* LCLSelectPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB29F51BB5A5820040758B /* LCLSelectPickerView.m */; };
 		18EB29F81BB5A58C0040758B /* LCLSelectPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EB29F71BB5A58C0040758B /* LCLSelectPickerView.xib */; };
 		18EE6D981BF6ED7C00D8D14A /* updateLookPhoneDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE6D971BF6ED7C00D8D14A /* updateLookPhoneDate.m */; };
+		18EE6D9C1BF9895300D8D14A /* MapTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE6D9A1BF9895300D8D14A /* MapTableViewCell.m */; };
+		18EE6D9D1BF9895300D8D14A /* MapTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EE6D9B1BF9895300D8D14A /* MapTableViewCell.xib */; };
 		18EFD4D11BAF09D200BA372D /* LCLSelectDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EFD4CF1BAF09D200BA372D /* LCLSelectDateView.m */; };
 		18EFD4D21BAF09D200BA372D /* LCLSelectDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EFD4D01BAF09D200BA372D /* LCLSelectDateView.xib */; };
 		18FAB29F1BA86F7F00FD6143 /* LCLEditMyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FAB29D1BA86F7F00FD6143 /* LCLEditMyInfoViewController.m */; };
@@ -1007,6 +1009,9 @@
 		18EB29F71BB5A58C0040758B /* LCLSelectPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LCLSelectPickerView.xib; sourceTree = "<group>"; };
 		18EE6D961BF6ED7C00D8D14A /* updateLookPhoneDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = updateLookPhoneDate.h; sourceTree = "<group>"; };
 		18EE6D971BF6ED7C00D8D14A /* updateLookPhoneDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = updateLookPhoneDate.m; sourceTree = "<group>"; };
+		18EE6D991BF9895300D8D14A /* MapTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapTableViewCell.h; sourceTree = "<group>"; };
+		18EE6D9A1BF9895300D8D14A /* MapTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapTableViewCell.m; sourceTree = "<group>"; };
+		18EE6D9B1BF9895300D8D14A /* MapTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapTableViewCell.xib; sourceTree = "<group>"; };
 		18EFD4CE1BAF09D200BA372D /* LCLSelectDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCLSelectDateView.h; sourceTree = "<group>"; };
 		18EFD4CF1BAF09D200BA372D /* LCLSelectDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCLSelectDateView.m; sourceTree = "<group>"; };
 		18EFD4D01BAF09D200BA372D /* LCLSelectDateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LCLSelectDateView.xib; sourceTree = "<group>"; };
@@ -1413,6 +1418,9 @@
 				18DA54051BA70FC800609D30 /* LCLMapViewController.h */,
 				18DA54061BA70FC800609D30 /* LCLMapViewController.m */,
 				18DA54071BA70FC800609D30 /* LCLMapViewController.xib */,
+				18EE6D991BF9895300D8D14A /* MapTableViewCell.h */,
+				18EE6D9A1BF9895300D8D14A /* MapTableViewCell.m */,
+				18EE6D9B1BF9895300D8D14A /* MapTableViewCell.xib */,
 			);
 			path = "选择地图";
 			sourceTree = "<group>";
@@ -2982,6 +2990,7 @@
 				18DEAD271B9DBD17003CEA5E /* right@2x.png in Resources */,
 				18DEAD351B9DBD17003CEA5E /* VIP3_shop@2x.png in Resources */,
 				18DEACE41B9DBD17003CEA5E /* left.png in Resources */,
+				18EE6D9D1BF9895300D8D14A /* MapTableViewCell.xib in Resources */,
 				18DEAD511B9DBD17003CEA5E /* map_point@3x.png in Resources */,
 				18DEACD11B9DBD17003CEA5E /* Check_yes.png in Resources */,
 				18DEACF31B9DBD17003CEA5E /* right.png in Resources */,
@@ -3168,6 +3177,7 @@
 				18FAB2D41BA87C5B00FD6143 /* LCLPeopleHeaderView.m in Sources */,
 				B580641E1B161F95009C45C2 /* LCLARCSelectImageController.m in Sources */,
 				18DEADA31B9DC61F003CEA5E /* LCLWebViewController.m in Sources */,
+				18EE6D9C1BF9895300D8D14A /* MapTableViewCell.m in Sources */,
 				B570E5EC1B14D437007A07F4 /* SectionsViewController.m in Sources */,
 				18EB29F01BB5956B0040758B /* WXUtil.mm in Sources */,
 				18765B5F1BF478E5000721BD /* READEME.md in Sources */,

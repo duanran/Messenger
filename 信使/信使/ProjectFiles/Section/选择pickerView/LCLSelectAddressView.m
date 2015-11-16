@@ -112,7 +112,7 @@
         return str;
     }else{
         NSString *str = [self.moneyArray objectAtIndex:row];
-        return [str stringByAppendingString:@"信用豆"];
+        return [str stringByAppendingString:@"美元"];
     }
 }
 

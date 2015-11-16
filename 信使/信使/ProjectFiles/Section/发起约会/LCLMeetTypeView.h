@@ -8,9 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol LCLMeetTypeViewDelegate <NSObject>
+
+-(void)goBackView;
+
+@end
+
+
 @interface LCLMeetTypeView : UIView
 
 @property(copy, nonatomic) LCLSelectBolck selectBlock;
+@property(nonatomic,weak)id<LCLMeetTypeViewDelegate>delegate;
 
 - (void)getMeetType;
 

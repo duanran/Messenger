@@ -115,6 +115,10 @@
         userObj.uid = DefaultUserID;
         userObj.ID = @"";
         userObj.last_login = @"";
+        
+        
+        
+        
         loginDic = userObj.getAllPropertyAndValue;
 
         [[LCLCacheDefaults standardCacheDefaults] setCacheObject:loginDic forKey:UserInfoKey];

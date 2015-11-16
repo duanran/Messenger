@@ -121,6 +121,15 @@
 @property (strong, nonatomic) NSString *len;
 @property (strong, nonatomic) NSString *times;
 
+
+
+//需要冻结的信用豆
+@property(nonatomic,strong)NSString *freezing_coin;
+//报名约会时需要消费的信用豆
+@property(nonatomic,strong)NSString *sxf;
+
+
+
 @end
 
 

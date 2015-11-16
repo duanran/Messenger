@@ -165,6 +165,7 @@
 }
 - (IBAction)tapYueHuiButton:(UIButton *)sender{
     
+    
     NSDictionary *dic = [self.dataArray objectAtIndex:sender.tag-dateBtnTag];
     LCLIndexObject *indexObj = [LCLIndexObject allocModelWithDictionary:dic];
 
@@ -181,7 +182,19 @@
     
         @weakify(self);
         
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"报名约会需要%@信用豆，确定报名？", indexObj.redbag] delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        
+        
+        NSDictionary *userDic=[[LCLCacheDefaults standardCacheDefaults] objectForCacheKey:UserInfoKey];
+        
+        NSString *freezCoin=[userDic objectForKey:@"freezing_coin"];
+        NSString *sxf=[userDic objectForKey:@"sxf"];
+        
+        
+        
+        
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"报名约会" message:[NSString stringWithFormat:@"约会地点：%@\n需要冻结【%@信用豆】，系统将扣取手续费【%@】？", indexObj.location,freezCoin,sxf] delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        
         [alertView.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
             if ([index integerValue]==1) {
                 [self_weak_ baomingWithID:indexObj.iD];

@@ -48,6 +48,7 @@
 - (IBAction)tapCloseButton:(id)sender{
 
     [LCLAlertController dismissAlertView:self];
+    [self.delegate goBackView];
     
 }
 

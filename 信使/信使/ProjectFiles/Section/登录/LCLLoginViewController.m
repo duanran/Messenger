@@ -120,6 +120,8 @@
                 userObj.uid = @"";
                 userObj.ID = @"";
                 userObj.last_login = @"";
+                userObj.freezing_coin = [dataDic objectForKey:@"freezing_coin"];
+                userObj.sxf = [dataDic objectForKey:@"sxf"];
                 
                 NSDictionary *dic = [userObj getAllPropertyAndValue];
                 [[LCLCacheDefaults standardCacheDefaults] setCacheObject:dic forKey:UserInfoKey];

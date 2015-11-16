@@ -102,6 +102,8 @@
 - (UIViewController *)getLogoutViewController{
     
     NSDictionary *dic = [[NSDictionary alloc] init];
+    
+    
     [[LCLCacheDefaults standardCacheDefaults] setCacheObject:dic forKey:UserInfoKey];
     
     LCLLoginViewController *login = [[LCLLoginViewController alloc] initWithNibName:@"LCLLoginViewController" bundle:nil];

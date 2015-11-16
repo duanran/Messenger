@@ -13,7 +13,7 @@
 #import "LCLSelectDateView.h"
 #import "LCLSelectAddressView.h"
 
-@interface LCLCreateMeetingViewController () <LCLMapViewControllerDelegate>
+@interface LCLCreateMeetingViewController () <LCLMapViewControllerDelegate,LCLMeetTypeViewDelegate>
 
 @property (strong, nonatomic) NSString *cid;
 
@@ -61,6 +61,7 @@
 
     @weakify(self);
     
+    
     [LCLSelectAddressView showWithTypeCompleteBlock:^(NSString *type) {
        
         if ([type isEqualToString:@"获取红包"]) {
@@ -69,13 +70,13 @@
             self_weak_.isGetMoneyType = NO;
         }
         
-        [self_weak_.coinButton setTitle:[NSString stringWithFormat:@"%@[%@信用豆]", type, self_weak_.money] forState:UIControlStateNormal];
+        [self_weak_.coinButton setTitle:[NSString stringWithFormat:@"%@[%@美元]", type, self_weak_.money] forState:UIControlStateNormal];
         
     } moneyCompleteBlock:^(NSString *m) {
         
         self_weak_.money = m;
 
-        [self_weak_.coinButton setTitle:[NSString stringWithFormat:@"%@[%@信用豆]", self_weak_.isGetMoneyType ? @"获取红包" : @"赠送红包", self_weak_.money] forState:UIControlStateNormal];
+        [self_weak_.coinButton setTitle:[NSString stringWithFormat:@"%@[%@美元]", self_weak_.isGetMoneyType ? @"获取红包" : @"赠送红包", self_weak_.money] forState:UIControlStateNormal];
     }];
 }
 
@@ -97,19 +98,19 @@
     @weakify(self);
     NSMutableArray *array = [[NSMutableArray alloc] init];
     [array addObject:[NSString stringWithFormat:@"%i", 1]];
-    [array addObject:[NSString stringWithFormat:@"%i", 3]];
-    [array addObject:[NSString stringWithFormat:@"%i", 7]];
-    [array addObject:[NSString stringWithFormat:@"%i", 15]];
-    [array addObject:[NSString stringWithFormat:@"%i", 30]];
+    [array addObject:[NSString stringWithFormat:@"%i", 2]];
+    [array addObject:[NSString stringWithFormat:@"%i", 8]];
+    [array addObject:[NSString stringWithFormat:@"%i", 12]];
+    [array addObject:[NSString stringWithFormat:@"%i", 72]];
 
     
     [LCLPickerView showPickerWithCompleteBlock:^(NSString *object) {
         
         self_weak_.time = object;
-        
-        [self_weak_.timeButton setTitle:[NSString stringWithFormat:@"%@天内", object] forState:UIControlStateNormal];
+    
+        [self_weak_.timeButton setTitle:[NSString stringWithFormat:@"%@小时内有效", object] forState:UIControlStateNormal];
 
-    } dataArray:array tag:@"天内"];
+    } dataArray:array tag:@"(小时)"];
 }
 
 - (IBAction)selectMeetTypeButton:(UIButton *)sender{
@@ -119,7 +120,7 @@
     
     [self.typeImageView setImage:sender.imageView.image];
     
-    self.cid = [NSString stringWithFormat:@"%li", sender.tag];
+    self.cid = [NSString stringWithFormat:@"%li", (long)sender.tag];
     
     [LCLAlertController dismissAlertViewWithTag:SelectMeetTypeViewTag];
 }
@@ -131,6 +132,7 @@
     [LCLAlertController setHideStatusBar:NO];
 
     LCLMeetTypeView *meet = [LCLMeetTypeView loadXibView];
+    meet.delegate=self;
     [meet setSelectBlock:^(UIButton *button){
     
         [self_weak_ selectMeetTypeButton:button];
@@ -139,7 +141,10 @@
     [meet setFrame:CGRectMake(0, 0, kDeviceWidth, kDeviceHeight)];
     [LCLAlertController alertFromWindowWithView:meet alertStyle:LCLAlertStyleCustom tag:SelectMeetTypeViewTag];
 }
-
+-(void)goBackView
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (IBAction)tapMapButton:(id)sender{
 
     LCLMapViewController *map = [[LCLMapViewController alloc] initWithNibName:@"LCLMapViewController" bundle:nil];
@@ -245,11 +250,51 @@
                 self_weak_.meetInfoDic = [dataSourceDic objectForKey:@"info"];
                 
                 [self_weak_.topMeetInfoLabel setText:[self_weak_.meetInfoDic objectForKey:@"head"]];
+                
+                //自适应label高度
+                CGRect oriFram=self_weak_.topMeetInfoLabel.frame;
+                UILabel *contentLabel=[[UILabel alloc]init];
+                contentLabel.frame=oriFram;
+                contentLabel.lineBreakMode=NSLineBreakByWordWrapping;
+                contentLabel.numberOfLines=0;
+                NSString *describeStr=self_weak_.topMeetInfoLabel.text;
+                contentLabel.text=describeStr;
+                contentLabel.font = [UIFont systemFontOfSize:13];
+                CGSize size = [contentLabel sizeThatFits:CGSizeMake(contentLabel.frame.size.width, MAXFLOAT)];
+                
+                [self_weak_.topMeetInfoLabel setFrame:CGRectMake(oriFram.origin.x, oriFram.origin.y,oriFram.size.width, size.height)];
+                
+                
+                
+                
+                
+                
                 [self_weak_.bottomMeetInfoLabel setText:[self_weak_.meetInfoDic objectForKey:@"bottom"]];
             }
         }];
         [downloader startToDownloadWithIntelligence:NO];
     }
+}
+
+-(IBAction)swithFunctionBtn:(UIButton *)btn
+{
+    switch (btn.tag) {
+        case 0:
+            [self tapTypeButton:btn];
+            break;
+        case 1:
+            [self tapMeetMoneyButton:btn];
+            break;
+        case 2:
+            [self tapMapButton:btn];
+            break;
+        case 3:
+            [self tapTimeButton:btn];
+            break;
+        default:
+            break;
+    }
+
 }
 
 

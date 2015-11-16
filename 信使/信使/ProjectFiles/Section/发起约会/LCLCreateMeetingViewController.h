@@ -8,6 +8,8 @@
 
 #import "BaseViewController.h"
 
+
+
 @interface LCLCreateMeetingViewController : BaseViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *topMeetInfoLabel;
@@ -21,5 +23,10 @@
 
 @property (nonatomic) BOOL isInviteMeet;
 @property (strong, nonatomic) NSString *inviteuid;
+
+@property(nonatomic,strong)IBOutlet UIButton *styleBtn;
+@property(nonatomic,strong)IBOutlet UIButton *moneyBtn;
+@property(nonatomic,strong)IBOutlet UIButton *mapBtn;
+@property(nonatomic,strong)IBOutlet UIButton *timeBtn;
 
 @end
