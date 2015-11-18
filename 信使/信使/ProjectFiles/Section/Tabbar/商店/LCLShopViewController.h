@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PayPalMobile.h"
 
-@interface LCLShopViewController : BaseViewController
-
+@interface LCLShopViewController : BaseViewController<PayPalPaymentDelegate>
+@property(nonatomic, strong, readwrite) NSString *environment;//使用环境.
+@property(nonatomic, assign, readwrite) BOOL acceptCreditCards;// 接收信用卡
 @end

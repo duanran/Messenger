@@ -22,5 +22,5 @@
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *vip;
 
-
+@property(strong,nonatomic)NSString *is_click;
 @end

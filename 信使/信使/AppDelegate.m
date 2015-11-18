@@ -10,6 +10,8 @@
 
 #import "LCLAppLoader.h"
 
+#import "PayPalMobile.h"
+
 @interface AppDelegate ()
 
 @end
@@ -22,17 +24,24 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    [self configurePaypal];
     self.window.backgroundColor = [UIColor whiteColor];
         
     self.window.rootViewController = [[LCLAppLoader shareLCLAppLoader] getMainViewController];
     
     [self.window makeKeyAndVisible];
-    
+   
 //    [LCLImageHelper createImageWithIconImageName:@"logo_ios"];
     
     return YES;
 }
-
+-(void)configurePaypal
+{
+    [PayPalMobile initializeWithClientIdsForEnvironments:@{
+                                                           
+                                                           PayPalEnvironmentProduction :@"AS_XQG9XivTbL3_Q9T_9yNyZnG4sBg2ix6_IQgGSv_nQhi_0LtTh7yM4oOCR_U0j9Z5KJJcXSeGaA9gE",//产品模式
+                                                           PayPalEnvironmentSandbox : @"AU07d4sI-p6TsCBUcotsOflMrV8D1190RUvv5l5l2DPtE2SF9TSd5WMWZwFsYhoXCU3sncI_Fa4R7IW-"}];//开发模式
+}
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
