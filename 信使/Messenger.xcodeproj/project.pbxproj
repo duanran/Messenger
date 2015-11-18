@@ -41,6 +41,10 @@
 		186540CC1BFC545100A32B2F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186540CB1BFC545100A32B2F /* CoreMedia.framework */; };
 		186540CE1BFC547800A32B2F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186540CD1BFC547800A32B2F /* MobileCoreServices.framework */; };
 		186540DA1BFC59D500A32B2F /* libPayPalMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 186540D21BFC59D500A32B2F /* libPayPalMobile.a */; };
+		186540DF1BFCAE9200A32B2F /* libBPush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 186540DD1BFCAE9200A32B2F /* libBPush.a */; };
+		186540E01BFCAE9200A32B2F /* test.caf in Resources */ = {isa = PBXBuildFile; fileRef = 186540DE1BFCAE9200A32B2F /* test.caf */; };
+		186540E21BFCAEC800A32B2F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186540E11BFCAEC800A32B2F /* Foundation.framework */; };
+		186540E41BFCAED500A32B2F /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186540E31BFCAED500A32B2F /* CoreTelephony.framework */; };
 		18765B511BF478E5000721BD /* kr-video-player-close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18765B3F1BF478E5000721BD /* kr-video-player-close@2x.png */; };
 		18765B521BF478E5000721BD /* kr-video-player-close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18765B401BF478E5000721BD /* kr-video-player-close@3x.png */; };
 		18765B531BF478E5000721BD /* kr-video-player-fullscreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18765B411BF478E5000721BD /* kr-video-player-fullscreen@2x.png */; };
@@ -559,6 +563,11 @@
 		186540D71BFC59D500A32B2F /* PayPalPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalPayment.h; sourceTree = "<group>"; };
 		186540D81BFC59D500A32B2F /* PayPalPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalPaymentViewController.h; sourceTree = "<group>"; };
 		186540D91BFC59D500A32B2F /* PayPalProfileSharingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalProfileSharingViewController.h; sourceTree = "<group>"; };
+		186540DC1BFCAE9200A32B2F /* BPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPush.h; sourceTree = "<group>"; };
+		186540DD1BFCAE9200A32B2F /* libBPush.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBPush.a; sourceTree = "<group>"; };
+		186540DE1BFCAE9200A32B2F /* test.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.caf; sourceTree = "<group>"; };
+		186540E11BFCAEC800A32B2F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		186540E31BFCAED500A32B2F /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		18765B3F1BF478E5000721BD /* kr-video-player-close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kr-video-player-close@2x.png"; sourceTree = "<group>"; };
 		18765B401BF478E5000721BD /* kr-video-player-close@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kr-video-player-close@3x.png"; sourceTree = "<group>"; };
 		18765B411BF478E5000721BD /* kr-video-player-fullscreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kr-video-player-fullscreen@2x.png"; sourceTree = "<group>"; };
@@ -1226,6 +1235,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18A4C55A1BF0CE61001755DE /* libz.tbd in Frameworks */,
+				186540E41BFCAED500A32B2F /* CoreTelephony.framework in Frameworks */,
+				186540E21BFCAEC800A32B2F /* Foundation.framework in Frameworks */,
 				18A4C55E1BF0CF97001755DE /* SystemConfiguration.framework in Frameworks */,
 				186540CE1BFC547800A32B2F /* MobileCoreServices.framework in Frameworks */,
 				B570E5C01B14C6A6007A07F4 /* MessageUI.framework in Frameworks */,
@@ -1234,7 +1246,6 @@
 				186540C81BFC542F00A32B2F /* AudioToolbox.framework in Frameworks */,
 				186540C61BFC541300A32B2F /* Accelerate.framework in Frameworks */,
 				18A4C55C1BF0CE74001755DE /* libicucore.tbd in Frameworks */,
-				18A4C55A1BF0CE61001755DE /* libz.tbd in Frameworks */,
 				18A4C5581BF0CE52001755DE /* libsqlite3.0.tbd in Frameworks */,
 				18A4C5561BF0CE09001755DE /* JavaScriptCore.framework in Frameworks */,
 				18A4C5541BF0CDE6001755DE /* libstdc++.tbd in Frameworks */,
@@ -1242,6 +1253,7 @@
 				18EB29F11BB5956B0040758B /* libWeChatSDK.a in Frameworks */,
 				186540DA1BFC59D500A32B2F /* libPayPalMobile.a in Frameworks */,
 				18DA540C1BA7124700609D30 /* MapKit.framework in Frameworks */,
+				186540DF1BFCAE9200A32B2F /* libBPush.a in Frameworks */,
 				18EB29D41BB595450040758B /* libcrypto.a in Frameworks */,
 				18A4C5601BF0D469001755DE /* MOBFoundation.framework in Frameworks */,
 				B570E5ED1B14D437007A07F4 /* SMS_SDK.framework in Frameworks */,
@@ -1363,6 +1375,16 @@
 				186540D91BFC59D500A32B2F /* PayPalProfileSharingViewController.h */,
 			);
 			path = PayPalMobile;
+			sourceTree = "<group>";
+		};
+		186540DB1BFCAE9200A32B2F /* LibBPush */ = {
+			isa = PBXGroup;
+			children = (
+				186540DC1BFCAE9200A32B2F /* BPush.h */,
+				186540DD1BFCAE9200A32B2F /* libBPush.a */,
+				186540DE1BFCAE9200A32B2F /* test.caf */,
+			);
+			path = LibBPush;
 			sourceTree = "<group>";
 		};
 		18765B3D1BF478E5000721BD /* KrVideoPlayer */ = {
@@ -2576,6 +2598,7 @@
 		B58B14B51B140A7F0019C822 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				186540DB1BFCAE9200A32B2F /* LibBPush */,
 				186540D11BFC59D500A32B2F /* PayPalMobile */,
 				180E2F101BC548A7002B721F /* lib */,
 				18EB29E31BB5956B0040758B /* WeChatSDK */,
@@ -2587,6 +2610,8 @@
 		B58B14B61B140B590019C822 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				186540E31BFCAED500A32B2F /* CoreTelephony.framework */,
+				186540E11BFCAEC800A32B2F /* Foundation.framework */,
 				186540CD1BFC547800A32B2F /* MobileCoreServices.framework */,
 				186540CB1BFC545100A32B2F /* CoreMedia.framework */,
 				186540C91BFC544000A32B2F /* CoreLocation.framework */,
@@ -3015,6 +3040,7 @@
 				18FAB2A01BA86F7F00FD6143 /* LCLEditMyInfoViewController.xib in Resources */,
 				18DEACF21B9DBD17003CEA5E /* publish_date_ico3.png in Resources */,
 				B58B14FC1B1419E90019C822 /* LCLRegistDetailsViewController.xib in Resources */,
+				186540E01BFCAE9200A32B2F /* test.caf in Resources */,
 				18DEACEE1B9DBD17003CEA5E /* pic_num_bg.png in Resources */,
 				18DEADC21B9DD715003CEA5E /* menu_fruit_b.png in Resources */,
 				18EFD4D21BAF09D200BA372D /* LCLSelectDateView.xib in Resources */,
@@ -3444,10 +3470,11 @@
 					"$(PROJECT_DIR)/信使/ProjectFiles/Section/alipay/支付宝",
 					"$(PROJECT_DIR)/信使/ProjectFiles/Vender/WeChatSDK",
 					"$(PROJECT_DIR)/信使/ProjectFiles/Vender/PayPalMobile",
+					"$(PROJECT_DIR)/信使/ProjectFiles/Vender/LibBPush",
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = Messenger;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "b0282528-0118-4f84-a771-a67ef3ad47f6";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -3479,10 +3506,11 @@
 					"$(PROJECT_DIR)/信使/ProjectFiles/Section/alipay/支付宝",
 					"$(PROJECT_DIR)/信使/ProjectFiles/Vender/WeChatSDK",
 					"$(PROJECT_DIR)/信使/ProjectFiles/Vender/PayPalMobile",
+					"$(PROJECT_DIR)/信使/ProjectFiles/Vender/LibBPush",
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = Messenger;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "b0282528-0118-4f84-a771-a67ef3ad47f6";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
