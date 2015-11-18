@@ -72,6 +72,11 @@
 		18765BA31BF5C3C5000721BD /* RequestURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 18765BA21BF5C3C5000721BD /* RequestURL.m */; };
 		18765BA91BF5D335000721BD /* WatchVideoRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18765BA81BF5D335000721BD /* WatchVideoRequest.m */; };
 		18765BAD1BF5E473000721BD /* BaseResponseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 18765BAC1BF5E473000721BD /* BaseResponseObject.m */; };
+		1885DCB11BFACC15004F74DF /* LCLMeetingButtonTableViewCell_2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1885DCB01BFACC15004F74DF /* LCLMeetingButtonTableViewCell_2.xib */; };
+		1885DCB31BFB1111004F74DF /* LCLMeetingDetailTableViewCell_2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1885DCB21BFB1111004F74DF /* LCLMeetingDetailTableViewCell_2.xib */; };
+		1885DCB71BFB19E4004F74DF /* SelectedMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1885DCB51BFB19E4004F74DF /* SelectedMapViewController.m */; };
+		1885DCB81BFB19E4004F74DF /* SelectedMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1885DCB61BFB19E4004F74DF /* SelectedMapViewController.xib */; };
+		1885DCBA1BFB2EF5004F74DF /* LCLPeopleInfoMeetTableViewCell_2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1885DCB91BFB2EF5004F74DF /* LCLPeopleInfoMeetTableViewCell_2.xib */; };
 		18A4C5541BF0CDE6001755DE /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A4C5531BF0CDE6001755DE /* libstdc++.tbd */; };
 		18A4C5561BF0CE09001755DE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A4C5551BF0CE09001755DE /* JavaScriptCore.framework */; };
 		18A4C5581BF0CE52001755DE /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A4C5571BF0CE52001755DE /* libsqlite3.0.tbd */; };
@@ -598,6 +603,12 @@
 		18765BA81BF5D335000721BD /* WatchVideoRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchVideoRequest.m; sourceTree = "<group>"; };
 		18765BAB1BF5E473000721BD /* BaseResponseObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseResponseObject.h; sourceTree = "<group>"; };
 		18765BAC1BF5E473000721BD /* BaseResponseObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseResponseObject.m; sourceTree = "<group>"; };
+		1885DCB01BFACC15004F74DF /* LCLMeetingButtonTableViewCell_2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LCLMeetingButtonTableViewCell_2.xib; sourceTree = "<group>"; };
+		1885DCB21BFB1111004F74DF /* LCLMeetingDetailTableViewCell_2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LCLMeetingDetailTableViewCell_2.xib; sourceTree = "<group>"; };
+		1885DCB41BFB19E4004F74DF /* SelectedMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectedMapViewController.h; sourceTree = "<group>"; };
+		1885DCB51BFB19E4004F74DF /* SelectedMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectedMapViewController.m; sourceTree = "<group>"; };
+		1885DCB61BFB19E4004F74DF /* SelectedMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectedMapViewController.xib; sourceTree = "<group>"; };
+		1885DCB91BFB2EF5004F74DF /* LCLPeopleInfoMeetTableViewCell_2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LCLPeopleInfoMeetTableViewCell_2.xib; sourceTree = "<group>"; };
 		18A4C5531BF0CDE6001755DE /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		18A4C5551BF0CE09001755DE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		18A4C5571BF0CE52001755DE /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
@@ -1424,6 +1435,9 @@
 				18EE6D991BF9895300D8D14A /* MapTableViewCell.h */,
 				18EE6D9A1BF9895300D8D14A /* MapTableViewCell.m */,
 				18EE6D9B1BF9895300D8D14A /* MapTableViewCell.xib */,
+				1885DCB41BFB19E4004F74DF /* SelectedMapViewController.h */,
+				1885DCB51BFB19E4004F74DF /* SelectedMapViewController.m */,
+				1885DCB61BFB19E4004F74DF /* SelectedMapViewController.xib */,
 			);
 			path = "选择地图";
 			sourceTree = "<group>";
@@ -2082,6 +2096,7 @@
 				18FAB2D61BA87EED00FD6143 /* LCLPeopleInfoMeetTableViewCell.h */,
 				18FAB2D71BA87EED00FD6143 /* LCLPeopleInfoMeetTableViewCell.m */,
 				18FAB2D81BA87EED00FD6143 /* LCLPeopleInfoMeetTableViewCell.xib */,
+				1885DCB91BFB2EF5004F74DF /* LCLPeopleInfoMeetTableViewCell_2.xib */,
 				18FAB2DB1BA87FAA00FD6143 /* LCLPeopleInfoPicTableViewCell.h */,
 				18FAB2DC1BA87FAA00FD6143 /* LCLPeopleInfoPicTableViewCell.m */,
 				18FAB2DD1BA87FAA00FD6143 /* LCLPeopleInfoPicTableViewCell.xib */,
@@ -2202,9 +2217,11 @@
 				B573BE981B1B70F3000A1196 /* LCLMeetingButtonTableViewCell.h */,
 				B573BE991B1B70F3000A1196 /* LCLMeetingButtonTableViewCell.m */,
 				B573BE9A1B1B70F3000A1196 /* LCLMeetingButtonTableViewCell.xib */,
+				1885DCB01BFACC15004F74DF /* LCLMeetingButtonTableViewCell_2.xib */,
 				B573BE9D1B1B7116000A1196 /* LCLMeetingDetailTableViewCell.h */,
 				B573BE9E1B1B7116000A1196 /* LCLMeetingDetailTableViewCell.m */,
 				B573BE9F1B1B7116000A1196 /* LCLMeetingDetailTableViewCell.xib */,
+				1885DCB21BFB1111004F74DF /* LCLMeetingDetailTableViewCell_2.xib */,
 				B573BEA21B1B7133000A1196 /* LCLMeetingMineTableViewCell.h */,
 				B573BEA31B1B7133000A1196 /* LCLMeetingMineTableViewCell.m */,
 				B573BEA41B1B7133000A1196 /* LCLMeetingMineTableViewCell.xib */,
@@ -2768,6 +2785,7 @@
 				B58B151A1B1423520019C822 /* bottom@2x.png in Resources */,
 				18DEAD211B9DBD17003CEA5E /* phone_ico@2x.png in Resources */,
 				18DEADB31B9DD3BA003CEA5E /* LCLCommentTableViewCell.xib in Resources */,
+				1885DCB11BFACC15004F74DF /* LCLMeetingButtonTableViewCell_2.xib in Resources */,
 				18DEACD71B9DBD17003CEA5E /* date_type1.png in Resources */,
 				18DEAD011B9DBD17003CEA5E /* VIP3_shop.png in Resources */,
 				18E3A5C31BC6C3E200C7F704 /* LCLPictureTableViewCell.xib in Resources */,
@@ -2804,6 +2822,7 @@
 				18EB29CE1BB595450040758B /* rsa_private_key.pem in Resources */,
 				18DEACFE1B9DBD17003CEA5E /* VIP2.png in Resources */,
 				18DEADCD1B9DD7ED003CEA5E /* menu_my_a.png in Resources */,
+				1885DCBA1BFB2EF5004F74DF /* LCLPeopleInfoMeetTableViewCell_2.xib in Resources */,
 				18E374371BA6A855006D431E /* test.mp4 in Resources */,
 				18DEACDD1B9DBD17003CEA5E /* date_type7.png in Resources */,
 				18DEAD061B9DBD17003CEA5E /* close@2x.png in Resources */,
@@ -2950,6 +2969,7 @@
 				18DEACEE1B9DBD17003CEA5E /* pic_num_bg.png in Resources */,
 				18DEADC21B9DD715003CEA5E /* menu_fruit_b.png in Resources */,
 				18EFD4D21BAF09D200BA372D /* LCLSelectDateView.xib in Resources */,
+				1885DCB81BFB19E4004F74DF /* SelectedMapViewController.xib in Resources */,
 				18DEADC11B9DD715003CEA5E /* menu_fruit_a.png in Resources */,
 				18765B641BF48462000721BD /* LCLVideoViewController.xib in Resources */,
 				18DEAD121B9DBD17003CEA5E /* date_type8@2x.png in Resources */,
@@ -2957,6 +2977,7 @@
 				B54042F91B1CAD5600E9CCA5 /* LCLMeFooterView.xib in Resources */,
 				18DEACEA1B9DBD17003CEA5E /* my_A.png in Resources */,
 				18765B541BF478E5000721BD /* kr-video-player-fullscreen@3x.png in Resources */,
+				1885DCB31BFB1111004F74DF /* LCLMeetingDetailTableViewCell_2.xib in Resources */,
 				18DEAD7D1B9DBFDA003CEA5E /* icon_16_16.png in Resources */,
 				18DEAD501B9DBD17003CEA5E /* map_point2@3x.png in Resources */,
 				18DEACF81B9DBD17003CEA5E /* thaw_ico.png in Resources */,
@@ -3129,6 +3150,7 @@
 				B58B15051B141A5D0019C822 /* LCLSearchViewController.m in Sources */,
 				18EB29DA1BB595450040758B /* MD5DataSigner.m in Sources */,
 				180E2F471BC548A7002B721F /* MBProgressHUD+Add.m in Sources */,
+				1885DCB71BFB19E4004F74DF /* SelectedMapViewController.m in Sources */,
 				18DEE9BA1B9F0BF6002BE929 /* LCLUnLoginView.m in Sources */,
 				18DEE9BE1B9F15C9002BE929 /* LCLIndexObject.m in Sources */,
 				B58B14D01B140C5F0019C822 /* UIView+ResponseData.m in Sources */,
@@ -3383,7 +3405,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: CAIWEN ZHOU (D25543FMWA)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: CAIWEN ZHOU (D25543FMWA)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

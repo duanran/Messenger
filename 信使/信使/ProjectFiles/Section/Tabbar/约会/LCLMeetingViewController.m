@@ -11,12 +11,10 @@
 #import "LCLMeetingButtonTableViewCell.h"
 #import "LCLMeetingDetailTableViewCell.h"
 #import "LCLMeetingMineTableViewCell.h"
-
 #import "LCLCreateMeetingViewController.h"
-
 #import "LCLVerifyMeetingPasswordView.h"
-
 #import "LCLMyMeetDetailsViewController.h"
+#import "SelectedMapViewController.h"
 
 @interface LCLMeetingViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -135,7 +133,19 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.row==0) {
-        return 178;
+        
+        
+        //自适应label高度
+        CGRect oriFram=CGRectMake(0, 0,kDeviceWidth-16, 100);
+        UILabel *contentLabel=[[UILabel alloc]init];
+        contentLabel.frame=oriFram;
+        contentLabel.lineBreakMode=NSLineBreakByWordWrapping;
+        contentLabel.numberOfLines=0;
+        NSString *describeStr=[self.meetInfoDic objectForKey:@"head"];
+        contentLabel.text=describeStr;
+        contentLabel.font = [UIFont systemFontOfSize:13];
+        CGSize size = [contentLabel sizeThatFits:CGSizeMake(contentLabel.frame.size.width, MAXFLOAT)];
+        return size.height+22+76+30;
     }else{
         if(self.isMyPublicMeeting){
             return 127;
@@ -160,11 +170,30 @@
         
         LCLMeetingButtonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell==nil) {
-            cell = (LCLMeetingButtonTableViewCell *)[[[NSBundle mainBundle] loadNibNamed:@"LCLMeetingButtonTableViewCell" owner:self options:nil] lastObject];
+            cell = (LCLMeetingButtonTableViewCell *)[[[NSBundle mainBundle] loadNibNamed:@"LCLMeetingButtonTableViewCell_2" owner:self options:nil] lastObject];
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         }
         
         [cell.meetInfoLabel setText:[self.meetInfoDic objectForKey:@"head"]];
+        
+        //自适应label高度
+        CGRect oriFram=CGRectMake(0, 0,kDeviceWidth-16, 100);
+        UILabel *contentLabel=[[UILabel alloc]init];
+        contentLabel.frame=oriFram;
+        contentLabel.lineBreakMode=NSLineBreakByWordWrapping;
+        contentLabel.numberOfLines=0;
+        NSString *describeStr=[self.meetInfoDic objectForKey:@"head"];
+        contentLabel.text=describeStr;
+        contentLabel.font = [UIFont systemFontOfSize:13];
+        CGSize size = [contentLabel sizeThatFits:CGSizeMake(contentLabel.frame.size.width, MAXFLOAT)];
+        
+        
+        if (size.height+cell.meetInfoLabel.frame.origin.y>70) {
+            cell.heightConstraint.constant=size.height+cell.meetInfoLabel.frame.origin.y;
+        }
+        
+//        cell.heightConstraint.constant=size.height;
+        
         
         [cell.segmentControl addTarget:self action:@selector(tabSegmentControl:) forControlEvents:UIControlEventValueChanged];
         
@@ -185,10 +214,11 @@
             
             LCLMeetingDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             if (cell==nil) {
-                cell = (LCLMeetingDetailTableViewCell *)[[[NSBundle mainBundle] loadNibNamed:@"LCLMeetingDetailTableViewCell" owner:self options:nil] lastObject];
+                cell = (LCLMeetingDetailTableViewCell *)[[[NSBundle mainBundle] loadNibNamed:@"LCLMeetingDetailTableViewCell_2" owner:self options:nil] lastObject];
                 [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             }
 
+            [cell.locationBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
             NSDictionary *dic = [self.myCreateMeetArray objectAtIndex:indexPath.row-1];
             LCLCreateMeetObject *meetObj = [LCLCreateMeetObject allocModelWithDictionary:dic];
             
@@ -295,7 +325,33 @@
     }
    
 }
-
+- (void)buttonAction:(id)sender
+{
+    UIButton *button = (UIButton *)sender;
+    UITableViewCell *cell = EIGetViewBySubView(button, [UITableViewCell class]);
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    NSDictionary *dic = [self.myCreateMeetArray objectAtIndex:indexPath.row-1];
+    LCLCreateMeetObject *meetObj = [LCLCreateMeetObject allocModelWithDictionary:dic];
+    
+    
+    
+    SelectedMapViewController *mapView=[[SelectedMapViewController alloc]init];
+    
+    CLLocationCoordinate2D coordinate;
+    coordinate.longitude=[meetObj.lng doubleValue];
+    coordinate.latitude=[meetObj.lat doubleValue];
+    
+    mapView.dateCoordinate=coordinate;
+    mapView.address=meetObj.place;
+    [self.navigationController pushViewController:mapView animated:YES];
+    
+    
+    
+    
+    
+    
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -303,6 +359,9 @@
     if (indexPath.row>0 && self.isMyPublicMeeting) {
         
         NSDictionary *dic = [self.myCreateMeetArray objectAtIndex:indexPath.row-1];
+        
+        
+       
         LCLCreateMeetObject *meetObj = [LCLCreateMeetObject allocModelWithDictionary:dic];
         
         LCLMyMeetDetailsViewController *meet = [[LCLMyMeetDetailsViewController alloc] initWithNibName:@"LCLMyMeetDetailsViewController" bundle:nil];

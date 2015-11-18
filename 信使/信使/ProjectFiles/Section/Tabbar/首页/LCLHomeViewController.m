@@ -25,6 +25,8 @@
 #define cellSubViewTag 5000
 #define contentLableTag 6000
 #define headBtnTag 7000
+#define photoNumTag 8000
+
 
 
 @interface LCLHomeViewController () <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate,UIGestureRecognizerDelegate,MJPhotoBrowserDelegate,UIAlertViewDelegate,LCLPeopinfoDelegate>
@@ -351,6 +353,12 @@
         headBtn.backgroundColor=[UIColor yellowColor];
         [cell addSubview:headBtn];
         
+        
+        UILabel *photoLabel=cell.imageNumberLabel;
+        [photoLabel setFrame:cell.imageNumberLabel.frame];
+        photoLabel.tag=indexPath.row+photoNumTag;
+        [cell addSubview:photoLabel];
+        
     }
     
     
@@ -364,7 +372,7 @@
     UIButton *phoneBtn=(UIButton *)[cell viewWithTag:indexPath.row+phoneBtnTag];
     UILabel *contentLabel=[(UILabel *)cell viewWithTag:indexPath.row+contentLableTag];
 
-    
+    UILabel *photoLabel=(UILabel *)[cell viewWithTag:indexPath.row+photoNumTag];
     
 
     [homeBtn addTarget:self action:@selector(tapHomeButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -384,7 +392,13 @@
     [contentLabel setText:indexObj.title];
     [cell setPeopleNameWithName:indexObj.nickname];
     [cell.peopleInfoLabel setText:[NSString stringWithFormat:@"%@岁  %@cm  %@kg", indexObj.age, indexObj.height, indexObj.weight]];
-    [cell.imageNumberLabel setText:[NSString stringWithFormat:@"%@张", indexObj.pic_count]];
+    [photoLabel setText:[NSString stringWithFormat:@"%@张", indexObj.pic_count]];
+    
+    
+    
+    
+    
+    
     if ([indexObj.pic_count integerValue]<=1) {
         [cell.imageNumberLabel setHidden:YES];
     }

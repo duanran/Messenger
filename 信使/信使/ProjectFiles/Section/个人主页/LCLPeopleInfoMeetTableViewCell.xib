@@ -36,7 +36,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fbV-tq-W2r">
-                    <rect key="frame" x="224" y="51" width="88" height="30"/>
+                    <rect key="frame" x="224" y="51" width="89" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                     <animations/>
                     <color key="backgroundColor" red="0.3028185941" green="0.078460509040000001" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
@@ -58,7 +58,7 @@
                 <outlet property="meetTimeLabel" destination="3VH-J7-Mnq" id="ki8-0O-fiR"/>
                 <outlet property="meetTitleLabel" destination="mP5-tO-ReQ" id="RPM-EM-P8v"/>
             </connections>
-            <point key="canvasLocation" x="239" y="230"/>
+            <point key="canvasLocation" x="198" y="179"/>
         </view>
     </objects>
     <resources>

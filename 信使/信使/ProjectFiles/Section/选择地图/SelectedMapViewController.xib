@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9059"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SelectedMapViewController">
+            <connections>
+                <outlet property="mapView" destination="VEw-p8-eJM" id="esc-Bs-ndI"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VEw-p8-eJM" customClass="MKMapView">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="VEw-p8-eJM" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="2ph-6V-vIK"/>
+                <constraint firstItem="VEw-p8-eJM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="75g-Qa-a7K"/>
+                <constraint firstAttribute="bottom" secondItem="VEw-p8-eJM" secondAttribute="bottom" id="Ehh-ac-Ig5"/>
+                <constraint firstAttribute="trailing" secondItem="VEw-p8-eJM" secondAttribute="trailing" id="GGv-xK-hNM"/>
+            </constraints>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="VEw-p8-eJM"/>
+                </mask>
+                <mask key="constraints">
+                    <exclude reference="2ph-6V-vIK"/>
+                    <exclude reference="75g-Qa-a7K"/>
+                    <exclude reference="Ehh-ac-Ig5"/>
+                    <exclude reference="GGv-xK-hNM"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=compact">
+                <mask key="subviews">
+                    <include reference="VEw-p8-eJM"/>
+                </mask>
+                <mask key="constraints">
+                    <include reference="2ph-6V-vIK"/>
+                    <include reference="75g-Qa-a7K"/>
+                    <include reference="Ehh-ac-Ig5"/>
+                    <include reference="GGv-xK-hNM"/>
+                </mask>
+            </variation>
+        </view>
+    </objects>
+</document>

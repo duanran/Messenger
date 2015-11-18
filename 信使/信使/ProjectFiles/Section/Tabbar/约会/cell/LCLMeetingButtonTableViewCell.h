@@ -15,5 +15,5 @@
 @property (weak, nonatomic) IBOutlet UIButton *jiedongButton;
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
-
+@property(nonatomic,strong) IBOutlet NSLayoutConstraint *heightConstraint;
 @end

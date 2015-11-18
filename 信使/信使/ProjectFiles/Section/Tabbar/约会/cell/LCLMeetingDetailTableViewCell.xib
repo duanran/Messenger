@@ -28,15 +28,6 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="进行中" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Vh1-Rp-LYe">
-                    <rect key="frame" x="8" y="69" width="50" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <animations/>
-                    <color key="backgroundColor" red="8.1607698580000006e-05" green="0.81514362370000004" blue="0.0109999369" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="礼物：红包（100信用豆）" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2At-9T-pq9">
                     <rect key="frame" x="66" y="11" width="246" height="21"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -46,7 +37,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地点：xxxxx" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LLH-qb-vB5">
-                    <rect key="frame" x="66" y="37" width="246" height="21"/>
+                    <rect key="frame" x="66" y="37" width="215" height="21"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -54,7 +45,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="时间：xxxxx" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="msd-rM-GC4">
-                    <rect key="frame" x="66" y="62" width="246" height="21"/>
+                    <rect key="frame" x="66" y="62" width="215" height="21"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -94,6 +85,24 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qEi-Y0-kvG">
+                    <rect key="frame" x="288" y="40" width="20" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                    <animations/>
+                    <state key="normal" backgroundImage="map_point.png"/>
+                    <connections>
+                        <action selector="naviToMap:" destination="a3X-Pr-nks" eventType="touchUpInside" id="LBJ-OT-Kxm"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="进行中" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Vh1-Rp-LYe">
+                    <rect key="frame" x="8" y="69" width="50" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <animations/>
+                    <color key="backgroundColor" red="8.1607698580000006e-05" green="0.81514362370000004" blue="0.0109999369" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <animations/>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -101,6 +110,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="lineLabel" destination="Y68-yM-Ssl" id="ab6-PE-Ull"/>
+                <outlet property="locationBtn" destination="qEi-Y0-kvG" id="7U2-M6-ojj"/>
                 <outlet property="meetAcceptNOLabel" destination="fff-bb-m5e" id="qGn-Su-dYN"/>
                 <outlet property="meetAddressLabel" destination="LLH-qb-vB5" id="H7r-ne-fJz"/>
                 <outlet property="meetCreateTimeLabel" destination="9Uo-ht-Avu" id="1cf-jH-i6o"/>
@@ -110,7 +120,10 @@
                 <outlet property="meetTimeLabel" destination="msd-rM-GC4" id="WgT-CM-dOF"/>
                 <outlet property="meetTitleLabel" destination="2At-9T-pq9" id="AO8-bs-QBY"/>
             </connections>
-            <point key="canvasLocation" x="94" y="217.5"/>
+            <point key="canvasLocation" x="195" y="193.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="map_point.png" width="20" height="20"/>
+    </resources>
 </document>

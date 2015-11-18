@@ -18,6 +18,8 @@
 #import "LCLVideoViewController.h"
 #import "GiveCoinRequest.h"
 
+#import "SelectedMapViewController.h"
+
 @interface LCLPeopleInfoViewController ()<LCLPeopleInfoPicTableViewCellDelegate,MJPhotoBrowserDelegate,UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *photoButton;
@@ -409,10 +411,13 @@
         
         LCLPeopleInfoMeetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell==nil) {
-            cell = [LCLPeopleInfoMeetTableViewCell loadXibView];
+            cell = [[[NSBundle mainBundle]loadNibNamed:@"LCLPeopleInfoMeetTableViewCell_2" owner:self options:nil]lastObject];
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         }
         
+        
+        
+        [cell.locationBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         NSDictionary *dic = [self.myMeetArray objectAtIndex:indexPath.row];
         LCLCreateMeetObject *meetObj = [LCLCreateMeetObject allocModelWithDictionary:dic];
         
@@ -448,14 +453,32 @@
         return cell;
     }
 }
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     
 }
-
+- (void)buttonAction:(id)sender
+{
+    
+    UIButton *button = (UIButton *)sender;
+    UITableViewCell *cell = EIGetViewBySubView(button, [UITableViewCell class]);
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+ 
+    SelectedMapViewController *mapView=[[SelectedMapViewController alloc]init];
+    NSDictionary *dic = [self.myMeetArray objectAtIndex:indexPath.row];
+    LCLCreateMeetObject *meetObj = [LCLCreateMeetObject allocModelWithDictionary:dic];
+    CLLocationCoordinate2D coordinate;
+    coordinate.longitude=[meetObj.lng doubleValue];
+    coordinate.latitude=[meetObj.lat doubleValue];
+    
+    mapView.dateCoordinate=coordinate;
+    mapView.address=meetObj.place;
+    [self.navigationController pushViewController:mapView animated:YES];
+    
+}
 - (void)didTapPicWithButton:(LCLPhotoButton *)button{
 
     LCLUserInfoObject *userObj = [LCLUserInfoObject allocModelWithDictionary:self.userInfo];

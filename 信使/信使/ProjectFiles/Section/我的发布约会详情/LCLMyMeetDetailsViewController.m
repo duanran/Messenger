@@ -10,7 +10,7 @@
 
 #import "LCLMyMeetDetailsTableViewCell.h"
 #import "LCLMeetingDetailTableViewCell.h"
-
+#import "SelectedMapViewController.h"
 @interface LCLMyMeetDetailsViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -35,7 +35,7 @@
     }];
     
     [self_weak_.tableView headerBeginRefreshing];
-    
+//    setExtraCellLineHidden(self_weak_.tableView);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,8 +45,12 @@
 
 - (void)setupHeader{
 
-    LCLMeetingDetailTableViewCell *header = [LCLMeetingDetailTableViewCell loadXibView];
+    LCLMeetingDetailTableViewCell *header =(LCLMeetingDetailTableViewCell *)[[[NSBundle mainBundle] loadNibNamed:@"LCLMeetingDetailTableViewCell_2" owner:self options:nil] lastObject];
     [header setBackgroundColor:[UIColor colorWithWhite:0.95 alpha:1.0]];
+    
+
+    [header.locationBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    
     self.tableView.tableHeaderView = header;
     
     LCLCreateMeetObject *meetObj = self.meetDetailsObj;
@@ -75,7 +79,21 @@
     [header.meetTimeLabel setText:[NSString stringWithFormat:@"结束时间：%@", meetObj.date_time]];
     [header.meetTitleLabel setText:[NSString stringWithFormat:@"礼物：%@", meetObj.title]];
 }
+- (void)buttonAction:(id)sender
+{
 
+    
+    SelectedMapViewController *mapView=[[SelectedMapViewController alloc]init];
+    
+    CLLocationCoordinate2D coordinate;
+    coordinate.longitude=[self.meetDetailsObj.lng doubleValue];
+    coordinate.latitude=[self.meetDetailsObj.lat doubleValue];
+    
+    mapView.dateCoordinate=coordinate;
+    mapView.address=self.meetDetailsObj.place;
+    [self.navigationController pushViewController:mapView animated:YES];
+    
+}
 - (IBAction)tapAcceptButton:(UIButton *)sender{
     
     NSString *uid = sender.restorationIdentifier;
@@ -120,6 +138,8 @@
     
     NSDictionary *dic = [self.dataArray objectAtIndex:indexPath.row];
     LCLMeetBaomingObject *meetObj = [LCLMeetBaomingObject allocModelWithDictionary:dic];
+    
+
 
     
     [cell.rejectButton setTag:[self.meetDetailsObj.iD integerValue]];
@@ -178,7 +198,6 @@
 }
 
 
-
 - (void)loadServerData{
     
     @weakify(self);
@@ -196,13 +215,19 @@
             
             NSDictionary *dataSourceDic = [self_weak_.view getResponseDataDictFromResponseData:fileData withSuccessString:nil error:@""];
             if (dataSourceDic) {
-                
                 NSDictionary *info = [dataSourceDic objectForKey:@"info"];
-                self_weak_.dataArray = [info objectForKey:@"signList"];
+                self_weak_.dataArray = (NSMutableArray  *)[info objectForKey:@"signList"];
             }
             
-            [self_weak_.tableView reloadData];
             
+            if ((NSNull *)self_weak_.dataArray==[NSNull null]) {
+                
+            }
+            else
+            {
+                [self_weak_.tableView reloadData];
+                
+            }
             [self_weak_.tableView headerEndRefreshing];
             
         }];

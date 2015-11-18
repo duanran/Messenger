@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+
+
+
+
+
 @interface LCLMeetingDetailTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *meetNumberBGLabel;
@@ -19,5 +24,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *meetAcceptNOLabel;
 @property (weak, nonatomic) IBOutlet UILabel *meetCreateTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lineLabel;
+@property  (strong,nonatomic) IBOutlet UIButton *locationBtn;
 
 @end

@@ -38,6 +38,32 @@
 
 #import "BaseViewController.h"
 
+
+
+NS_INLINE void setExtraCellLineHidden(UITableView * tableview)
+{
+    UIView *view =[ [UIView alloc]init];
+    view.backgroundColor = [UIColor clearColor];
+    [tableview setTableFooterView:view];
+    [tableview setTableHeaderView:view];
+}
+/*
+ 获取tableView中的cell
+ */
+
+NS_INLINE id EIGetViewBySubView(UIView *t,Class c)
+{
+    UIView *view = t;
+    do
+    {
+        if(nil == view || [view isKindOfClass:[UIWindow class]])
+        {
+            return nil;
+        }
+        view = [view superview];
+    } while (![view isKindOfClass:c]);
+    return view;
+}
 #endif
 
 

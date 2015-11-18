@@ -22,6 +22,8 @@
 @property (strong, nonatomic) NSString *status;
 @property (strong, nonatomic) NSString *style;
 @property (strong, nonatomic) NSString *title;
+@property(strong,nonatomic) NSString *lat;
+@property(strong,nonatomic) NSString *lng;
 
 //private
 @property (strong, nonatomic) NSString *inviteuid;

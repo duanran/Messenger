@@ -278,13 +278,7 @@
                 contentLabel.text=describeStr;
                 contentLabel.font = [UIFont systemFontOfSize:13];
                 CGSize size = [contentLabel sizeThatFits:CGSizeMake(contentLabel.frame.size.width, MAXFLOAT)];
-                
                 [self_weak_.topMeetInfoLabel setFrame:CGRectMake(oriFram.origin.x, oriFram.origin.y,oriFram.size.width, size.height)];
-                
-                
-                
-                
-                
                 
                 [self_weak_.bottomMeetInfoLabel setText:[self_weak_.meetInfoDic objectForKey:@"bottom"]];
             }

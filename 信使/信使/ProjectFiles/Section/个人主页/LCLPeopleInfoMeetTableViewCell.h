@@ -16,4 +16,5 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *meeButton;
 
+@property(nonatomic,strong)IBOutlet UIButton *locationBtn;
 @end

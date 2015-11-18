@@ -29,7 +29,7 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Check_yes.png" highlightedImage="Check_yes.png" translatesAutoresizingMaskIntoConstraints="NO" id="Loq-9V-mPC">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Check_yes.png" highlightedImage="Check_yes.png" translatesAutoresizingMaskIntoConstraints="NO" id="Loq-9V-mPC">
                         <rect key="frame" x="282" y="20" width="20" height="20"/>
                         <animations/>
                     </imageView>

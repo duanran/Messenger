@@ -17,6 +17,8 @@
     [self.jiedongButton setRoundedRadius:4.0];
     
     [self setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:0.9]];
+    
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
