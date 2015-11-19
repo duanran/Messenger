@@ -163,6 +163,8 @@
         [self.navigationController pushViewController:notify animated:YES];
     }
     
+    [[LCLCacheDefaults standardCacheDefaults] removeCacheObjectForKey:@"ReceiveNotificationKey"];
+    [self.messageBtn setBadgeValue:@"0"];
     [[NSNotificationCenter defaultCenter] postNotificationName:ClearNotificationKey object:nil];
 }
 

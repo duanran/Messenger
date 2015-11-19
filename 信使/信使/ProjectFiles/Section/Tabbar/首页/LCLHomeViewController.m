@@ -59,6 +59,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveMessageNotify:) name:PushMesseageNotifacation object:nil];
+    
+  
+    
     // 判断定位操作是否被允许
     if([CLLocationManager locationServicesEnabled]) {
         
@@ -127,21 +131,30 @@
     }
 }
 
+-(void)receiveMessageNotify:(NSNotification *)notify
+{
+
+    [self setNotifyMessageNavigationItem];
+
+}
 //设置右侧消息item
 - (void)setMessageNavigationItem{
-    
-    self.messageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.messageBtn.frame = CGRectMake(0, 0, 25, 25);
-    [self.messageBtn setImage:[UIImage imageNamed:@"im"] forState:UIControlStateNormal];
-    [self.messageBtn setImage:[UIImage imageNamed:@"im"] forState:UIControlStateHighlighted];
-    [self.messageBtn setShouldAllowMaxNumber:YES];
-    NSString *num = [[LCLCacheDefaults standardCacheDefaults] objectForCacheKey:ReceiveNotificationKey];
-    if ([num intValue]==1) {
-        [self.messageBtn setBadgeValue:@"100"];
-    }
-    [self.messageBtn addTarget:self action:@selector(tapMessageAction:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *messageItme = [[UIBarButtonItem alloc]initWithCustomView:self.messageBtn] ;
-    self.navigationItem.rightBarButtonItem = messageItme;
+    // app review begin
+
+//    self.messageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    self.messageBtn.frame = CGRectMake(0, 0, 25, 25);
+//    [self.messageBtn setImage:[UIImage imageNamed:@"im"] forState:UIControlStateNormal];
+//    [self.messageBtn setImage:[UIImage imageNamed:@"im"] forState:UIControlStateHighlighted];
+//    [self.messageBtn setShouldAllowMaxNumber:YES];
+//    NSString *num = [[LCLCacheDefaults standardCacheDefaults] objectForCacheKey:ReceiveNotificationKey];
+//    if ([num intValue]==1) {
+//        [self.messageBtn setBadgeValue:@"100"];
+//    }
+//    [self.messageBtn addTarget:self action:@selector(tapMessageAction:) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *messageItme = [[UIBarButtonItem alloc]initWithCustomView:self.messageBtn] ;
+//    self.navigationItem.rightBarButtonItem = messageItme;
+    // end
+
 }
 
 - (IBAction)tapMessageAction:(id)sender{

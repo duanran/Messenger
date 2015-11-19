@@ -128,7 +128,8 @@
 //报名约会时需要消费的信用豆
 @property(nonatomic,strong)NSString *sxf;
 
-
+//针对审核的开关
+@property(nonatomic,strong)NSString *shop_onoff;
 
 @end
 

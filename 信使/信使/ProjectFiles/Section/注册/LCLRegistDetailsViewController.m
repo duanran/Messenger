@@ -10,6 +10,7 @@
 
 #import "LCLSelectCityViewController.h"
 
+#import "BaiduPushBindRequest.h"
 @interface LCLRegistDetailsViewController () <LCLSelectCityViewDelegate, UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -277,23 +278,23 @@
         
         NSDictionary *dataDic = [self_weak_.view getResponseDataDictFromResponseData:fileData withSuccessString:nil error:@""];
         if (dataDic) {
-            
-            NSString *ukey = [dataDic objectForKey:@"ukey"];
-            NSString *pwd = [dataDic objectForKey:@"pwd"];
-            if (ukey && pwd) {
-                
-                NSString *jid = [dataDic objectForKey:@"jid"];
-                if (!jid || [jid isKindOfClass:[NSNull class]]) {
-                    jid = @"";
-                }
-                [dic setObject:ukey forKey:@"ukey"];
-                [dic setObject:pwd forKey:@"pwd"];
-                [dic setObject:jid forKey:@"jid"];
-                
-                [[LCLCacheDefaults standardCacheDefaults] setCacheObject:dic forKey:UserInfoKey];
-
-                [LCLAppLoader loginAction];
-            }
+            [self login:dic];
+//            NSString *ukey = [dataDic objectForKey:@"ukey"];
+//            NSString *pwd = [dataDic objectForKey:@"pwd"];
+//            if (ukey && pwd) {
+//                
+//                NSString *jid = [dataDic objectForKey:@"jid"];
+//                if (!jid || [jid isKindOfClass:[NSNull class]]) {
+//                    jid = @"";
+//                }
+//                [dic setObject:ukey forKey:@"ukey"];
+//                [dic setObject:pwd forKey:@"pwd"];
+//                [dic setObject:jid forKey:@"jid"];
+//                
+//                [[LCLCacheDefaults standardCacheDefaults] setCacheObject:dic forKey:UserInfoKey];
+//
+//                [LCLAppLoader loginAction];
+//            }
         }
         
         [LCLWaitView showIndicatorView:NO];
@@ -301,6 +302,104 @@
     }];
     [login startToDownloadWithIntelligence:NO];
 }
+-(void)login:(NSDictionary *)infoDic
+{
+    NSString *userName=[infoDic objectForKey:@"username"];
+    NSString *password=[infoDic objectForKey:@"password"];
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+    
+   
+    
+    NSString *loginString = [[NSString alloc] initWithFormat:@"username=%@&password=%@", userName, password];
+    NSString *token = [[LCLCacheDefaults standardCacheDefaults] objectForCacheKey:DeviceTokenKey];
+    if (token) {
+        if (token.length>0) {
+            
+            token = [token stringByReplacingOccurrencesOfString:@"<" withString:@""];
+            token = [token stringByReplacingOccurrencesOfString:@">" withString:@""];
+            token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
+            
+            loginString = [[NSString alloc] initWithFormat:@"%@&token=%@&channel_id=%@&type=%@", loginString, token, userName, @"2"];
+        }
+    }
+    
+    @weakify(self);
+    
+    [LCLWaitView showIndicatorView:YES];
+    
+    
+    NSString *channel_id=GetPushChanel_id();
+    NSString *body=[NSString stringWithFormat:@"%@&token=%@&type=2",loginString,channel_id];
+    
+    
+    LCLDownloader *login = [[LCLDownloader alloc] initWithURLString:LoginURL];
+    [login setHttpMehtod:LCLHttpMethodPost];
+    [login setHttpBodyData:[body dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    
+    [login setDownloadCompleteBlock:^(NSString *errorString, NSMutableData *fileData, NSString *urlString) {
+        
+        NSDictionary *dataDic = [self.view getResponseDataDictFromResponseData:fileData withSuccessString:nil error:@""];
+        if (dataDic) {
+            
+            NSString *ukey = [dataDic objectForKey:@"ukey"];
+            if (ukey) {
+                
+                if (channel_id) {
+                    BaiduPushBindRequest *request=[[BaiduPushBindRequest alloc]init];
+                    request.uKey=ukey;
+                    request.token=channel_id;
+                    
+                    [request GETRequest:^(id reponseObject) {
+                        NSLog(@"reponseObject=%@",reponseObject);
+                        
+                    } failureCallback:^(NSString *errorMessage) {
+                        NSLog(@"error=%@",errorMessage);
+                        
+                    }];
+                }
+                
+                
+                
+                
+                LCLUserInfoObject *userObj = [LCLUserInfoObject allocModel];
+                userObj.ukey = ukey;
+                userObj.password = password;
+                userObj.pwd = password;
+                userObj.nickname = userName;
+                userObj.email = @"";
+                userObj.headimg = @"";
+                userObj.mobile = userName;
+                userObj.sex = @"1";
+                userObj.qq = @"";
+                userObj.province_name = @"";
+                userObj.city_name = @"";
+                userObj.area_name = @"";
+                userObj.uid = @"";
+                userObj.ID = @"";
+                userObj.last_login = @"";
+                userObj.freezing_coin = [dataDic objectForKey:@"freezing_coin"];
+                userObj.sxf = [dataDic objectForKey:@"sxf"];
+                
+                
+                
+                NSDictionary *dic = [userObj getAllPropertyAndValue];
+                [[LCLCacheDefaults standardCacheDefaults] setCacheObject:dic forKey:UserInfoKey];
+                
+                [LCLAppLoader loginAction];
+                
+                [self_weak_ dismissViewControllerAnimated:YES completion:nil];
+                
+                
+                
+            }
+        }
+        
+        [LCLWaitView showIndicatorView:NO];
+    }];
+    [login startToDownloadWithIntelligence:NO];
+}
+
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 

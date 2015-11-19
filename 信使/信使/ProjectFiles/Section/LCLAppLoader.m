@@ -83,6 +83,7 @@
     NSDictionary *dic = [[NSDictionary alloc] init];
     [[LCLCacheDefaults standardCacheDefaults] setCacheObject:dic forKey:UserInfoKey];
 
+    removePushChanel_id();
     [[NSNotificationCenter defaultCenter] postNotificationName:@"DidLogout" object:nil];
 }
 
@@ -105,6 +106,8 @@
     
     
     [[LCLCacheDefaults standardCacheDefaults] setCacheObject:dic forKey:UserInfoKey];
+    
+    removePushChanel_id();
     
     LCLLoginViewController *login = [[LCLLoginViewController alloc] initWithNibName:@"LCLLoginViewController" bundle:nil];
     [login setCanShowNavBar:NO];
@@ -181,8 +184,20 @@
     [item5 setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:selectColor, NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
     meNavViewController.tabBarItem = item5;
     
+   NSDictionary *dic = [[LCLCacheDefaults standardCacheDefaults] objectForCacheKey:UserInfoKey];
+    NSMutableArray *tabControllers;
+    NSString *shop_onoff=[NSString stringWithFormat:@"%@",[dic objectForKey:@"shop_onoff"]];
+    if ([shop_onoff integerValue]==0) {
+        tabControllers = [NSMutableArray arrayWithObjects:homeNavViewController, meetNavViewController, searchNavViewController, meNavViewController, nil];
+    }
+    else
+    {
+        tabControllers = [NSMutableArray arrayWithObjects:homeNavViewController, meetNavViewController, searchNavViewController, shopNavViewController, meNavViewController, nil];
+    }
     
-    NSMutableArray *tabControllers = [NSMutableArray arrayWithObjects:homeNavViewController, meetNavViewController, searchNavViewController, shopNavViewController, meNavViewController, nil];
+    
+    
+    
     
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.delegate = self;

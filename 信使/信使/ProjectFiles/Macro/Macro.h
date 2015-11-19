@@ -39,6 +39,7 @@
 #import "BaseViewController.h"
 
 
+static NSString * const PushMesseageNotifacation = @"com.MesseageNotifacation";
 
 NS_INLINE void setExtraCellLineHidden(UITableView * tableview)
 {
@@ -63,6 +64,24 @@ NS_INLINE id EIGetViewBySubView(UIView *t,Class c)
         view = [view superview];
     } while (![view isKindOfClass:c]);
     return view;
+}
+
+NS_INLINE void SavePushChannel_id(NSString *channel_id)
+{
+    NSUserDefaults *userDefault=[NSUserDefaults standardUserDefaults];
+    [userDefault setValue:channel_id forKey:@"channel_id"];
+}
+NS_INLINE void removePushChanel_id()
+{
+    NSUserDefaults *userDefault=[NSUserDefaults standardUserDefaults];
+    [userDefault removeObjectForKey:@"channel_id"];
+
+}
+NS_INLINE id GetPushChanel_id()
+{
+    NSUserDefaults *userDefault=[NSUserDefaults standardUserDefaults];
+    NSString *chanel_id=[userDefault objectForKey:@"channel_id"];
+    return chanel_id;
 }
 #endif
 

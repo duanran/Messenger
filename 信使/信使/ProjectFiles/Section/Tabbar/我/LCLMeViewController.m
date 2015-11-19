@@ -219,7 +219,7 @@
     }else if (section==1){
         return 7;
     }
-    return 6;
+    return 5;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -243,10 +243,14 @@
             [cell.nameLabel setText:[NSString stringWithFormat:@"信用豆：%@", userObj.coin]];
             [cell.actionButton setTitle:@"马上充值" forState:UIControlStateNormal];
             [cell.actionButton setEnabled:NO];
+            // app review begin
+            cell.actionButton.hidden=YES;
+            //end
         }else{
             [cell.nameLabel setText:[NSString stringWithFormat:@"等级：%@", userObj.vip]];
-            [cell.actionButton setTitle:@"账号升级" forState:UIControlStateNormal];
-            [cell.actionButton setEnabled:NO];
+            // app review begin
+            cell.actionButton.hidden=YES;
+            //end
         }
     }else if (indexPath.section==1){
         [cell.actionButton setHidden:YES];

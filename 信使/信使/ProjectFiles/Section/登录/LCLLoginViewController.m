@@ -10,6 +10,7 @@
 
 #import "LCLRegistPhoneViewController.h"
 #import "LCLForgetPassowrdViewController.h"
+#import "BaiduPushBindRequest.h"
 
 @interface LCLLoginViewController ()
 
@@ -93,16 +94,41 @@
     
     [LCLWaitView showIndicatorView:YES];
     
+    
+    NSString *channel_id=GetPushChanel_id();
+    NSString *body=[NSString stringWithFormat:@"%@&token=%@&type=2",loginString,channel_id];
+    
+    
     LCLDownloader *login = [[LCLDownloader alloc] initWithURLString:LoginURL];
     [login setHttpMehtod:LCLHttpMethodPost];
-    [login setHttpBodyData:[loginString dataUsingEncoding:NSUTF8StringEncoding]];
-    [login setDownloadCompleteBlock:^(NSString *errorString, NSMutableData *fileData, NSString *urlString) {
+    [login setHttpBodyData:[body dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    
+        [login setDownloadCompleteBlock:^(NSString *errorString, NSMutableData *fileData, NSString *urlString) {
         
         NSDictionary *dataDic = [self.view getResponseDataDictFromResponseData:fileData withSuccessString:nil error:@""];
+            
         if (dataDic) {
             
             NSString *ukey = [dataDic objectForKey:@"ukey"];
             if (ukey) {
+                
+                if (channel_id) {
+                    BaiduPushBindRequest *request=[[BaiduPushBindRequest alloc]init];
+                    request.uKey=ukey;
+                    request.token=channel_id;
+
+                    [request GETRequest:^(id reponseObject) {
+                        NSLog(@"reponseObject=%@",reponseObject);
+
+                    } failureCallback:^(NSString *errorMessage) {
+                        NSLog(@"error=%@",errorMessage);
+
+                    }];
+                }
+                
+                
+                
                 
                 LCLUserInfoObject *userObj = [LCLUserInfoObject allocModel];
                 userObj.ukey = ukey;
@@ -123,12 +149,17 @@
                 userObj.freezing_coin = [dataDic objectForKey:@"freezing_coin"];
                 userObj.sxf = [dataDic objectForKey:@"sxf"];
                 
+                
+                
                 NSDictionary *dic = [userObj getAllPropertyAndValue];
                 [[LCLCacheDefaults standardCacheDefaults] setCacheObject:dic forKey:UserInfoKey];
                 
                 [LCLAppLoader loginAction];
                 
                 [self_weak_ dismissViewControllerAnimated:YES completion:nil];
+                
+
+                
             }
         }
         

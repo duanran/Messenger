@@ -15,9 +15,9 @@
 // - For live charges, use PayPalEnvironmentProduction (default).// 真实模式,
 // - To use the PayPal sandbox, use PayPalEnvironmentSandbox.// 测试(网络)
 // - For testing, use PayPalEnvironmentNoNetwork.// 本地测试模式
-#define kPayPalEnvironment PayPalEnvironmentSandbox // 需要更改的地方
+//#define kPayPalEnvironment PayPalEnvironmentSandbox // 需要更改的地方
 
-//#define kPayPalEnvironment PayPalEnvironmentProduction
+#define kPayPalEnvironment PayPalEnvironmentProduction
 
 @interface LCLShopViewController () <UITableViewDataSource, UITableViewDelegate,UIAlertViewDelegate>
 

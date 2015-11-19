@@ -15,6 +15,7 @@ typedef NS_ENUM(NSInteger, URLType){
     URLTypeWatchVideo,                   /* 查看视频 */
     URLTypeLookPhoneUpDate,              /* 更新查看手机号码 */
     URLTypeGiveCoin,                    /*  赠送金币 */
+    URLTypePushBindUser,                /* 推送绑定用户 */
 };
 /*
  * 根据URL类型获取url

@@ -12,6 +12,8 @@
 #import "PayPalMobile.h"
 #import "BPush.h"
 
+
+
 @interface AppDelegate ()
 
 @end
@@ -36,6 +38,9 @@
     
     
    
+   
+    
+    
     
     
     
@@ -55,7 +60,7 @@
     }
     
     // 在 App 启动时注册百度云推送服务，需要提供 Apikey
-    [BPush registerChannel:launchOptions apiKey:@"jkrR0x0owAfZTyQ1YEca7RMM"pushMode:BPushModeDevelopment withFirstAction:nil withSecondAction:nil withCategory:nil isDebug:YES];
+    [BPush registerChannel:launchOptions apiKey:@"jkrR0x0owAfZTyQ1YEca7RMM"pushMode:BPushModeProduction withFirstAction:nil withSecondAction:nil withCategory:nil isDebug:YES];
     // App 是用户点击推送消息启动
     NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     if (userInfo) {
@@ -97,6 +102,10 @@
 //        [self.viewController addLogString:[NSString stringWithFormat:@"Method: %@\n%@",BPushRequestMethodBind,result]];
         // 需要在绑定成功后进行 settag listtag deletetag unbind 操作否则会失败
         if (result) {
+            NSString *channel_id=[result objectForKey:@"channel_id"];
+            if (channel_id) {
+                SavePushChannel_id(channel_id);
+            }
             [BPush setTag:@"Mytag" withCompleteHandler:^(id result, NSError *error) {
                 if (result) {
                     NSLog(@"设置tag成功");
@@ -128,6 +137,9 @@
         NSLog(@"acitve or background");
         UIAlertView *alertView =[[UIAlertView alloc]initWithTitle:@"收到一条消息" message:userInfo[@"aps"][@"alert"] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         [alertView show];
+        [[LCLCacheDefaults standardCacheDefaults] setCacheObject:@"1" forKey:ReceiveNotificationKey];
+        [[NSNotificationCenter defaultCenter]postNotificationName:PushMesseageNotifacation object:userInfo];
+        
     }
     else//杀死状态下，直接跳转到跳转页面。
     {
@@ -137,7 +149,7 @@
     
 //    [self.viewController addLogString:[NSString stringWithFormat:@"Received Remote Notification :\n%@",userInfo]];
     
-    NSLog(@"%@",userInfo);
+    NSLog(@"userInfo=%@",userInfo);
 }
 // 此方法是 用户点击了通知，应用在前台 或者开启后台并且应用在后台 时调起
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
@@ -150,6 +162,9 @@
         NSLog(@"acitve or background");
         UIAlertView *alertView =[[UIAlertView alloc]initWithTitle:@"收到一条消息" message:userInfo[@"aps"][@"alert"] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         [alertView show];
+        
+        [[LCLCacheDefaults standardCacheDefaults] setCacheObject:@"1" forKey:ReceiveNotificationKey];
+        [[NSNotificationCenter defaultCenter]postNotificationName:PushMesseageNotifacation object:userInfo];
     }
     else//杀死状态下，直接跳转到跳转页面。
     {
