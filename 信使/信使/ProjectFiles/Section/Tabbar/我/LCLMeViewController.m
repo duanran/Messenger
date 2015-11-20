@@ -286,7 +286,12 @@
         if (indexPath.row==0) {
             [cell.arrowImageView setHidden:NO];
             [cell.nameLabel setText:@"设置开启密码"];
+            
             [cell.actionButton setTitle:@"建设中" forState:UIControlStateNormal];
+            // app review begin
+            cell.actionButton.hidden=YES;
+            //end
+            
         }else if(indexPath.row==1){
             [cell.switchButton setHidden:NO];
             [cell.actionButton setHidden:YES];

@@ -98,10 +98,6 @@
 		18A4C5601BF0D469001755DE /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A4C55F1BF0D469001755DE /* MOBFoundation.framework */; };
 		18A4C5631BF0D59D001755DE /* country.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18A4C5611BF0D59D001755DE /* country.plist */; };
 		18A4C5661BF0D5F8001755DE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18A4C5641BF0D5F8001755DE /* Localizable.strings */; };
-		18D7E3841BFDBAB900AA3070 /* start_640x960.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D7E3801BFDBAB900AA3070 /* start_640x960.png */; };
-		18D7E3851BFDBAB900AA3070 /* start_640x1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D7E3811BFDBAB900AA3070 /* start_640x1136.png */; };
-		18D7E3861BFDBAB900AA3070 /* start_750x1334.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D7E3821BFDBAB900AA3070 /* start_750x1334.png */; };
-		18D7E3871BFDBAB900AA3070 /* start_1242x2208.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D7E3831BFDBAB900AA3070 /* start_1242x2208.png */; };
 		18DA54011BA7054900609D30 /* LCLMeetTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DA54001BA7054900609D30 /* LCLMeetTypeView.m */; };
 		18DA54031BA7055F00609D30 /* LCLMeetTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18DA54021BA7055F00609D30 /* LCLMeetTypeView.xib */; };
 		18DA54081BA70FC800609D30 /* LCLMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DA54061BA70FC800609D30 /* LCLMapViewController.m */; };
@@ -655,10 +651,6 @@
 		18A4C55F1BF0D469001755DE /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MOBFoundation.framework; path = "信使/ProjectFiles/Vender/ShareSDK/message/MOBFoundation.framework"; sourceTree = "<group>"; };
 		18A4C5621BF0D59D001755DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "zh-Hans"; path = "zh-Hans.lproj/country.plist"; sourceTree = "<group>"; };
 		18A4C5651BF0D5F8001755DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		18D7E3801BFDBAB900AA3070 /* start_640x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start_640x960.png; sourceTree = "<group>"; };
-		18D7E3811BFDBAB900AA3070 /* start_640x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start_640x1136.png; sourceTree = "<group>"; };
-		18D7E3821BFDBAB900AA3070 /* start_750x1334.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start_750x1334.png; sourceTree = "<group>"; };
-		18D7E3831BFDBAB900AA3070 /* start_1242x2208.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start_1242x2208.png; sourceTree = "<group>"; };
 		18DA53FF1BA7054900609D30 /* LCLMeetTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCLMeetTypeView.h; sourceTree = "<group>"; };
 		18DA54001BA7054900609D30 /* LCLMeetTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCLMeetTypeView.m; sourceTree = "<group>"; };
 		18DA54021BA7055F00609D30 /* LCLMeetTypeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LCLMeetTypeView.xib; sourceTree = "<group>"; };
@@ -2423,10 +2415,6 @@
 		B58B14811B1406F30019C822 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				18D7E3801BFDBAB900AA3070 /* start_640x960.png */,
-				18D7E3811BFDBAB900AA3070 /* start_640x1136.png */,
-				18D7E3821BFDBAB900AA3070 /* start_750x1334.png */,
-				18D7E3831BFDBAB900AA3070 /* start_1242x2208.png */,
 				18DEAD721B9DBFDA003CEA5E /* icon_16_16.png */,
 				18DEAD731B9DBFDA003CEA5E /* icon_28_28.png */,
 				18DEAD741B9DBFDA003CEA5E /* icon_108_108.png */,
@@ -2863,7 +2851,6 @@
 				18DEACFD1B9DBD17003CEA5E /* VIP1_shop.png in Resources */,
 				B54042EF1B1CABD400E9CCA5 /* LCLMeTableViewCell.xib in Resources */,
 				18DEAD191B9DBD17003CEA5E /* login_logo@2x.png in Resources */,
-				18D7E3871BFDBAB900AA3070 /* start_1242x2208.png in Resources */,
 				18DEAD841B9DBFDA003CEA5E /* icon~ipad.png in Resources */,
 				18A4C5631BF0D59D001755DE /* country.plist in Resources */,
 				18DEAD5B1B9DBD17003CEA5E /* right@3x.png in Resources */,
@@ -3005,7 +2992,6 @@
 				B54042D61B1CA37400E9CCA5 /* LCLSearchViewController.xib in Resources */,
 				18DEAD091B9DBD17003CEA5E /* date_ico@2x.png in Resources */,
 				18DEACE21B9DBD17003CEA5E /* home_ico.png in Resources */,
-				18D7E3851BFDBAB900AA3070 /* start_640x1136.png in Resources */,
 				18EB29DF1BB595450040758B /* rsa_private_key.pem in Resources */,
 				18DEAD6F1B9DBD17003CEA5E /* start_640x1136.png in Resources */,
 				18DEAD001B9DBD17003CEA5E /* VIP3.png in Resources */,
@@ -3075,7 +3061,6 @@
 				18DEAD7D1B9DBFDA003CEA5E /* icon_16_16.png in Resources */,
 				18DEAD501B9DBD17003CEA5E /* map_point2@3x.png in Resources */,
 				18DEACF81B9DBD17003CEA5E /* thaw_ico.png in Resources */,
-				18D7E3841BFDBAB900AA3070 /* start_640x960.png in Resources */,
 				18DEAD451B9DBD17003CEA5E /* date_type7@3x.png in Resources */,
 				18765B571BF478E5000721BD /* kr-video-player-play@2x.png in Resources */,
 				18DEAD5D1B9DBD17003CEA5E /* search_B@3x.png in Resources */,
@@ -3093,7 +3078,6 @@
 				18DEAD9B1B9DC5D9003CEA5E /* LCLRegistPhoneViewController.xib in Resources */,
 				18DEAD141B9DBD17003CEA5E /* home_A@2x.png in Resources */,
 				18DEACE61B9DBD17003CEA5E /* login_password.png in Resources */,
-				18D7E3861BFDBAB900AA3070 /* start_750x1334.png in Resources */,
 				18DEAD491B9DBD17003CEA5E /* home_B@3x.png in Resources */,
 				18DEAD591B9DBD17003CEA5E /* publish_date_ico2@3x.png in Resources */,
 				18DEACE31B9DBD17003CEA5E /* ico_edit.png in Resources */,
@@ -3486,6 +3470,7 @@
 					"$(PROJECT_DIR)/信使/ProjectFiles/Section/alipay/支付宝",
 				);
 				INFOPLIST_FILE = "信使/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3496,7 +3481,7 @@
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = Messenger;
-				PROVISIONING_PROFILE = "5397f2f3-ef47-4f59-9a51-538cac946dc4";
+				PROVISIONING_PROFILE = "f34bb820-d7ff-4b21-ac01-f30b79fcda62";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -3506,7 +3491,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: CAIWEN ZHOU (D25543FMWA)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: CAIWEN ZHOU (D25543FMWA)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3522,6 +3507,7 @@
 					"$(PROJECT_DIR)/信使/ProjectFiles/Section/alipay/支付宝",
 				);
 				INFOPLIST_FILE = "信使/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3532,7 +3518,7 @@
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = Messenger;
-				PROVISIONING_PROFILE = "5397f2f3-ef47-4f59-9a51-538cac946dc4";
+				PROVISIONING_PROFILE = "f34bb820-d7ff-4b21-ac01-f30b79fcda62";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
