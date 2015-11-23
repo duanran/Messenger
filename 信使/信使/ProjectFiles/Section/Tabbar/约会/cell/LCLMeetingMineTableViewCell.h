@@ -23,5 +23,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *yuewoButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *lineLabel;
+@property  (strong,nonatomic) IBOutlet UIButton *locationBtn;
 
 @end

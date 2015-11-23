@@ -134,7 +134,7 @@
                 <outlet property="rejectButton" destination="Xbo-Q5-gYy" id="cOX-Eu-99t"/>
                 <outlet property="yuewoButton" destination="U8f-XZ-PHn" id="urZ-kJ-5dg"/>
             </connections>
-            <point key="canvasLocation" x="119" y="206"/>
+            <point key="canvasLocation" x="75" y="164"/>
         </view>
     </objects>
 </document>

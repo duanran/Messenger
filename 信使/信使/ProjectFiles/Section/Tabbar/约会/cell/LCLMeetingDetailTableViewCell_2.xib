@@ -39,23 +39,23 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="礼物：红包（100信用豆）" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lAU-6o-aKo">
-                        <rect key="frame" x="67.5" y="10" width="244.5" height="18"/>
+                        <rect key="frame" x="67" y="10" width="244.5" height="16"/>
                         <animations/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地点：xxxxx" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHM-ky-HAM">
-                        <rect key="frame" x="66" y="33" width="83.5" height="18"/>
+                        <rect key="frame" x="66" y="31" width="73" height="16"/>
                         <animations/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="时间：xxxxx" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RGx-rK-dUi">
-                        <rect key="frame" x="66" y="55" width="215" height="32"/>
+                        <rect key="frame" x="66" y="51" width="215" height="36"/>
                         <animations/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -85,7 +85,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gSr-ZM-KfK">
-                        <rect key="frame" x="288" y="36" width="20" height="20"/>
+                        <rect key="frame" x="288" y="29" width="20" height="20"/>
                         <animations/>
                         <state key="normal" backgroundImage="map_point.png"/>
                     </button>
@@ -93,6 +93,7 @@
                 <animations/>
                 <constraints>
                     <constraint firstItem="aHM-ky-HAM" firstAttribute="leading" secondItem="dZP-be-9f0" secondAttribute="trailing" constant="8" id="0Pv-p9-t3n"/>
+                    <constraint firstItem="gSr-ZM-KfK" firstAttribute="baseline" secondItem="aHM-ky-HAM" secondAttribute="baseline" id="506-Ao-Ifj"/>
                     <constraint firstItem="qMf-3F-3bP" firstAttribute="top" secondItem="GgB-oV-2eO" secondAttribute="top" constant="37" id="67H-FD-j7K"/>
                     <constraint firstItem="PDh-ir-WfK" firstAttribute="leading" secondItem="GgB-oV-2eO" secondAttribute="leadingMargin" id="6V2-8O-Zno"/>
                     <constraint firstItem="dZP-be-9f0" firstAttribute="leading" secondItem="GgB-oV-2eO" secondAttribute="leadingMargin" id="9JM-Hd-hjh"/>
@@ -108,6 +109,7 @@
                     <constraint firstItem="PDh-ir-WfK" firstAttribute="top" secondItem="BjZ-bv-bVc" secondAttribute="bottom" constant="8" id="Rni-Bk-P69"/>
                     <constraint firstItem="aHM-ky-HAM" firstAttribute="leading" secondItem="qMf-3F-3bP" secondAttribute="trailing" constant="12" id="X6N-oL-dnO"/>
                     <constraint firstItem="oy5-CQ-5TU" firstAttribute="trailing" secondItem="GgB-oV-2eO" secondAttribute="trailingMargin" id="Z8m-7J-fM8"/>
+                    <constraint firstItem="gSr-ZM-KfK" firstAttribute="centerY" secondItem="aHM-ky-HAM" secondAttribute="centerY" id="b8U-J3-6hA"/>
                     <constraint firstItem="lAU-6o-aKo" firstAttribute="trailing" secondItem="GgB-oV-2eO" secondAttribute="trailingMargin" id="brH-C9-Lak"/>
                     <constraint firstItem="oy5-CQ-5TU" firstAttribute="leading" secondItem="PDh-ir-WfK" secondAttribute="trailing" constant="24" id="cZi-yT-pZp"/>
                     <constraint firstAttribute="trailingMargin" secondItem="RGx-rK-dUi" secondAttribute="trailing" constant="31" id="dDg-uI-Juk"/>
@@ -121,6 +123,12 @@
                     <constraint firstItem="qMf-3F-3bP" firstAttribute="centerX" secondItem="dZP-be-9f0" secondAttribute="centerX" id="z0C-ao-OrW"/>
                     <constraint firstAttribute="bottomMargin" secondItem="PDh-ir-WfK" secondAttribute="bottom" constant="0.5" id="zx0-yq-Bgv"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="506-Ao-Ifj"/>
+                        <exclude reference="gyo-S3-gCp"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <animations/>
             <connections>

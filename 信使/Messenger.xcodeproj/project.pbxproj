@@ -98,6 +98,7 @@
 		18A4C5601BF0D469001755DE /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A4C55F1BF0D469001755DE /* MOBFoundation.framework */; };
 		18A4C5631BF0D59D001755DE /* country.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18A4C5611BF0D59D001755DE /* country.plist */; };
 		18A4C5661BF0D5F8001755DE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18A4C5641BF0D5F8001755DE /* Localizable.strings */; };
+		18D7E38B1C02E20C00AA3070 /* LCLMeetingMineTableViewCell_2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D7E38A1C02E20C00AA3070 /* LCLMeetingMineTableViewCell_2.xib */; };
 		18DA54011BA7054900609D30 /* LCLMeetTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DA54001BA7054900609D30 /* LCLMeetTypeView.m */; };
 		18DA54031BA7055F00609D30 /* LCLMeetTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18DA54021BA7055F00609D30 /* LCLMeetTypeView.xib */; };
 		18DA54081BA70FC800609D30 /* LCLMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DA54061BA70FC800609D30 /* LCLMapViewController.m */; };
@@ -651,6 +652,7 @@
 		18A4C55F1BF0D469001755DE /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MOBFoundation.framework; path = "信使/ProjectFiles/Vender/ShareSDK/message/MOBFoundation.framework"; sourceTree = "<group>"; };
 		18A4C5621BF0D59D001755DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "zh-Hans"; path = "zh-Hans.lproj/country.plist"; sourceTree = "<group>"; };
 		18A4C5651BF0D5F8001755DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		18D7E38A1C02E20C00AA3070 /* LCLMeetingMineTableViewCell_2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LCLMeetingMineTableViewCell_2.xib; sourceTree = "<group>"; };
 		18DA53FF1BA7054900609D30 /* LCLMeetTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCLMeetTypeView.h; sourceTree = "<group>"; };
 		18DA54001BA7054900609D30 /* LCLMeetTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCLMeetTypeView.m; sourceTree = "<group>"; };
 		18DA54021BA7055F00609D30 /* LCLMeetTypeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LCLMeetTypeView.xib; sourceTree = "<group>"; };
@@ -2295,6 +2297,7 @@
 				B573BEA21B1B7133000A1196 /* LCLMeetingMineTableViewCell.h */,
 				B573BEA31B1B7133000A1196 /* LCLMeetingMineTableViewCell.m */,
 				B573BEA41B1B7133000A1196 /* LCLMeetingMineTableViewCell.xib */,
+				18D7E38A1C02E20C00AA3070 /* LCLMeetingMineTableViewCell_2.xib */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -2980,6 +2983,7 @@
 				18DEAD251B9DBD17003CEA5E /* publish_date_ico2@2x.png in Resources */,
 				B573BEA61B1B7133000A1196 /* LCLMeetingMineTableViewCell.xib in Resources */,
 				18FAB2AA1BA872E000FD6143 /* LCLMyPictureInfoViewController.xib in Resources */,
+				18D7E38B1C02E20C00AA3070 /* LCLMeetingMineTableViewCell_2.xib in Resources */,
 				18765B531BF478E5000721BD /* kr-video-player-fullscreen@2x.png in Resources */,
 				18DEACF51B9DBD17003CEA5E /* search_B.png in Resources */,
 				18DEADCC1B9DD7ED003CEA5E /* menu_my_b@3x.png in Resources */,
@@ -3481,7 +3485,7 @@
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = Messenger;
-				PROVISIONING_PROFILE = "f34bb820-d7ff-4b21-ac01-f30b79fcda62";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -3518,7 +3522,7 @@
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = Messenger;
-				PROVISIONING_PROFILE = "f34bb820-d7ff-4b21-ac01-f30b79fcda62";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

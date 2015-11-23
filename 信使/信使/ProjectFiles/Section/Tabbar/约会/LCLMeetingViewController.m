@@ -256,21 +256,25 @@
             
             LCLMeetingMineTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             if (cell==nil) {
-                cell = (LCLMeetingMineTableViewCell *)[[[NSBundle mainBundle] loadNibNamed:@"LCLMeetingMineTableViewCell" owner:self options:nil] lastObject];
+                cell = (LCLMeetingMineTableViewCell *)[[[NSBundle mainBundle] loadNibNamed:@"LCLMeetingMineTableViewCell_2" owner:self options:nil] lastObject];
                 [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             }
             
             NSDictionary *dic = [self.myPrivateMeetArray objectAtIndex:indexPath.row-1];
             LCLCreateMeetObject *meetObj = [LCLCreateMeetObject allocModelWithDictionary:dic];
+            
 
             [cell.rejectButton setTag:[meetObj.iD integerValue]];
             [cell.acceptButton setTag:[meetObj.iD integerValue]];
             [cell.rejectButton setRestorationIdentifier:meetObj.inviteuid];
             [cell.acceptButton setRestorationIdentifier:meetObj.inviteuid];
 
+[cell.locationBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];            
             int status = [meetObj.ondate intValue];
             [cell.acceptButton setEnabled:NO];
             [cell.rejectButton setHidden:YES];
+            
+            
             NSString *ss = @"接受";
             if (status==3) {
                 ss = @"已完成";
@@ -283,11 +287,27 @@
             else if (status==2){
                 ss = @"已拒绝";
                 [cell.acceptButton setBackgroundColor:[UIColor lightGrayColor]];
+                
+                
             }
             else if(status==0){
-                [cell.rejectButton setHidden:NO];
-                [cell.acceptButton setEnabled:YES];
                 
+                NSLog(@"date_time=%@",meetObj.date_time);
+
+                
+              BOOL isExpire=[self isExpire:meetObj.date_time];
+                if (isExpire) {
+                    ss=@"已过期";
+                    [cell.acceptButton setBackgroundColor:[UIColor lightGrayColor]];
+                    [cell.acceptButton setEnabled:NO];
+                    [cell.rejectButton setHidden:YES];
+
+                }
+                else
+                {
+                    [cell.rejectButton setHidden:NO];
+                    [cell.acceptButton setEnabled:YES];
+                }
                 if ([meetObj.type isEqualToString:@"我约"]) {
                     [cell.rejectButton setHidden:YES];
                     [cell.acceptButton setHidden:YES];
@@ -331,7 +351,20 @@
     UITableViewCell *cell = EIGetViewBySubView(button, [UITableViewCell class]);
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     
-    NSDictionary *dic = [self.myCreateMeetArray objectAtIndex:indexPath.row-1];
+    NSDictionary *dic;
+    if (button.tag==1) {
+        
+       dic = [self.myPrivateMeetArray objectAtIndex:indexPath.row-1];
+    }
+    else
+    {
+        dic = [self.myCreateMeetArray objectAtIndex:indexPath.row-1];
+
+    }
+    
+    
+    
+   
     LCLCreateMeetObject *meetObj = [LCLCreateMeetObject allocModelWithDictionary:dic];
     
     
@@ -499,6 +532,25 @@
         }];
         [downloader startToDownloadWithIntelligence:NO];
     }
+}
+
+
+-(BOOL)isExpire:(NSString *)endTime
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *endDate = [[NSDate alloc] init];
+    endDate = [formatter dateFromString:endTime];
+    NSDate *nowDate=[NSDate date];
+    
+    BOOL isExpire=false;
+    
+    if (nowDate>endDate) {
+        isExpire=true;
+    }
+    
+    return true;
+    
 }
 /*
 #pragma mark - Navigation
