@@ -9,7 +9,7 @@
 #ifndef JoeRhymeLive_Macro_h
 #define JoeRhymeLive_Macro_h
 
-#import <LCLAppKit/LCLAppKit.h>
+#import "LCLAppKit.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "WXApi.h"
 #import <SMS_SDK/SMSSDK.h>

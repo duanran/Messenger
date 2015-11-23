@@ -22,4 +22,14 @@
 //隐藏暂无数据提示界面
 - (void)hideEmptyDataTips;
 
+// identify
+@property (strong, nonatomic) NSString *lclIndentify;
+
 @end
+
+
+
+
+
+
+

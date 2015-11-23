@@ -10,6 +10,10 @@
 
 @interface UITabBar (Badge)
 
+
+//自定义点击tanbarItem图标
+- (void)showTabItemImageView:(UIImageView *)imageView onItemIndex:(int)index width:(CGFloat)width orgY:(CGFloat)orgY;
+
 //显示tabItem的badge红点
 - (void)showBadgeOnItemIndex:(int)index;
 

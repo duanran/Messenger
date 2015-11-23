@@ -22,6 +22,8 @@
 
 - (void)releaseSelf;
 
+- (void)setSelectIndex:(NSInteger)index;
+
 /**
  数据源：获取总的page个数
  **/

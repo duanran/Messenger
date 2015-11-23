@@ -28,7 +28,7 @@
 - (void)openAPPURLString:(NSString *)url;
 
 #pragma mark - /* 获取对象的所有属性 不包括属性值 */
-- (NSArray *)getAllProperty;
+- (NSMutableArray *)getAllProperty;
 
 #pragma mark - /* 获取对象的所有属性 以及属性值 */
 - (NSDictionary *)getAllPropertyAndValue;
@@ -55,6 +55,16 @@
 - (CGSize)getStringSizeWithString:(NSString *)string fontSize:(CGFloat)fontSize bounce:(CGSize)bounce;
 
 @end
+
+
+
+
+
+
+
+
+
+
 
 
 
