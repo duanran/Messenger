@@ -16,6 +16,7 @@
 #import "WatchVideoRequest.h"
 
 #import "RequestURL.h"
+#include <sys/xattr.h>
 
 @interface MJPhotoView ()<UIAlertViewDelegate>
 {
@@ -127,6 +128,7 @@
     
     
     
+    
     //判断文件是否已存在
     NSFileManager *fileManger=[NSFileManager defaultManager];
     
@@ -148,6 +150,11 @@
     operation.inputStream   = [NSInputStream inputStreamWithURL:Url];
     operation.outputStream  = [NSOutputStream outputStreamToFileAtPath:filePath append:NO];
     
+    [self addSkipBackupAttributeToItemAtURL:filePath];
+
+    
+    
+    
 //    [_photoLoadingView showLoading];
 //    __unsafe_unretained MJPhotoView *photoView = self;
 //    __unsafe_unretained MJPhotoLoadingView *loading = _photoLoadingView;
@@ -159,7 +166,7 @@
 //        
 //    }];
 
-    
+
     
     
     [MBProgressHUD showHUDAddedTo:self animated:YES];
@@ -365,5 +372,20 @@
 {
     // 取消请求
     [_imageView setImageWithURL:[NSURL URLWithString:@"file:///abc"]];
+}
+
+#pragma mark-设置不备份到云端
+
+-(BOOL)addSkipBackupAttributeToItemAtURL:(NSString *)Path{
+    
+    const char* filePath = [Path fileSystemRepresentation];
+    
+    const char* attrName = "com.apple.MobileBackup";
+    
+    u_int8_t attrValue = 1;
+    
+    int result = setxattr(filePath, attrName, &attrValue, sizeof(attrValue), 0, 0);
+    
+    return result == 0;
 }
 @end

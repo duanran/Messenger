@@ -11,7 +11,7 @@
 
 #import "LCLNetworkManager.h"
 
-const NSTimeInterval LCLUploadDefaultTimeout = 30;
+const NSTimeInterval LCLUploadDefaultTimeout = 40;
 
 NSString * const LCLUploadErrorDomain = @"www.baidu.com";
 NSString * const HTTPUploadErrorCode = @"httpStatus";

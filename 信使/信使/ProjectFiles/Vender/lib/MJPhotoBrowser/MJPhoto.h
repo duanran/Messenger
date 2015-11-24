@@ -28,5 +28,6 @@
 @property(nonatomic,strong)NSString *IsSee;
 @property(nonatomic,strong)NSString *videoCoin;
 @property(nonatomic,strong)NSString *videoId;
-
+@property(nonatomic,strong)NSString *picId;
+@property(nonatomic,strong)NSString *uKey;
 @end

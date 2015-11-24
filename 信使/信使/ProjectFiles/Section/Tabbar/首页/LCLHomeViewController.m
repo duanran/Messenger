@@ -834,8 +834,6 @@
     NSString *listURL = [NSString stringWithFormat:@"%@", LookUserPhotosURL(myObj.ukey, uid)];
     
     
-    
-    
     LCLDownloader *downloader = [[LCLDownloader alloc] initWithURLString:listURL];
     [downloader setHttpMehtod:LCLHttpMethodGet];
     [downloader setDownloadCompleteBlock:^(NSString *err, NSMutableData *fileData, NSString *url){
@@ -849,7 +847,7 @@
             
             NSString *videoConin=[NSString stringWithFormat:@"%@",[dataSourceDic objectForKey:@"video_coin"]];
             
-            
+            NSLog(@"picArray=%@",picArray);
             
             // 1.封装图片数据
             NSMutableArray *photos = [NSMutableArray arrayWithCapacity:picArray.count];
@@ -862,12 +860,16 @@
                 MJPhoto *photo = [[MJPhoto alloc] init];
                 photo.url = [NSURL URLWithString:photoObj.path]; // 图片路径
                 //添加图片类型和视频路径
+                
                 photo.photoStyle=photoObj.style;
                 photo.videoUrl=photoObj.video_path;
                 photo.IsSee=photoObj.see;
                 photo.videoCoin=videoConin;
                 photo.videoId=photoObj.iD;
                 photo.srcImageView = imageView; // 来源于哪个UIImageView
+                photo.picId=photoObj.iD;
+                photo.uKey=myObj.ukey;
+                
                 [photos addObject:photo];
             }
             

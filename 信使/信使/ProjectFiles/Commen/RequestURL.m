@@ -18,7 +18,8 @@
                           Number(URLTypeWatchVideo)                 :     @"/index.php/Api/User/getVideo",
                           Number(URLTypeLookPhoneUpDate)                 :     @"/index.php/Api/Date/lists",
                           Number(URLTypeGiveCoin)                 :     @"/index.php/Api/Pay/giveCoin",
-                          Number(URLTypePushBindUser)              :    @"/index.php/Api/Addons/execute/_addons/Baidupush/_controller/Api/_action/bindUser"
+                          Number(URLTypePushBindUser)              :    @"/index.php/Api/Addons/execute/_addons/Baidupush/_controller/Api/_action/bindUser",
+                          Number(URLTypeComplain)               :@"/index.php/Api/Date/tousuPic",
                           };
     }
     NSString *urlString = [urlDictionary objectForKey:Number(urltype)];

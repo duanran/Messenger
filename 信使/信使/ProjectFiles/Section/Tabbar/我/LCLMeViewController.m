@@ -122,6 +122,8 @@
                 
             } movieFinish:^(id object) {
                 
+                
+                
             }];
         }
     }];
@@ -219,7 +221,7 @@
     }else if (section==1){
         return 7;
     }
-    return 5;
+    return 4;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -283,16 +285,20 @@
     }else if (indexPath.section==2){
         [cell.switchButton setHidden:YES];
         [cell.arrowImageView setHidden:YES];
-        if (indexPath.row==0) {
-            [cell.arrowImageView setHidden:NO];
-            [cell.nameLabel setText:@"设置开启密码"];
-            
-            [cell.actionButton setTitle:@"建设中" forState:UIControlStateNormal];
-            // app review begin
-            cell.actionButton.hidden=YES;
-            //end
-            
-        }else if(indexPath.row==1){
+        // app review begin
+
+//        if (indexPath.row==0) {
+//            [cell.arrowImageView setHidden:NO];
+//            [cell.nameLabel setText:@"设置开启密码"];
+//            
+//            [cell.actionButton setTitle:@"建设中" forState:UIControlStateNormal];
+//            // app review begin
+//            cell.actionButton.hidden=YES;
+//            //end
+//            
+//        }
+        //end
+        if(indexPath.row==0){
             [cell.switchButton setHidden:NO];
             [cell.actionButton setHidden:YES];
             [cell.nameLabel setText:@"是否隐身(针对通讯录)"];
@@ -302,7 +308,7 @@
             }else{
                 [cell.switchButton setOn:YES animated:YES];
             }
-        }else if(indexPath.row==2){
+        }else if(indexPath.row==1){
             [cell.switchButton setHidden:NO];
             [cell.actionButton setHidden:YES];
             [cell.nameLabel setText:@"是否允许付费查看手机"];
@@ -312,15 +318,15 @@
             }else{
                 [cell.switchButton setOn:YES animated:YES];
             }
-        }else if(indexPath.row==3){
+        }else if(indexPath.row==2){
             [cell.switchButton setHidden:NO];
             [cell.actionButton setHidden:YES];
             [cell.nameLabel setText:@"提示音开关"];
-        }else if(indexPath.row==4){
+        }else if(indexPath.row==3){
             [cell.switchButton setHidden:NO];
             [cell.actionButton setHidden:YES];
             [cell.nameLabel setText:@"振动开关"];
-        }else if(indexPath.row==5){
+        }else if(indexPath.row==4){
             [cell.arrowImageView setHidden:NO];
             [cell.actionButton setHidden:YES];
             [cell.nameLabel setText:@"VIP通道（建设中）"];
@@ -454,13 +460,24 @@
     
     NSString *fileName = [[LCLTimeHelper getCurrentTimeString] stringByAppendingString:@".jpg"];
     NSString *filePath = [[LCLFilePathHelper getLCLCacheFolderPath] stringByAppendingString:fileName];
+    
+    NSDictionary *userInfo = [LCLGetToken checkHaveLoginWithShowLoginView:NO];
+        LCLUserInfoObject *userObj = [LCLUserInfoObject allocModelWithDictionary:userInfo];
+    
     if ([data writeToFile:filePath atomically:YES]) {
         
-        LCLUploader *uploader = [[LCLUploader alloc] initWithURLString:UploadHeadImageURL fileName:fileName filePath:filePath];
+        LCLUploader *uploader = [[LCLUploader alloc] initWithURLString:ModifyHeadImageURL(userObj.ukey) fileName:fileName filePath:filePath];
         [uploader setFormName:@"image"];
+        NSLog(@"UploadHeadImageURL=%@",UploadHeadImageURL);
         [uploader setCompleteBlock:^(NSString *errorString, NSMutableData *responseData, NSString *urlString) {
             
             NSDictionary *imageDic = [self.view getResponseDataDictFromResponseData:responseData withSuccessString:nil error:@""];
+            NSLog(@"imageDic=%@",imageDic);
+            
+            NSString *message=[imageDic objectForKey:@"message"];
+            
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
             if (imageDic) {
                 
                 NSString *url = [imageDic objectForKey:@"path"];

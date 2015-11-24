@@ -9,13 +9,16 @@
 #import "MJPhotoToolbar.h"
 #import "MJPhoto.h"
 #import "MBProgressHUD+Add.h"
+#import "ComplainRequest.h"
 
-@interface MJPhotoToolbar()
+@interface MJPhotoToolbar()<UIAlertViewDelegate>
 {
     // 显示页码
     UILabel *_indexLabel;
     UIButton *_saveImageBtn;
 }
+@property(nonatomic,strong)MJPhoto *currentPhoto;
+
 @end
 
 @implementation MJPhotoToolbar
@@ -56,8 +59,53 @@
 
     [_saveImageBtn addTarget:self action:@selector(saveImage) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_saveImageBtn];
+    
+    
+    
+    UIButton *complainBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    [complainBtn setFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-15-btnWidth, 0, btnWidth, btnWidth)];
+    complainBtn.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    [complainBtn setTitle:@"投诉" forState:UIControlStateNormal];
+    [complainBtn setTitle:@"投诉" forState:UIControlStateHighlighted];
+    [complainBtn addTarget:self action:@selector(complain) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self addSubview:complainBtn];
 }
+-(void)complain
+{
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"投诉" message:@"请您输入投诉理由" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
 
+    [alert show];
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex==1) {
+        UITextField *TextField=[alertView textFieldAtIndex:0];
+        
+        if ([TextField.text integerValue]<=0||TextField.text==NULL||[TextField.text isEqualToString:@"(null)"]||TextField.text==nil||[TextField.text isEqualToString:@""]) {
+            return;
+        }
+        
+        
+        if (self.currentPhoto.picId) {
+        ComplainRequest *request=[[ComplainRequest alloc]init];
+            request.uKey=self.currentPhoto.uKey;
+            request.pic_id=self.currentPhoto.picId;
+            request.reason=TextField.text;
+            
+        [request GETRequest:^(id reponseObject) {
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:@"投诉成功" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+        } failureCallback:^(NSString *errorMessage) {
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"投诉失败" message:errorMessage delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+        }];
+            
+
+        }
+    }
+}
 - (void)saveImage
 {
 //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -95,6 +143,9 @@
     MJPhoto *photo = _photos[_currentPhotoIndex];
     // 按钮
     _saveImageBtn.enabled=YES;
+    self.currentPhoto=photo;
+    
+    
 //    _saveImageBtn.enabled = photo.image != nil && !photo.save;
 }
 

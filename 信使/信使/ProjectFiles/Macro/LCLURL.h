@@ -38,6 +38,10 @@
 #define GetUploadFileURL [NSString stringWithFormat:@"%@%@/Begin/getUploadUrl?", XSURL, APIFolder]
 //上传头像
 #define UploadHeadImageURL [NSString stringWithFormat:@"%@%@/Begin/uploadHeadimg?", XSURL, APIFolder]
+
+//修改头像
+#define ModifyHeadImageURL(uKey) [NSString stringWithFormat:@"%@%@/User/headimg/ukey/%@?", XSURL, APIFolder,uKey]
+
 //通知列表
 #define NotifyListURL(uKey) [NSString stringWithFormat:@"%@%@/User/get_push_list/ukey/%@", XSURL, APIFolder, uKey]
 //首页列表
