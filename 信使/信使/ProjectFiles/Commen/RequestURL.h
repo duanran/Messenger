@@ -18,6 +18,7 @@ typedef NS_ENUM(NSInteger, URLType){
     URLTypePushBindUser,                /* 推送绑定用户 */
     URLTypeComplain,                   /* 投诉 */
     URLTypeCancelComplain,             /* 取消投诉 */
+    URLTypeSaveVideo,                  /* 存储视频 */
 };
 /*
  * 根据URL类型获取url

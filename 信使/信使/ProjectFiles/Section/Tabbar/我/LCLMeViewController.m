@@ -33,6 +33,7 @@
 @property (strong, nonatomic) LCLMeFooterView *footer;
 
 @property (strong, nonatomic) NSDictionary *myInfo;
+@property  (strong,nonatomic)NSString *shopOff;
 
 @end
 
@@ -46,7 +47,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    NSDictionary *dic = [[LCLCacheDefaults standardCacheDefaults] objectForCacheKey:UserInfoKey];
+    NSString *shop_onoff=[NSString stringWithFormat:@"%@",[dic objectForKey:@"shop_onoff"]];
+    self.shopOff=shop_onoff;
     [self.navigationItem setTitle:@"个人"];
     
     [self.view addSubview:self.tableView];
@@ -168,32 +171,64 @@
 
 - (IBAction)tapSwithbutton:(UISwitch *)switchButton{
 
-    if (switchButton.tag==1) {
-        //通讯录隐身
-        if (switchButton.isOn) {
-            //取消隐身
-          
-            [self editPhoneOnline:YES];
-            
-        }else{
-            //隐身
-            
-            [self editPhoneOnline:NO];
-
+    if ([self.shopOff integerValue]==1) {
+        if (switchButton.tag==1) {
+            //通讯录隐身
+            if (switchButton.isOn) {
+                //取消隐身
+                
+                [self editPhoneOnline:YES];
+                
+            }else{
+                //隐身
+                
+                [self editPhoneOnline:NO];
+                
+            }
+        }
+        else if (switchButton.tag==2){
+            //付费看手机
+            if (switchButton.isOn) {
+                //付费
+                
+                [self editPhoneOut:YES];
+            }else{
+                //免费
+                
+                [self editPhoneOut:NO];
+            }
         }
     }
-    else if (switchButton.tag==2){
-        //付费看手机
-        if (switchButton.isOn) {
-            //付费
-            
-            [self editPhoneOut:YES];
-        }else{
-            //免费
-            
-            [self editPhoneOut:NO];
+    else
+    {
+        if (switchButton.tag==0) {
+            //通讯录隐身
+            if (switchButton.isOn) {
+                //取消隐身
+                
+                [self editPhoneOnline:YES];
+                
+            }else{
+                //隐身
+                
+                [self editPhoneOnline:NO];
+                
+            }
+        }
+        else if (switchButton.tag==1){
+            //付费看手机
+            if (switchButton.isOn) {
+                //付费
+                
+                [self editPhoneOut:YES];
+            }else{
+                //免费
+                
+                [self editPhoneOut:NO];
+            }
         }
     }
+    
 }
 
 #pragma mark - UITableView delegate
@@ -219,9 +254,24 @@
     if (section==0) {
         return 2;
     }else if (section==1){
-        return 7;
+        if ([self.shopOff integerValue]==1) {
+            return 7;
+        }
+        else
+        {
+            return 5;
+        }
+        
     }
-    return 4;
+    
+    if ([self.shopOff integerValue]==1) {
+        return 6;
+    }
+    else
+    {
+        return 2;
+    }
+    
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -230,29 +280,46 @@
     
     LCLMeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell==nil) {
-        cell = (LCLMeTableViewCell *)[[[NSBundle mainBundle] loadNibNamed:@"LCLMeTableViewCell" owner:self options:nil] lastObject];
+        cell = (LCLMeTableViewCell *)[[[NSBundle mainBundle] loadNibNamed:@"LCLMeTableViewCell_2" owner:self options:nil] lastObject];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     
     LCLUserInfoObject *userObj = [LCLUserInfoObject allocModelWithDictionary:self.myInfo];
     
+    
     [cell.switchButton addTarget:self action:@selector(tapSwithbutton:) forControlEvents:UIControlEventValueChanged];
     [cell.switchButton setTag:indexPath.row];
     
     if (indexPath.section==0) {
+        
         [cell.switchButton setHidden:YES];
         if (indexPath.row==0) {
             [cell.nameLabel setText:[NSString stringWithFormat:@"信用豆：%@", userObj.coin]];
             [cell.actionButton setTitle:@"马上充值" forState:UIControlStateNormal];
-            [cell.actionButton setEnabled:NO];
             // app review begin
-            cell.actionButton.hidden=YES;
+            if ([self.shopOff integerValue]==1) {
+                [cell.actionButton setEnabled:NO];
+            }
+            else
+            {
+                cell.actionButton.hidden=YES;
+
+            }
             //end
         }else{
             [cell.nameLabel setText:[NSString stringWithFormat:@"等级：%@", userObj.vip]];
+            [cell.actionButton setTitle:@"账号升级" forState:UIControlStateNormal];
             // app review begin
-            cell.actionButton.hidden=YES;
+            if ([self.shopOff integerValue]==1) {
+                [cell.actionButton setEnabled:NO];
+
+            }
+            else
+            {
+                cell.actionButton.hidden=YES;
+            }
             //end
+
         }
     }else if (indexPath.section==1){
         [cell.actionButton setHidden:YES];
@@ -286,51 +353,76 @@
         [cell.switchButton setHidden:YES];
         [cell.arrowImageView setHidden:YES];
         // app review begin
-
-//        if (indexPath.row==0) {
-//            [cell.arrowImageView setHidden:NO];
-//            [cell.nameLabel setText:@"设置开启密码"];
-//            
-//            [cell.actionButton setTitle:@"建设中" forState:UIControlStateNormal];
-//            // app review begin
-//            cell.actionButton.hidden=YES;
-//            //end
-//            
-//        }
-        //end
-        if(indexPath.row==0){
-            [cell.switchButton setHidden:NO];
-            [cell.actionButton setHidden:YES];
-            [cell.nameLabel setText:@"是否隐身(针对通讯录)"];
-            
-            if ([userObj.online integerValue]==1) {
-                [cell.switchButton setOn:NO animated:YES];
-            }else{
-                [cell.switchButton setOn:YES animated:YES];
+        if ([self.shopOff integerValue]==1) {
+            if (indexPath.row==0) {
+                [cell.arrowImageView setHidden:NO];
+                [cell.nameLabel setText:@"设置开启密码"];
+                
+                [cell.actionButton setTitle:@"建设中" forState:UIControlStateNormal];
+                // app review begin
+                cell.actionButton.hidden=YES;
+                //end
             }
-        }else if(indexPath.row==1){
-            [cell.switchButton setHidden:NO];
-            [cell.actionButton setHidden:YES];
-            [cell.nameLabel setText:@"是否允许付费查看手机"];
-            
-            if ([userObj.phoneout integerValue]==1) {
-                [cell.switchButton setOn:NO animated:YES];
-            }else{
-                [cell.switchButton setOn:YES animated:YES];
+            if(indexPath.row==1){
+                [cell.switchButton setHidden:NO];
+                [cell.actionButton setHidden:YES];
+                [cell.nameLabel setText:@"是否隐身(针对通讯录)"];
+                
+                if ([userObj.online integerValue]==1) {
+                    [cell.switchButton setOn:NO animated:YES];
+                }else{
+                    [cell.switchButton setOn:YES animated:YES];
+                }
+            }else if(indexPath.row==2){
+                [cell.switchButton setHidden:NO];
+                [cell.actionButton setHidden:YES];
+                [cell.nameLabel setText:@"是否允许付信用豆看手机"];
+                
+                if ([userObj.phoneout integerValue]==1) {
+                    [cell.switchButton setOn:NO animated:YES];
+                }else{
+                    [cell.switchButton setOn:YES animated:YES];
+                }
+            }else if(indexPath.row==3){
+                [cell.switchButton setHidden:NO];
+                [cell.actionButton setHidden:YES];
+                [cell.nameLabel setText:@"提示音开关"];
+            }else if(indexPath.row==4){
+                [cell.switchButton setHidden:NO];
+                [cell.actionButton setHidden:YES];
+                [cell.nameLabel setText:@"振动开关"];
+            }else if(indexPath.row==5){
+                [cell.arrowImageView setHidden:NO];
+                [cell.actionButton setHidden:YES];
+                [cell.nameLabel setText:@"VIP通道（建设中）"];
             }
-        }else if(indexPath.row==2){
-            [cell.switchButton setHidden:NO];
-            [cell.actionButton setHidden:YES];
-            [cell.nameLabel setText:@"提示音开关"];
-        }else if(indexPath.row==3){
-            [cell.switchButton setHidden:NO];
-            [cell.actionButton setHidden:YES];
-            [cell.nameLabel setText:@"振动开关"];
-        }else if(indexPath.row==4){
-            [cell.arrowImageView setHidden:NO];
-            [cell.actionButton setHidden:YES];
-            [cell.nameLabel setText:@"VIP通道（建设中）"];
         }
+        else
+        {
+            if(indexPath.row==0){
+                [cell.switchButton setHidden:NO];
+                [cell.actionButton setHidden:YES];
+                [cell.nameLabel setText:@"是否隐身(针对通讯录)"];
+                
+                if ([userObj.online integerValue]==1) {
+                    [cell.switchButton setOn:NO animated:YES];
+                }else{
+                    [cell.switchButton setOn:YES animated:YES];
+                }
+            }else if(indexPath.row==1){
+                [cell.switchButton setHidden:NO];
+                [cell.actionButton setHidden:YES];
+                [cell.nameLabel setText:@"是否允许信用豆查看手机"];
+                
+                if ([userObj.phoneout integerValue]==1) {
+                    [cell.switchButton setOn:NO animated:YES];
+                }else{
+                    [cell.switchButton setOn:YES animated:YES];
+                }
+            }
+        }
+        //end
+        
     }
     
     
@@ -341,8 +433,16 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+
+
+    
+    
     if (indexPath.section==0) {
-        [self.tabBarController setSelectedIndex:3];
+        // app review begin
+        if ([self.shopOff integerValue]==1) {
+            [self.tabBarController setSelectedIndex:3];
+        }
+        //end
     }
     else if (indexPath.section==1) {
         if (indexPath.row==0) {
@@ -468,16 +568,14 @@
         
         LCLUploader *uploader = [[LCLUploader alloc] initWithURLString:ModifyHeadImageURL(userObj.ukey) fileName:fileName filePath:filePath];
         [uploader setFormName:@"image"];
-        NSLog(@"UploadHeadImageURL=%@",UploadHeadImageURL);
         [uploader setCompleteBlock:^(NSString *errorString, NSMutableData *responseData, NSString *urlString) {
             
             NSDictionary *imageDic = [self.view getResponseDataDictFromResponseData:responseData withSuccessString:nil error:@""];
-            NSLog(@"imageDic=%@",imageDic);
             
-            NSString *message=[imageDic objectForKey:@"message"];
-            
-            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-            [alert show];
+//            NSString *message=[imageDic objectForKey:@"message"];
+//            
+//            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+//            [alert show];
             if (imageDic) {
                 
                 NSString *url = [imageDic objectForKey:@"path"];

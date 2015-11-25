@@ -12,9 +12,11 @@
 #import "LCLAddPicButton.h"
 #import "LCLMoviePlayerViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
-
+#import "SaveVideoRequest.h"
 @interface LCLMyMovieViewController ()<LCLSelectPicViewDelegate>
-
+{
+    BOOL isUpload;
+}
 @property (weak, nonatomic) IBOutlet LCLAddPicButton *publicButton;
 @property (strong, nonatomic) MPMoviePlayerViewController *movie;
 
@@ -26,6 +28,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
+    isUpload=false;
     [self.navigationItem setTitle:@"视频认证"];
     
     [self.publicView setBackgroundColor:[UIColor clearColor]];
@@ -132,6 +135,11 @@
             
             [LCLTipsView showTips:@"正在上传，请稍后！" location:LCLTipsLocationMiddle];
             
+            NSString *success=[dataDic objectForKey:@"success"];
+            if ([success integerValue]==1) {
+                isUpload=true;
+            }
+            
             NSString *serverUrl = [dataDic objectForKey:@"url"];
             
             LCLUserInfoObject *userObj = [LCLUserInfoObject allocModelWithDictionary:userInfo];
@@ -142,7 +150,7 @@
             [uploader setFormName:@"file"];
             [uploader setHttpMehtod:LCLHttpMethodPost];
             [uploader setFirstResponseBlock:^(NSURLResponse *response, NSString *urlString){
-                NSLog(@"%@", response);
+                
             }];
             [uploader setProgressBlock:^(NSInteger sendLength, NSInteger totalLength, NSInteger totalExpectedLength, NSString *urlString){
                 CGFloat percent = (totalLength/(float)totalExpectedLength)*100;
@@ -156,8 +164,28 @@
                 
                 NSDictionary *dataDic = [self_weak_.view getResponseDataDictFromResponseData:responseData withSuccessString:@"上传成功,正在上传视频截图" error:@""];
                 if (dataDic) {
-                    
-                    NSLog(@"%@", dataDic);
+                    if (isUpload==true) {
+                        NSString *success=[dataDic objectForKey:@"success"];
+                        if ([success integerValue]==1) {
+                            SaveVideoRequest *request=[[SaveVideoRequest alloc]init];
+                            request.ukey=userObj.ukey;
+                            request.path=moviePath;
+                            NSString *urlPath=[dataDic objectForKey:@"path"];
+//                          NSString *Path = [XSURL stringByAppendingString:urlPath];
+                            request.path=urlPath;
+                            request.firstUrl=serverUrl;
+                            request.picPath=[dataDic objectForKey:@"pic"];
+                            [request GETRequest:^(id reponseObject) {
+                                NSLog(@"reponseObject=%@",reponseObject);
+
+                            } failureCallback:^(NSString *errorMessage) {
+                                UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"视频上传失败" message:errorMessage delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+                                
+                                [alert show];
+                            }];
+                            
+                        }
+                    }
                     
                     
                 }

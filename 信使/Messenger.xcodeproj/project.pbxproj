@@ -35,6 +35,8 @@
 		180E2F5F1BC548A7002B721F /* UIImageView+MJWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 180E2F441BC548A7002B721F /* UIImageView+MJWebCache.m */; };
 		180E2F601BC548A7002B721F /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 180E2F461BC548A7002B721F /* UIImageView+WebCache.m */; };
 		182078B41C0415B100F80DFF /* ComplainRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 182078B31C0415B100F80DFF /* ComplainRequest.m */; };
+		182078B61C04997800F80DFF /* LCLMeTableViewCell_2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182078B51C04997800F80DFF /* LCLMeTableViewCell_2.xib */; };
+		182078B91C0592E000F80DFF /* SaveVideoRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 182078B81C0592E000F80DFF /* SaveVideoRequest.m */; };
 		186540BA1BFC263900A32B2F /* LCLShopTableViewCell_2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186540B91BFC263900A32B2F /* LCLShopTableViewCell_2.xib */; };
 		186540C61BFC541300A32B2F /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186540C51BFC541300A32B2F /* Accelerate.framework */; };
 		186540C81BFC542F00A32B2F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186540C71BFC542F00A32B2F /* AudioToolbox.framework */; };
@@ -584,6 +586,9 @@
 		180E2F461BC548A7002B721F /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		182078B21C0415B100F80DFF /* ComplainRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplainRequest.h; sourceTree = "<group>"; };
 		182078B31C0415B100F80DFF /* ComplainRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplainRequest.m; sourceTree = "<group>"; };
+		182078B51C04997800F80DFF /* LCLMeTableViewCell_2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LCLMeTableViewCell_2.xib; sourceTree = "<group>"; };
+		182078B71C0592E000F80DFF /* SaveVideoRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveVideoRequest.h; sourceTree = "<group>"; };
+		182078B81C0592E000F80DFF /* SaveVideoRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveVideoRequest.m; sourceTree = "<group>"; };
 		186540B91BFC263900A32B2F /* LCLShopTableViewCell_2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LCLShopTableViewCell_2.xib; sourceTree = "<group>"; };
 		186540C51BFC541300A32B2F /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		186540C71BFC542F00A32B2F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -2477,6 +2482,7 @@
 				B54042EB1B1CABD400E9CCA5 /* LCLMeTableViewCell.h */,
 				B54042EC1B1CABD400E9CCA5 /* LCLMeTableViewCell.m */,
 				B54042ED1B1CABD400E9CCA5 /* LCLMeTableViewCell.xib */,
+				182078B51C04997800F80DFF /* LCLMeTableViewCell_2.xib */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -2991,6 +2997,8 @@
 				B54042EA1B1CABB400E9CCA5 /* header */,
 				B58B15001B141A4E0019C822 /* LCLMeViewController.h */,
 				B58B15011B141A4E0019C822 /* LCLMeViewController.m */,
+				182078B71C0592E000F80DFF /* SaveVideoRequest.h */,
+				182078B81C0592E000F80DFF /* SaveVideoRequest.m */,
 			);
 			path = "我";
 			sourceTree = "<group>";
@@ -3206,6 +3214,7 @@
 				18765B581BF478E5000721BD /* kr-video-player-play@3x.png in Resources */,
 				B570E61E1B14D70C007A07F4 /* Info.plist in Resources */,
 				18EB29E01BB595450040758B /* rsa_private_key.pkcs8 in Resources */,
+				182078B61C04997800F80DFF /* LCLMeTableViewCell_2.xib in Resources */,
 				18A4C5661BF0D5F8001755DE /* Localizable.strings in Resources */,
 				18DEAD4E1B9DBD17003CEA5E /* login_password@3x.png in Resources */,
 				18FAB2BC1BA8783E00FD6143 /* LCLMyMovieViewController.xib in Resources */,
@@ -3434,6 +3443,7 @@
 				180E2F5E1BC548A7002B721F /* UIImage+WebP.m in Sources */,
 				18765B9A1BF48EDD000721BD /* UIProgressView+AFNetworking.m in Sources */,
 				18E161871BB183290008AAC9 /* LCLPhotoObject.m in Sources */,
+				182078B91C0592E000F80DFF /* SaveVideoRequest.m in Sources */,
 				18D7E4D31C033F8800AA3070 /* LCLVerifyCodeLabel.m in Sources */,
 				18FAB2BB1BA8783E00FD6143 /* LCLMyMovieViewController.m in Sources */,
 				180E2F491BC548A7002B721F /* MBProgressHUD.m in Sources */,

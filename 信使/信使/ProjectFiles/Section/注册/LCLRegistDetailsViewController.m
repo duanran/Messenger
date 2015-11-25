@@ -380,7 +380,7 @@
                 userObj.last_login = @"";
                 userObj.freezing_coin = [dataDic objectForKey:@"freezing_coin"];
                 userObj.sxf = [dataDic objectForKey:@"sxf"];
-                
+                userObj.shop_onoff=[dataDic objectForKey:@"shop_onoff"];
                 
                 
                 NSDictionary *dic = [userObj getAllPropertyAndValue];

@@ -30,6 +30,7 @@
 @property(nonatomic,strong)NSString *payUrl;
 @property(nonatomic, strong, readwrite) PayPalConfiguration *payPalConfig;//配置贝宝账号信息,如邮箱,电话等
 @property (strong, nonatomic) LCLShopHeader *header;
+@property(strong,nonatomic)NSString *shopOff;
 
 @end
 
@@ -38,7 +39,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    NSDictionary *dic = [[LCLCacheDefaults standardCacheDefaults] objectForCacheKey:UserInfoKey];
+    NSString *shop_onoff=[NSString stringWithFormat:@"%@",[dic objectForKey:@"shop_onoff"]];
+    self.shopOff=shop_onoff;
     [self.navigationItem setTitle:@"商店"];
     
     [self.view addSubview:self.tableView];
@@ -312,21 +315,38 @@
                 if ([type integerValue]==2) {
                     subject = @"购买VIP";
                 }
-                UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择支付方式" delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"支付宝", @"PayPal支付", nil];
+                UIActionSheet *actionSheet;
+                if ([self.shopOff integerValue]==1) {
+//                    actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择支付方式" delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"支付宝", @"PayPal支付", nil];
+                    actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择支付方式" delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles: @"PayPal支付", nil];
+                }
+                else
+                {
+                    actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择支付方式" delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles: @"PayPal支付", nil];
+                }
+                
                 [actionSheet showFromTabBar:self.tabBarController.tabBar];
                 [actionSheet.rac_buttonClickedSignal subscribeNext:^(NSNumber *indexButton) {
                     NSInteger tag = [indexButton integerValue];
-                    if (tag==0) {
-                        //支付宝
-                        Product *product = [Alipay getProduceWithTradeNo:orderNo price:alipayPrice subject:subject body:subject invokeIP:AliPayInvokeIP notifyURL:AliPayNotifyURL sellerID:AliPaySellerID parnerID:AliPayParnerId];
-                        [Alipay payWithProductDic:product];
-                        
-                    }else if (tag==1){
-                        //paypal
-                        
-                        [self PayPalPay:alipayPrice DescribeTion:subject OrderId:orderNo];
-
+                    if ([self.shopOff integerValue]==1) {
+                        if (tag==0) {
+                            //支付宝
+//                            Product *product = [Alipay getProduceWithTradeNo:orderNo price:alipayPrice subject:subject body:subject invokeIP:AliPayInvokeIP notifyURL:AliPayNotifyURL sellerID:AliPaySellerID parnerID:AliPayParnerId];
+//                            [Alipay payWithProductDic:product];
+                            [self PayPalPay:alipayPrice DescribeTion:subject OrderId:orderNo];
+                            
+                        }else if (tag==1){
+                            //paypal
+                            
+                            [self PayPalPay:alipayPrice DescribeTion:subject OrderId:orderNo];
+                            
+                        }
                     }
+                    else
+                    {
+                        [self PayPalPay:alipayPrice DescribeTion:subject OrderId:orderNo];
+                    }
+                    
                 }];
             }
         }

@@ -65,15 +65,15 @@
     UIButton *complainBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     [complainBtn setFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-15-btnWidth, 0, btnWidth, btnWidth)];
     complainBtn.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    [complainBtn setTitle:@"投诉" forState:UIControlStateNormal];
-    [complainBtn setTitle:@"投诉" forState:UIControlStateHighlighted];
+    [complainBtn setTitle:@"举报" forState:UIControlStateNormal];
+    [complainBtn setTitle:@"举报" forState:UIControlStateHighlighted];
     [complainBtn addTarget:self action:@selector(complain) forControlEvents:UIControlEventTouchUpInside];
     
     [self addSubview:complainBtn];
 }
 -(void)complain
 {
-    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"投诉" message:@"请您输入投诉理由" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"举报" message:@"请您输入举报理由" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
 
     [alert show];
@@ -95,10 +95,10 @@
             request.reason=TextField.text;
             
         [request GETRequest:^(id reponseObject) {
-            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:@"投诉成功" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:@"举报成功" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
             [alert show];
         } failureCallback:^(NSString *errorMessage) {
-            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"投诉失败" message:errorMessage delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"举报失败" message:errorMessage delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
             [alert show];
         }];
             
