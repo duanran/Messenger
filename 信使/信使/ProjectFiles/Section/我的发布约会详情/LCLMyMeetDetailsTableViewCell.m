@@ -17,6 +17,7 @@
     [self.acceptButton setRoundedRadius:3.0];
     [self.passwordLabel setRoundedRadius:3.0];
     [self.headButton setRoundedRadius:3.0];
+    [self.complainBtn setRoundedRadius:3.0];
     
     CGRect frame = self.lineLabel.frame;
     frame.size.height = 0.5;

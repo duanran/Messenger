@@ -53,7 +53,7 @@
                             </button>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="hoZ-1M-yGp" firstAttribute="top" secondItem="Hvo-BV-wZQ" secondAttribute="top" id="2wc-3q-VBt"/>
                             <constraint firstItem="hoZ-1M-yGp" firstAttribute="leading" secondItem="Hvo-BV-wZQ" secondAttribute="leading" id="CNo-xh-5do"/>
@@ -83,7 +83,7 @@
                                 <rect key="frame" x="26" y="0.0" width="68" height="20.5"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="是开发贷款收到没发生的明星们多么可怜人没事的看了没速度开了房没收到吗" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KXs-B7-WgD">
@@ -95,7 +95,7 @@
                             </label>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="KXs-B7-WgD" firstAttribute="leading" secondItem="K6k-RT-acn" secondAttribute="leading" id="AIW-1H-O3c"/>
                             <constraint firstAttribute="height" constant="70" id="Dab-jS-xAs"/>
@@ -109,7 +109,7 @@
                     </view>
                 </subviews>
                 <animations/>
-                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="K6k-RT-acn" firstAttribute="trailing" secondItem="FBc-EE-UPR" secondAttribute="trailingMargin" id="0gf-hK-7hS"/>
                     <constraint firstItem="Hvo-BV-wZQ" firstAttribute="leading" secondItem="FBc-EE-UPR" secondAttribute="leadingMargin" id="2H2-ne-6uy"/>

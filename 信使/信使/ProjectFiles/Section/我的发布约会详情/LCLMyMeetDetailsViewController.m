@@ -11,12 +11,14 @@
 #import "LCLMyMeetDetailsTableViewCell.h"
 #import "LCLMeetingDetailTableViewCell.h"
 #import "SelectedMapViewController.h"
+#import "ComplainDateRequest.h"
 @interface LCLMyMeetDetailsViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) NSMutableArray *dataArray;
-
+@property(nonatomic,strong)NSDictionary *complainDic;
+@property(nonatomic,assign)int dateStatus;
 @end
 
 @implementation LCLMyMeetDetailsViewController
@@ -55,6 +57,7 @@
     
     LCLCreateMeetObject *meetObj = self.meetDetailsObj;
     int status = [meetObj.status intValue];
+    self.dateStatus=status;
     NSString *ss = @"已过期";
     if (status==3) {
         ss = @"完成";
@@ -94,6 +97,67 @@
     [self.navigationController pushViewController:mapView animated:YES];
     
 }
+-(void)complain:(UIButton *)sender
+{
+    UIButton *button = (UIButton *)sender;
+    UITableViewCell *cell = EIGetViewBySubView(button, [UITableViewCell class]);
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    NSDictionary *dic = [self.dataArray objectAtIndex:indexPath.row];
+
+    
+    
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"举报" message:@"请您输入举报理由" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    
+    [alert show];
+    
+    self.complainDic=dic;
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex==1) {
+        UITextField *TextField=[alertView textFieldAtIndex:0];
+        
+        if ([TextField.text integerValue]<=0||TextField.text==NULL||[TextField.text isEqualToString:@"(null)"]||TextField.text==nil||[TextField.text isEqualToString:@""]) {
+            return;
+        }
+        NSDictionary *dic = [[LCLCacheDefaults standardCacheDefaults] objectForCacheKey:UserInfoKey];
+        
+        
+        
+        if (self.complainDic) {
+            ComplainDateRequest *request=[[ComplainDateRequest alloc]init];
+            
+            NSDictionary *userInfo = [LCLGetToken checkHaveLoginWithShowLoginView:NO];
+            
+                LCLUserInfoObject *userObj = [LCLUserInfoObject allocModelWithDictionary:userInfo];
+            LCLCreateMeetObject *meetObj = self.meetDetailsObj;
+
+            request.ukey=userObj.ukey;
+            request.dateId=meetObj.iD;
+            request.foruid=[[self.complainDic objectForKey:@"signUser"]objectForKey:@"uid"];
+            request.reason=TextField.text;
+            
+            [request GETRequest:^(id reponseObject) {
+                UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:@"举报成功" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+                [alert show];
+                [self loadServerData];
+            } failureCallback:^(NSString *errorMessage) {
+                UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"举报失败" message:errorMessage delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+                [alert show];
+            }];
+            
+            
+        }
+    }
+    
+    
+    
+    
+   
+}
+
 - (IBAction)tapAcceptButton:(UIButton *)sender{
     
     NSString *uid = sender.restorationIdentifier;
@@ -132,7 +196,7 @@
     
     LCLMyMeetDetailsTableViewCell  *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil){
-        cell = [LCLMyMeetDetailsTableViewCell loadXibView];
+        cell =[[[NSBundle mainBundle]loadNibNamed:@"LCLMyMeetDetailsTableViewCell_2" owner:self options:nil]objectAtIndex:0];
         [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
     }
     
@@ -150,6 +214,8 @@
     int status = [meetObj.ondate intValue];
     [cell.acceptButton setEnabled:NO];
     [cell.rejectButton setHidden:YES];
+    NSString *complainFlag=[dic objectForKey:@"tousu"];
+    
     NSString *ss = @"接受";
     if (status==3) {
         ss = @"已完成";
@@ -158,15 +224,37 @@
     else if (status==1){
         ss = @"已接受";
         [cell.acceptButton setBackgroundColor:[UIColor lightGrayColor]];
+        
+        if (self.dateStatus==4) {
+            
+        }
+        else
+        {
+            cell.complainBtn.hidden=NO;
+            if ([complainFlag integerValue]==1) {
+                [cell.complainBtn setTitle:@"已举报" forState:UIControlStateNormal];
+            }
+            else{
+            [cell.complainBtn addTarget:self action:@selector(complain:) forControlEvents:UIControlEventTouchUpInside];
+            }
+        }
     }
     else if (status==2){
         ss = @"已拒绝";
         [cell.acceptButton setBackgroundColor:[UIColor lightGrayColor]];
     }
     else if(status==0){
+        if (self.dateStatus==4) {
+            ss = @"已过期";
+            [cell.acceptButton setBackgroundColor:[UIColor lightGrayColor]];
+
+        }
+        else{
         [cell.rejectButton setHidden:NO];
         [cell.acceptButton setEnabled:YES];
+        }
     }
+    
     [cell.acceptButton setTitle:ss forState:UIControlStateNormal];
     [cell.acceptButton addTarget:self action:@selector(tapAcceptButton:) forControlEvents:UIControlEventTouchUpInside];
     [cell.rejectButton addTarget:self action:@selector(tapRejectButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -186,6 +274,7 @@
     
     [cell.headButton setBackgroundImageWithURL:GetDownloadPicURL([user objectForKey:@"headimg"]) defaultImagePath:DefaultImagePath];
 
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
     [cell setBackgroundColor:[UIColor colorWithWhite:0.95 alpha:1.0]];
     
     return cell;

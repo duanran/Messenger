@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 
-@interface LCLMyMeetDetailsViewController : BaseViewController
+@interface LCLMyMeetDetailsViewController : BaseViewController<UIAlertViewDelegate>
 
 @property (strong, nonatomic) LCLCreateMeetObject *meetDetailsObj;
 

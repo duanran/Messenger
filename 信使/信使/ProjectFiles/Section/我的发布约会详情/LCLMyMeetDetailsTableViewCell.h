@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *headButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *lineLabel;
+@property(nonatomic,strong) IBOutlet UIButton *complainBtn;
 
 
 @end

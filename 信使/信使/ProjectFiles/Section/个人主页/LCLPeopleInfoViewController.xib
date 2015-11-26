@@ -9,7 +9,6 @@
             <connections>
                 <outlet property="InviteMeetButton" destination="OaI-KG-4N1" id="N9b-YU-l9Z"/>
                 <outlet property="bottomView" destination="yma-dy-AjY" id="LG3-JQ-TFz"/>
-                <outlet property="communicationButton" destination="p7n-0D-ami" id="dFK-ia-osA"/>
                 <outlet property="photoButton" destination="nTA-Sh-pYx" id="SRK-xx-TAG"/>
                 <outlet property="presentBtn" destination="4J8-Jb-7Yc" id="dMZ-Qn-fqu"/>
                 <outlet property="tableView" destination="W7L-l4-cm8" id="sE3-zM-2Sf"/>
@@ -35,18 +34,6 @@
                     <rect key="frame" x="0.0" y="528" width="320" height="40"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="p7n-0D-ami">
-                            <rect key="frame" x="4" y="5" width="70" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
-                            <animations/>
-                            <state key="normal" title="聊聊">
-                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="communicationButton:" destination="-1" eventType="touchUpInside" id="Wmr-TJ-9sa"/>
-                            </connections>
-                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="OaI-KG-4N1">
                             <rect key="frame" x="241" y="5" width="70" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
@@ -59,8 +46,20 @@
                                 <action selector="meetButton:" destination="-1" eventType="touchUpInside" id="32h-8a-xN6"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nTA-Sh-pYx">
+                            <rect key="frame" x="18" y="5" width="70" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                            <animations/>
+                            <state key="normal" title="查看手机">
+                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="tapPhoneButton:" destination="-1" eventType="touchUpInside" id="1Bl-tA-Zx9"/>
+                            </connections>
+                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4J8-Jb-7Yc">
-                            <rect key="frame" x="163" y="5" width="70" height="30"/>
+                            <rect key="frame" x="125" y="5" width="70" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                             <animations/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -71,18 +70,6 @@
                             </state>
                             <connections>
                                 <action selector="tapPresentBtn:" destination="-1" eventType="touchUpInside" id="HPt-u2-Cea"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nTA-Sh-pYx">
-                            <rect key="frame" x="83" y="5" width="70" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
-                            <animations/>
-                            <state key="normal" title="查看手机">
-                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="tapPhoneButton:" destination="-1" eventType="touchUpInside" id="1Bl-tA-Zx9"/>
                             </connections>
                         </button>
                     </subviews>

@@ -44,17 +44,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    CGFloat width = kDeviceWidth/4.0;
-    CGRect frame = self.communicationButton.frame;
+    CGFloat width = kDeviceWidth/3.0;
+    CGRect frame = self.photoButton.frame;
     frame.origin.x = 0;
     frame.size.width = width;
-    [self.communicationButton setFrame:frame];
-    frame.origin.x = width;
     [self.photoButton setFrame:frame];
-    frame.origin.x = width*2;
+    frame.origin.x = width;
     [self.presentBtn setFrame:frame];
-    frame.origin.x = width*3;
+    frame.origin.x = width*2;
     [self.InviteMeetButton setFrame:frame];
+//    frame.origin.x = width*3;
+//    [self.InviteMeetButton setFrame:frame];
     
     UILabel *oneLabel = [[UILabel alloc] initWithFrame:CGRectMake(width, frame.origin.y, 1, frame.size.height)];
     [oneLabel setBackgroundColor:[UIColor lightGrayColor]];
@@ -230,7 +230,35 @@
 
     [self baomingWithID:[NSString stringWithFormat:@"%li", sender.tag]];
 }
-
+//报名约会
+- (void)baomingWithID:(NSString *)meetID{
+    
+    @weakify(self);
+    
+    [LCLWaitView showIndicatorView:YES];
+    
+    NSDictionary *userInfo = [LCLGetToken checkHaveLoginWithShowLoginView:NO];
+    if (userInfo) {
+        
+        LCLUserInfoObject *userObj = [LCLUserInfoObject allocModelWithDictionary:userInfo];
+        
+        NSString *listURL = [NSString stringWithFormat:@"%@", BaomingMeetURL(userObj.ukey, meetID)];
+        
+        LCLDownloader *downloader = [[LCLDownloader alloc] initWithURLString:listURL];
+        [downloader setHttpMehtod:LCLHttpMethodGet];
+        [downloader setDownloadCompleteBlock:^(NSString *err, NSMutableData *fileData, NSString *url){
+            
+            [LCLWaitView showIndicatorView:NO];
+            
+            NSDictionary *dataSourceDic = [self_weak_.view getResponseDataDictFromResponseData:fileData withSuccessString:nil error:@""];
+            if (dataSourceDic) {
+                [self_weak_ loadMeetingData];
+                
+            }
+        }];
+        [downloader startToDownloadWithIntelligence:NO];
+    }
+}
 - (IBAction)meetButton:(id)sender{
     
     LCLUserInfoObject *userObj = [LCLUserInfoObject allocModelWithDictionary:self.userInfo];
@@ -425,8 +453,20 @@
         [cell.meetAddressLabel setText:[NSString stringWithFormat:@"地点：%@", meetObj.place]];
         [cell.meetTimeLabel setText:[NSString stringWithFormat:@"时间：%@", meetObj.date_time]];
         
+        NSString *sign=[dic objectForKey:@"is_sign"];
+
+        
         if ([meetObj.style integerValue]==1) {
-            [cell.meeButton setTitle:@"已报名" forState:UIControlStateNormal];
+            if ([sign integerValue]==1) {
+                [cell.meeButton setTitle:@"已报名" forState:UIControlStateNormal];
+
+            }
+            else
+            {
+                [cell.meeButton setTitle:@"报名约会" forState:UIControlStateNormal];
+
+            }
+            
         }
         
         [cell.meeButton setTag:[meetObj.iD integerValue]];

@@ -191,7 +191,6 @@
             NSDictionary *dataSourceDic = [self_weak_.view getResponseDataDictFromResponseData:fileData withSuccessString:nil error:@""];
             if (dataSourceDic) {
                 
-                
             }
         }];
         [downloader startToDownloadWithIntelligence:NO];

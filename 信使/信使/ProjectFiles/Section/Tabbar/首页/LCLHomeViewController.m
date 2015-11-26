@@ -402,6 +402,11 @@
     NSDictionary *dic = [self.dataArray objectAtIndex:indexPath.row];
     LCLIndexObject *indexObj = [LCLIndexObject allocModelWithDictionary:dic];
     
+    NSString *sign=[dic objectForKey:@"sign"];
+    
+    
+    
+    
     [contentLabel setText:indexObj.title];
     [cell setPeopleNameWithName:indexObj.nickname];
     [cell.peopleInfoLabel setText:[NSString stringWithFormat:@"%@岁  %@cm  %@kg", indexObj.age, indexObj.height, indexObj.weight]];
@@ -439,7 +444,18 @@
     
     
     if ([indexObj.style integerValue]==1) {
-        [cell.yuehuiButton setTitle:@"已报名" forState:UIControlStateNormal];
+        
+        if ([sign integerValue]==1) {
+            [cell.yuehuiButton setTitle:@"已报名" forState:UIControlStateNormal];
+
+        }
+        else
+        {
+            [cell.yuehuiButton setTitle:@"报名约会" forState:UIControlStateNormal];
+
+        }
+        
+        
 
     }
     
