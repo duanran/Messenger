@@ -21,7 +21,8 @@
                           Number(URLTypePushBindUser)              :    @"/index.php/Api/Addons/execute/_addons/Baidupush/_controller/Api/_action/bindUser",
                           Number(URLTypeComplain)               :@"/index.php/Api/Date/tousuPic",
                           Number(URLTypeSaveVideo)             :@"/index.php/Api/User/saveVideo",
-                          Number(URLTypeComplainDate)           :@"/index.php/Api/Date/tousu"
+                          Number(URLTypeComplainDate)           :@"/index.php/Api/Date/tousu",
+                          Number(URLTypeCancelComplain)         :@"/index.php/Api/Date/deltousu"
                           };
     }
     NSString *urlString = [urlDictionary objectForKey:Number(urltype)];

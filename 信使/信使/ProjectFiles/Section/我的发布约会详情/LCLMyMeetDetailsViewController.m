@@ -12,8 +12,11 @@
 #import "LCLMeetingDetailTableViewCell.h"
 #import "SelectedMapViewController.h"
 #import "ComplainDateRequest.h"
+#import "CancelComplainDateRequest.h"
 @interface LCLMyMeetDetailsViewController ()
-
+{
+    complainSatus complainDateStatus;
+}
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) NSMutableArray *dataArray;
@@ -97,6 +100,22 @@
     [self.navigationController pushViewController:mapView animated:YES];
     
 }
+-(void)cancelCompalin:(UIButton *)sender
+{
+    UIButton *button = (UIButton *)sender;
+    UITableViewCell *cell = EIGetViewBySubView(button, [UITableViewCell class]);
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    NSDictionary *dic = [self.dataArray objectAtIndex:indexPath.row];
+    
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"取消举报" message:@"请您输入取消举报理由" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    complainDateStatus=existStatus;
+    [alert show];
+    
+    self.complainDic=dic;
+}
+
 -(void)complain:(UIButton *)sender
 {
     UIButton *button = (UIButton *)sender;
@@ -109,51 +128,90 @@
     
     UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"举报" message:@"请您输入举报理由" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-    
+    complainDateStatus=normalStatus;
     [alert show];
     
     self.complainDic=dic;
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex==1) {
-        UITextField *TextField=[alertView textFieldAtIndex:0];
-        
-        if ([TextField.text integerValue]<=0||TextField.text==NULL||[TextField.text isEqualToString:@"(null)"]||TextField.text==nil||[TextField.text isEqualToString:@""]) {
-            return;
-        }
-        NSDictionary *dic = [[LCLCacheDefaults standardCacheDefaults] objectForCacheKey:UserInfoKey];
-        
-        
-        
-        if (self.complainDic) {
-            ComplainDateRequest *request=[[ComplainDateRequest alloc]init];
+    if (complainDateStatus==normalStatus) {
+        if (buttonIndex==1) {
+            UITextField *TextField=[alertView textFieldAtIndex:0];
             
-            NSDictionary *userInfo = [LCLGetToken checkHaveLoginWithShowLoginView:NO];
+            if ([TextField.text integerValue]<=0||TextField.text==NULL||[TextField.text isEqualToString:@"(null)"]||TextField.text==nil||[TextField.text isEqualToString:@""]) {
+                return;
+            }
+            NSDictionary *dic = [[LCLCacheDefaults standardCacheDefaults] objectForCacheKey:UserInfoKey];
             
+            
+            
+            if (self.complainDic) {
+                ComplainDateRequest *request=[[ComplainDateRequest alloc]init];
+                
+                NSDictionary *userInfo = [LCLGetToken checkHaveLoginWithShowLoginView:NO];
+                
                 LCLUserInfoObject *userObj = [LCLUserInfoObject allocModelWithDictionary:userInfo];
-            LCLCreateMeetObject *meetObj = self.meetDetailsObj;
-
-            request.ukey=userObj.ukey;
-            request.dateId=meetObj.iD;
-            request.foruid=[[self.complainDic objectForKey:@"signUser"]objectForKey:@"uid"];
-            request.reason=TextField.text;
-            
-            [request GETRequest:^(id reponseObject) {
-                UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:@"举报成功" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-                [alert show];
-                [self loadServerData];
-            } failureCallback:^(NSString *errorMessage) {
-                UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"举报失败" message:errorMessage delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-                [alert show];
-            }];
-            
-            
+                LCLCreateMeetObject *meetObj = self.meetDetailsObj;
+                
+                request.ukey=userObj.ukey;
+                request.dateId=meetObj.iD;
+                request.foruid=[[self.complainDic objectForKey:@"signUser"]objectForKey:@"uid"];
+                request.reason=TextField.text;
+                
+                [request GETRequest:^(id reponseObject) {
+                    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:@"举报成功" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+                    [alert show];
+                    [self loadServerData];
+                } failureCallback:^(NSString *errorMessage) {
+                    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"举报失败" message:errorMessage delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+                    [alert show];
+                }];
+                
+                
+            }
         }
+
     }
-    
-    
-    
+    else
+    {
+        if (buttonIndex==1) {
+            UITextField *TextField=[alertView textFieldAtIndex:0];
+            
+            if ([TextField.text integerValue]<=0||TextField.text==NULL||[TextField.text isEqualToString:@"(null)"]||TextField.text==nil||[TextField.text isEqualToString:@""]) {
+                return;
+            }
+            NSDictionary *dic = [[LCLCacheDefaults standardCacheDefaults] objectForCacheKey:UserInfoKey];
+            
+            
+            
+            if (self.complainDic) {
+                CancelComplainDateRequest *request=[[CancelComplainDateRequest alloc]init];
+                
+                NSDictionary *userInfo = [LCLGetToken checkHaveLoginWithShowLoginView:NO];
+                
+                LCLUserInfoObject *userObj = [LCLUserInfoObject allocModelWithDictionary:userInfo];
+                LCLCreateMeetObject *meetObj = self.meetDetailsObj;
+                
+                request.ukey=userObj.ukey;
+                request.dateId=meetObj.iD;
+                request.foruid=[[self.complainDic objectForKey:@"signUser"]objectForKey:@"uid"];
+                request.reason=TextField.text;
+                
+                [request GETRequest:^(id reponseObject) {
+                    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:@"取消举报成功" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+                    [alert show];
+                    [self loadServerData];
+                } failureCallback:^(NSString *errorMessage) {
+                    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"取消举报失败" message:errorMessage delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+                    [alert show];
+                }];
+                
+                
+            }
+        }
+
+    }
     
    
 }
@@ -233,9 +291,11 @@
             cell.complainBtn.hidden=NO;
             if ([complainFlag integerValue]==1) {
                 [cell.complainBtn setTitle:@"已举报" forState:UIControlStateNormal];
+                [cell.complainBtn addTarget:self action:@selector(cancelCompalin:) forControlEvents:UIControlEventTouchUpInside];
             }
             else{
             [cell.complainBtn addTarget:self action:@selector(complain:) forControlEvents:UIControlEventTouchUpInside];
+                
             }
         }
     }
