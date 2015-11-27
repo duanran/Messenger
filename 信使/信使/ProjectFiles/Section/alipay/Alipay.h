@@ -14,6 +14,8 @@ extern NSString *AlipayNotification;
 #define AliPayInvokeIP @"127.0.0.1"
 #define AliPaySellerID @"13457211954@163.com"
 #define AliPayParnerId @"2088002858720572"
+#define AliPayWebUrl(orderNo) [NSString stringWithFormat:@"%@/index.php/Api/Pay/payMoney/order_no/%@", XSURL,orderNo]
+
 
 @interface Product : NSObject
 

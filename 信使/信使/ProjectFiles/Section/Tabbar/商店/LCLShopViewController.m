@@ -11,6 +11,7 @@
 #import "LCLShopTableViewCell.h"
 #import "LCLShopSectionHeaderView.h"
 #import "LCLShopHeader.h"
+#import "WebPayViewController.h"
 // Set the environment:
 // - For live charges, use PayPalEnvironmentProduction (default).// 真实模式,
 // - To use the PayPal sandbox, use PayPalEnvironmentSandbox.// 测试(网络)
@@ -20,7 +21,6 @@
 #define kPayPalEnvironment PayPalEnvironmentProduction
 
 @interface LCLShopViewController () <UITableViewDataSource, UITableViewDelegate,UIAlertViewDelegate>
-
 @property (strong, nonatomic) UITableView *tableView;
 
 @property (nonatomic, strong) NSMutableArray *coinArray;
@@ -318,11 +318,11 @@
                 UIActionSheet *actionSheet;
                 if ([self.shopOff integerValue]==1) {
 //                    actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择支付方式" delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"支付宝", @"PayPal支付", nil];
-                    actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择支付方式" delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles: @"PayPal支付", nil];
+                    actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择支付方式" delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"支付宝",@"PayPal支付", nil];
                 }
                 else
                 {
-                    actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择支付方式" delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles: @"PayPal支付", nil];
+                    actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择支付方式" delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles: @"支付宝",@"PayPal支付", nil];
                 }
                 
                 [actionSheet showFromTabBar:self.tabBarController.tabBar];
@@ -333,7 +333,16 @@
                             //支付宝
 //                            Product *product = [Alipay getProduceWithTradeNo:orderNo price:alipayPrice subject:subject body:subject invokeIP:AliPayInvokeIP notifyURL:AliPayNotifyURL sellerID:AliPaySellerID parnerID:AliPayParnerId];
 //                            [Alipay payWithProductDic:product];
-                            [self PayPalPay:alipayPrice DescribeTion:subject OrderId:orderNo];
+                            
+                            
+                            NSString *urlStr=AliPayWebUrl(orderNo);
+                            WebPayViewController *webPay=[[WebPayViewController alloc]init];
+                            webPay.payUrl=urlStr;
+
+                            [self.navigationController pushViewController:webPay animated:YES];
+                            
+                            
+//                            [self PayPalPay:alipayPrice DescribeTion:subject OrderId:orderNo];
                             
                         }else if (tag==1){
                             //paypal
@@ -344,6 +353,8 @@
                     }
                     else
                     {
+                        
+                        
                         [self PayPalPay:alipayPrice DescribeTion:subject OrderId:orderNo];
                     }
                     
