@@ -36,6 +36,7 @@
 @property (strong, nonatomic) NSString *verify;
 
 @property (strong, nonatomic) NSMutableArray *provinceArray;
+@property(nonatomic,strong)IBOutlet UIButton *nearPeopleBtn;
 
 @end
 
@@ -134,6 +135,27 @@
     }else{
         [self.pictureButton setTitle:@"不限" forState:UIControlStateNormal];
     }
+}
+
+-(IBAction)searchNearPeople:(id)sender
+{
+    NSMutableDictionary *locationDic=[[NSMutableDictionary alloc]init];
+    
+    NSDictionary *userDic=[[LCLCacheDefaults standardCacheDefaults] objectForCacheKey:UserInfoKey];
+    
+    
+    
+    NSString *lat=[userDic objectForKey:@"lat"];
+    NSString *lng=[userDic objectForKey:@"lng"];
+    
+    
+    [locationDic setValue:lat forKey:@"lat"];
+    [locationDic setValue:lng forKey:@"lng"];
+
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:searchNearPeopleNotifacation object:locationDic];
+    [self.tabBarController setSelectedIndex:0];
+    
 }
 
 - (void)setVerify:(NSString *)verify{

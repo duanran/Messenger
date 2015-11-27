@@ -17,6 +17,8 @@
 #import "MJPhotoBrowser.h"
 #import "LCLVideoViewController.h"
 #import "updateLookPhoneDate.h"
+#import "SearchNearPeopleRequest.h"
+#import "MBProgressHUD.h"
 
 #define contentImageViewTag 1000
 #define dateBtnTag 2000
@@ -42,6 +44,8 @@
 
 @property (strong, nonatomic) CLLocationManager *locationManager;//定义Manager
 
+@property(strong,nonatomic)NSMutableDictionary *currentLocationDic;
+
 @end
 
 @implementation LCLHomeViewController
@@ -61,6 +65,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveMessageNotify:) name:PushMesseageNotifacation object:nil];
     
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchNearPeople:) name:searchNearPeopleNotifacation object:nil];
   
     
     // 判断定位操作是否被允许
@@ -117,6 +123,42 @@
 - (void)viewWillAppear:(BOOL)animated{
     
 }
+
+-(void)searchNearPeople:(NSNotification *)notication
+{
+    
+    SearchNearPeopleRequest *request=[[SearchNearPeopleRequest alloc]init];
+     NSDictionary *userDic=[[LCLCacheDefaults standardCacheDefaults] objectForCacheKey:UserInfoKey];
+    @weakify(self);
+
+    
+    request.ukey=[userDic objectForKey:@"ukey"];
+    request.lon=self.lng;
+    request.lat=self.lat;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [request GETRequest:^(id reponseObject) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+
+        NSDictionary *dataSourceDic = (NSDictionary *)reponseObject;
+        if (dataSourceDic) {
+            self_weak_.dataArray = [[NSMutableArray alloc] initWithArray:[dataSourceDic objectForKey:@"list"]];
+            [self_weak_.tableView reloadData];
+        }
+
+    } failureCallback:^(NSString *errorMessage) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:errorMessage delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [alert show];
+    }];
+    
+   
+    
+    
+    
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

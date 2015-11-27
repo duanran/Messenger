@@ -41,6 +41,8 @@
 
 static NSString * const PushMesseageNotifacation = @"com.MesseageNotifacation";
 
+static NSString *const searchNearPeopleNotifacation = @"com.SearchNearPeople";
+
 NS_INLINE void setExtraCellLineHidden(UITableView * tableview)
 {
     UIView *view =[ [UIView alloc]init];

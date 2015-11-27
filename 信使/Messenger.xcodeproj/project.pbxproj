@@ -382,6 +382,7 @@
 		18E66E991C06B02000436D7B /* LCLMyMeetDetailsTableViewCell_2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E66E981C06B02000436D7B /* LCLMyMeetDetailsTableViewCell_2.xib */; };
 		18E66E9C1C0705D800436D7B /* ComplainDateRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E66E9B1C0705D800436D7B /* ComplainDateRequest.m */; };
 		18E66E9F1C0710C600436D7B /* CancelComplainDateRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E66E9E1C0710C600436D7B /* CancelComplainDateRequest.m */; };
+		18E66EA21C0806CF00436D7B /* SearchNearPeopleRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E66EA11C0806CF00436D7B /* SearchNearPeopleRequest.m */; };
 		18EB29571BB587000040758B /* LCLSelectAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB29551BB587000040758B /* LCLSelectAddressView.m */; };
 		18EB29581BB587000040758B /* LCLSelectAddressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EB29561BB587000040758B /* LCLSelectAddressView.xib */; };
 		18EB29CD1BB595450040758B /* Alipay.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB295B1BB595450040758B /* Alipay.m */; };
@@ -1036,6 +1037,8 @@
 		18E66E9B1C0705D800436D7B /* ComplainDateRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplainDateRequest.m; sourceTree = "<group>"; };
 		18E66E9D1C0710C600436D7B /* CancelComplainDateRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancelComplainDateRequest.h; sourceTree = "<group>"; };
 		18E66E9E1C0710C600436D7B /* CancelComplainDateRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CancelComplainDateRequest.m; sourceTree = "<group>"; };
+		18E66EA01C0806CF00436D7B /* SearchNearPeopleRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchNearPeopleRequest.h; sourceTree = "<group>"; };
+		18E66EA11C0806CF00436D7B /* SearchNearPeopleRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchNearPeopleRequest.m; sourceTree = "<group>"; };
 		18EB29541BB587000040758B /* LCLSelectAddressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCLSelectAddressView.h; sourceTree = "<group>"; };
 		18EB29551BB587000040758B /* LCLSelectAddressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCLSelectAddressView.m; sourceTree = "<group>"; };
 		18EB29561BB587000040758B /* LCLSelectAddressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LCLSelectAddressView.xib; sourceTree = "<group>"; };
@@ -3049,6 +3052,8 @@
 				18765B621BF48462000721BD /* LCLVideoViewController.xib */,
 				18EE6D961BF6ED7C00D8D14A /* updateLookPhoneDate.h */,
 				18EE6D971BF6ED7C00D8D14A /* updateLookPhoneDate.m */,
+				18E66EA01C0806CF00436D7B /* SearchNearPeopleRequest.h */,
+				18E66EA11C0806CF00436D7B /* SearchNearPeopleRequest.m */,
 			);
 			path = "首页";
 			sourceTree = "<group>";
@@ -3627,6 +3632,7 @@
 				18765B5F1BF478E5000721BD /* READEME.md in Sources */,
 				B58B14E31B140C7A0019C822 /* UIScrollView+Refresh.m in Sources */,
 				B570E5EB1B14D437007A07F4 /* NSDictionary-DeepMutableCopy.m in Sources */,
+				18E66EA21C0806CF00436D7B /* SearchNearPeopleRequest.m in Sources */,
 				18EB29F61BB5A5820040758B /* LCLSelectPickerView.m in Sources */,
 				18D7E4B41C033F8800AA3070 /* LCLBaseOperation.m in Sources */,
 				18DEADB61B9DD3EC003CEA5E /* LCLNotifyModel.m in Sources */,

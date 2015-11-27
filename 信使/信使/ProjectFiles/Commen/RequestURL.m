@@ -22,7 +22,9 @@
                           Number(URLTypeComplain)               :@"/index.php/Api/Date/tousuPic",
                           Number(URLTypeSaveVideo)             :@"/index.php/Api/User/saveVideo",
                           Number(URLTypeComplainDate)           :@"/index.php/Api/Date/tousu",
-                          Number(URLTypeCancelComplain)         :@"/index.php/Api/Date/deltousu"
+                          Number(URLTypeCancelComplain)         :@"/index.php/Api/Date/deltousu",
+                          Number(URLTypeSearchNearPeople)       :@"/index.php/Api/Date/lists"
+                          
                           };
     }
     NSString *urlString = [urlDictionary objectForKey:Number(urltype)];

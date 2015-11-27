@@ -19,7 +19,8 @@ typedef NS_ENUM(NSInteger, URLType){
     URLTypeComplain,                   /* 投诉 */
     URLTypeCancelComplain,             /* 取消投诉 */
     URLTypeSaveVideo,                  /* 存储视频 */
-    URLTypeComplainDate,               /* 投诉约会*/
+    URLTypeComplainDate,               /* 投诉约会 */
+    URLTypeSearchNearPeople,           /* 搜索附近的人 */
 };
 /*
  * 根据URL类型获取url
