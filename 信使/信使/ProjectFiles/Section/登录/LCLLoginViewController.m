@@ -128,7 +128,7 @@
                 }
                 
                 
-                
+                NSString *uid=[dataDic objectForKey:@"uid"];
                 
                 LCLUserInfoObject *userObj = [LCLUserInfoObject allocModel];
                 userObj.ukey = ukey;
@@ -143,7 +143,7 @@
                 userObj.province_name = @"";
                 userObj.city_name = @"";
                 userObj.area_name = @"";
-                userObj.uid = @"";
+                userObj.uid = uid;
                 userObj.ID = @"";
                 userObj.last_login = @"";
                 userObj.freezing_coin = [dataDic objectForKey:@"freezing_coin"];

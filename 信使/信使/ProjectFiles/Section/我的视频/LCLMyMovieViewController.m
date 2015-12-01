@@ -29,7 +29,10 @@
     // Do any additional setup after loading the view from its nib.
 
     isUpload=false;
-    [self.navigationItem setTitle:@"视频认证"];
+    [self.navigationItem setTitle:@"我的视频"];
+    
+    self.contentLabel.text=@"1 会员必须先自拍一段本人脸部特征的视频，我们的审核人员会在24小时内进行确认（该视频仅用于会员的真实性认证审核，任何会员不可见）。\n 2 会员只有通过审核后才可以上传更多的视频，其他的会员看到您上传的视频时，您也会得到信用豆哦。\n 3 会员通过审核将获得视频认证标志。我们建议所有的会员在邀请对象时尽量选择通过视频认证的会员。以免引起不必要的纠纷和损失。";
+    
     
     [self.publicView setBackgroundColor:[UIColor clearColor]];
 
@@ -83,7 +86,17 @@
             if (dataSourceDic) {
                 NSArray *array = [dataSourceDic objectForKey:@"list"];
                 
+                
+                for (UIView *view in [self_weak_.publicView subviews]) {
+                    
+                    NSLog(@"view=%@",view);
+                    
+                    if ([view isKindOfClass:[LCLSelectPicView class]]) {
+                        [view removeFromSuperview];
+                    }
+                }
                 LCLSelectPicView *publicScrollView = [[LCLSelectPicView alloc] initWithFrame:self.publicView.bounds];
+                
                 publicScrollView.movieDelegate = self;
                 [publicScrollView setupWithMovieArray:array];
                 [self_weak_.publicView addSubview:publicScrollView];
@@ -176,6 +189,7 @@
                             request.firstUrl=serverUrl;
                             request.picPath=[dataDic objectForKey:@"pic"];
                             [request GETRequest:^(id reponseObject) {
+                                [self getMyPhotos];
                                 NSLog(@"reponseObject=%@",reponseObject);
 
                             } failureCallback:^(NSString *errorMessage) {

@@ -56,7 +56,7 @@
         
         NSString *path = photoObj.thumb_360;
         if (self.isFromMe) {
-            path = photoObj.path;
+            path = photoObj.thumb_360;
         }
 //        [button.photoButton setBackgroundImageWithURL:path defaultImagePath:DefaultImagePath];
         [button.blurImageView setImageWithURL:path defaultImagePath:DefaultImagePath];

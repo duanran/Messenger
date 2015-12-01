@@ -84,6 +84,19 @@
         [button setRestorationIdentifier:photoObj.path];
         [button setFrame:frame];
         
+        NSString *status=[dic objectForKey:@"status"];
+        if ([status isEqualToString:@"2"]) {
+            UILabel *waitReViewLabel=[[UILabel alloc]init];
+            [waitReViewLabel setFrame:CGRectMake(2, button.frame.size.height/2-10,button.frame.size.width-4, 20)];
+            waitReViewLabel.textColor=[UIColor whiteColor];
+            waitReViewLabel.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+            waitReViewLabel.text=@"待审核";
+            waitReViewLabel.font=[UIFont systemFontOfSize:14];
+            waitReViewLabel.textAlignment=NSTextAlignmentCenter;
+            [button addSubview:waitReViewLabel];
+        }
+        
+        
         [self addSubview:button];
     }
     

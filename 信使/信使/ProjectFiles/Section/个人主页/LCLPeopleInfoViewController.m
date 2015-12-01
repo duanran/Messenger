@@ -607,8 +607,13 @@
         LCLUserInfoObject *myObj = [LCLUserInfoObject allocModelWithDictionary:myInfo];
         
         NSString *listURL = [NSString stringWithFormat:@"%@", LookUserPhotosURL(myObj.ukey, userObj.uid)];
+        
+        
+        
+
         if (self_weak_.isFromMe) {
-            listURL = [NSString stringWithFormat:@"%@", MyPhotosURL(myObj.ukey)];
+//            listURL = [NSString stringWithFormat:@"%@", MyPhotosURL(myObj.ukey)];
+            listURL = [NSString stringWithFormat:@"%@", LookUserPhotosURL(myObj.ukey, myObj.uid)];
         }
         
         LCLDownloader *downloader = [[LCLDownloader alloc] initWithURLString:listURL];

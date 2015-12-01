@@ -345,7 +345,7 @@
         }else if(indexPath.row==3){
             [cell.nameLabel setText:@"我的关注"];
         }else if(indexPath.row==4){
-            [cell.nameLabel setText:@"视频认证"];
+            [cell.nameLabel setText:@"我的视频"];
             
             [cell.actionButton setHidden:NO];
             [cell.actionButton setEnabled:NO];

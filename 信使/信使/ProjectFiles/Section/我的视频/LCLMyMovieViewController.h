@@ -11,5 +11,7 @@
 @interface LCLMyMovieViewController : BaseViewController
 
 @property (weak, nonatomic) IBOutlet UIView *publicView;
+@property(weak,nonatomic)IBOutlet UILabel *titleLabel;
+@property(weak,nonatomic)IBOutlet UILabel *contentLabel;
 
 @end
