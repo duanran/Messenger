@@ -101,6 +101,18 @@
 		18A4C5601BF0D469001755DE /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A4C55F1BF0D469001755DE /* MOBFoundation.framework */; };
 		18A4C5631BF0D59D001755DE /* country.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18A4C5611BF0D59D001755DE /* country.plist */; };
 		18A4C5661BF0D5F8001755DE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18A4C5641BF0D5F8001755DE /* Localizable.strings */; };
+		18AC63691C0D748C000C05E6 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18AC63681C0D748C000C05E6 /* Social.framework */; };
+		18AC636D1C0D7B6C000C05E6 /* HYActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AC636C1C0D7B6C000C05E6 /* HYActivityView.m */; };
+		18AC636F1C0D7ED3000C05E6 /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 18AC636E1C0D7ED3000C05E6 /* test.mp4 */; };
+		18AC63781C0D7F63000C05E6 /* share_platform_email@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AC63701C0D7F63000C05E6 /* share_platform_email@2x.png */; };
+		18AC63791C0D7F63000C05E6 /* share_platform_evernote@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AC63711C0D7F63000C05E6 /* share_platform_evernote@2x.png */; };
+		18AC637A1C0D7F63000C05E6 /* share_platform_imessage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AC63721C0D7F63000C05E6 /* share_platform_imessage@2x.png */; };
+		18AC637B1C0D7F63000C05E6 /* share_platform_qqfriends@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AC63731C0D7F63000C05E6 /* share_platform_qqfriends@2x.png */; };
+		18AC637C1C0D7F63000C05E6 /* share_platform_sina@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AC63741C0D7F63000C05E6 /* share_platform_sina@2x.png */; };
+		18AC637D1C0D7F63000C05E6 /* share_platform_wechat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AC63751C0D7F63000C05E6 /* share_platform_wechat@2x.png */; };
+		18AC637E1C0D7F63000C05E6 /* share_platform_wechattimeline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AC63761C0D7F63000C05E6 /* share_platform_wechattimeline@2x.png */; };
+		18AC637F1C0D7F63000C05E6 /* share_wechatsession.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AC63771C0D7F63000C05E6 /* share_wechatsession.png */; };
+		18AC63811C0D8C39000C05E6 /* LCLPictureTableViewCell_2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18AC63801C0D8C39000C05E6 /* LCLPictureTableViewCell_2.xib */; };
 		18D7E38B1C02E20C00AA3070 /* LCLMeetingMineTableViewCell_2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D7E38A1C02E20C00AA3070 /* LCLMeetingMineTableViewCell_2.xib */; };
 		18D7E4B41C033F8800AA3070 /* LCLBaseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7E46C1C033F8800AA3070 /* LCLBaseOperation.m */; };
 		18D7E4B51C033F8800AA3070 /* LCLFilePathHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7E46F1C033F8800AA3070 /* LCLFilePathHelper.m */; };
@@ -371,7 +383,6 @@
 		18E0B4F81BA30F2E00A43C98 /* LCLChangePasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E0B4F71BA30F2E00A43C98 /* LCLChangePasswordView.xib */; };
 		18E161871BB183290008AAC9 /* LCLPhotoObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E161861BB183290008AAC9 /* LCLPhotoObject.m */; };
 		18E1618A1BB19A520008AAC9 /* LCLPayListObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E161891BB19A520008AAC9 /* LCLPayListObject.m */; };
-		18E374371BA6A855006D431E /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 18E374361BA6A855006D431E /* test.mp4 */; };
 		18E3A5C21BC6C3E200C7F704 /* LCLPictureTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E3A5C01BC6C3E200C7F704 /* LCLPictureTableViewCell.m */; };
 		18E3A5C31BC6C3E200C7F704 /* LCLPictureTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E3A5C11BC6C3E200C7F704 /* LCLPictureTableViewCell.xib */; };
 		18E543041BD9275F00FB462F /* LCLMyMeetDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E543021BD9275F00FB462F /* LCLMyMeetDetailsViewController.m */; };
@@ -696,6 +707,19 @@
 		18A4C55F1BF0D469001755DE /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MOBFoundation.framework; path = "信使/ProjectFiles/Vender/ShareSDK/message/MOBFoundation.framework"; sourceTree = "<group>"; };
 		18A4C5621BF0D59D001755DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "zh-Hans"; path = "zh-Hans.lproj/country.plist"; sourceTree = "<group>"; };
 		18A4C5651BF0D5F8001755DE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		18AC63681C0D748C000C05E6 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		18AC636B1C0D7B6C000C05E6 /* HYActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYActivityView.h; sourceTree = "<group>"; };
+		18AC636C1C0D7B6C000C05E6 /* HYActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYActivityView.m; sourceTree = "<group>"; };
+		18AC636E1C0D7ED3000C05E6 /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
+		18AC63701C0D7F63000C05E6 /* share_platform_email@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "share_platform_email@2x.png"; path = "../../../../../Desktop/分享/分享/images/share_platform_email@2x.png"; sourceTree = "<group>"; };
+		18AC63711C0D7F63000C05E6 /* share_platform_evernote@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "share_platform_evernote@2x.png"; path = "../../../../../Desktop/分享/分享/images/share_platform_evernote@2x.png"; sourceTree = "<group>"; };
+		18AC63721C0D7F63000C05E6 /* share_platform_imessage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "share_platform_imessage@2x.png"; path = "../../../../../Desktop/分享/分享/images/share_platform_imessage@2x.png"; sourceTree = "<group>"; };
+		18AC63731C0D7F63000C05E6 /* share_platform_qqfriends@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "share_platform_qqfriends@2x.png"; path = "../../../../../Desktop/分享/分享/images/share_platform_qqfriends@2x.png"; sourceTree = "<group>"; };
+		18AC63741C0D7F63000C05E6 /* share_platform_sina@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "share_platform_sina@2x.png"; path = "../../../../../Desktop/分享/分享/images/share_platform_sina@2x.png"; sourceTree = "<group>"; };
+		18AC63751C0D7F63000C05E6 /* share_platform_wechat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "share_platform_wechat@2x.png"; path = "../../../../../Desktop/分享/分享/images/share_platform_wechat@2x.png"; sourceTree = "<group>"; };
+		18AC63761C0D7F63000C05E6 /* share_platform_wechattimeline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "share_platform_wechattimeline@2x.png"; path = "../../../../../Desktop/分享/分享/images/share_platform_wechattimeline@2x.png"; sourceTree = "<group>"; };
+		18AC63771C0D7F63000C05E6 /* share_wechatsession.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = share_wechatsession.png; path = "../../../../../Desktop/分享/分享/images/share_wechatsession.png"; sourceTree = "<group>"; };
+		18AC63801C0D8C39000C05E6 /* LCLPictureTableViewCell_2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LCLPictureTableViewCell_2.xib; sourceTree = "<group>"; };
 		18D7E38A1C02E20C00AA3070 /* LCLMeetingMineTableViewCell_2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LCLMeetingMineTableViewCell_2.xib; sourceTree = "<group>"; };
 		18D7E46B1C033F8800AA3070 /* LCLBaseOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCLBaseOperation.h; sourceTree = "<group>"; };
 		18D7E46C1C033F8800AA3070 /* LCLBaseOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCLBaseOperation.m; sourceTree = "<group>"; };
@@ -1022,7 +1046,6 @@
 		18E161861BB183290008AAC9 /* LCLPhotoObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCLPhotoObject.m; sourceTree = "<group>"; };
 		18E161881BB19A520008AAC9 /* LCLPayListObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCLPayListObject.h; sourceTree = "<group>"; };
 		18E161891BB19A520008AAC9 /* LCLPayListObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCLPayListObject.m; sourceTree = "<group>"; };
-		18E374361BA6A855006D431E /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
 		18E3A5BF1BC6C3E200C7F704 /* LCLPictureTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCLPictureTableViewCell.h; sourceTree = "<group>"; };
 		18E3A5C01BC6C3E200C7F704 /* LCLPictureTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCLPictureTableViewCell.m; sourceTree = "<group>"; };
 		18E3A5C11BC6C3E200C7F704 /* LCLPictureTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LCLPictureTableViewCell.xib; sourceTree = "<group>"; };
@@ -1354,6 +1377,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18AC63691C0D748C000C05E6 /* Social.framework in Frameworks */,
 				18A4C55A1BF0CE61001755DE /* libz.tbd in Frameworks */,
 				186540E41BFCAED500A32B2F /* CoreTelephony.framework in Frameworks */,
 				186540E21BFCAEC800A32B2F /* Foundation.framework in Frameworks */,
@@ -1398,6 +1422,7 @@
 		180E2F101BC548A7002B721F /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				18AC636A1C0D7B6C000C05E6 /* HYActivityView */,
 				18765B651BF48EDD000721BD /* AFNetworking */,
 				18765B791BF48EDD000721BD /* UIKit+AFNetworking */,
 				18765B3D1BF478E5000721BD /* KrVideoPlayer */,
@@ -1596,6 +1621,15 @@
 			);
 			name = "UIKit+AFNetworking";
 			path = "../../../../../../Desktop/AFNetworking-master/UIKit+AFNetworking";
+			sourceTree = "<group>";
+		};
+		18AC636A1C0D7B6C000C05E6 /* HYActivityView */ = {
+			isa = PBXGroup;
+			children = (
+				18AC636B1C0D7B6C000C05E6 /* HYActivityView.h */,
+				18AC636C1C0D7B6C000C05E6 /* HYActivityView.m */,
+			);
+			path = HYActivityView;
 			sourceTree = "<group>";
 		};
 		18D7E4681C033F8800AA3070 /* APPKit */ = {
@@ -2372,6 +2406,7 @@
 				18E3A5BF1BC6C3E200C7F704 /* LCLPictureTableViewCell.h */,
 				18E3A5C01BC6C3E200C7F704 /* LCLPictureTableViewCell.m */,
 				18E3A5C11BC6C3E200C7F704 /* LCLPictureTableViewCell.xib */,
+				18AC63801C0D8C39000C05E6 /* LCLPictureTableViewCell_2.xib */,
 				18FAB2A61BA872E000FD6143 /* LCLMyPictureInfoViewController.h */,
 				18FAB2A71BA872E000FD6143 /* LCLMyPictureInfoViewController.m */,
 				18FAB2A81BA872E000FD6143 /* LCLMyPictureInfoViewController.xib */,
@@ -2830,6 +2865,15 @@
 		B58B14B21B140A7F0019C822 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				18AC63701C0D7F63000C05E6 /* share_platform_email@2x.png */,
+				18AC63711C0D7F63000C05E6 /* share_platform_evernote@2x.png */,
+				18AC63721C0D7F63000C05E6 /* share_platform_imessage@2x.png */,
+				18AC63731C0D7F63000C05E6 /* share_platform_qqfriends@2x.png */,
+				18AC63741C0D7F63000C05E6 /* share_platform_sina@2x.png */,
+				18AC63751C0D7F63000C05E6 /* share_platform_wechat@2x.png */,
+				18AC63761C0D7F63000C05E6 /* share_platform_wechattimeline@2x.png */,
+				18AC63771C0D7F63000C05E6 /* share_wechatsession.png */,
+				18AC636E1C0D7ED3000C05E6 /* test.mp4 */,
 				18DFDB871BB2E5E2008FA2F6 /* userInfoBg.jpg */,
 				180E2F0E1BC5452B002B721F /* pic_bg.png */,
 				18DFDB881BB2E5E2008FA2F6 /* delete.png */,
@@ -2839,7 +2883,6 @@
 				18DFDB8C1BB2E5E2008FA2F6 /* success.png */,
 				18DFDB8D1BB2E5E2008FA2F6 /* toggleoff.png */,
 				18DFDB8E1BB2E5E2008FA2F6 /* toggleon.png */,
-				18E374361BA6A855006D431E /* test.mp4 */,
 				18DEAC2A1B9DBD17003CEA5E /* 非你ios_ico */,
 				B58B15171B1423450019C822 /* bottom.png */,
 				B58B15191B1423520019C822 /* bottom@2x.png */,
@@ -2920,6 +2963,7 @@
 		B58B14B61B140B590019C822 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18AC63681C0D748C000C05E6 /* Social.framework */,
 				186540E31BFCAED500A32B2F /* CoreTelephony.framework */,
 				186540E11BFCAEC800A32B2F /* Foundation.framework */,
 				186540CD1BFC547800A32B2F /* MobileCoreServices.framework */,
@@ -3213,7 +3257,6 @@
 				18DEACFE1B9DBD17003CEA5E /* VIP2.png in Resources */,
 				18DEADCD1B9DD7ED003CEA5E /* menu_my_a.png in Resources */,
 				1885DCBA1BFB2EF5004F74DF /* LCLPeopleInfoMeetTableViewCell_2.xib in Resources */,
-				18E374371BA6A855006D431E /* test.mp4 in Resources */,
 				18DEACDD1B9DBD17003CEA5E /* date_type7.png in Resources */,
 				18D7E4CA1C033F8800AA3070 /* JSPatch.js in Resources */,
 				18DEAD061B9DBD17003CEA5E /* close@2x.png in Resources */,
@@ -3228,6 +3271,7 @@
 				18765B5C1BF478E5000721BD /* kr-video-player-shrinkscreen@3x.png in Resources */,
 				18DFDB8F1BB2E5E2008FA2F6 /* userInfoBg.jpg in Resources */,
 				18DEAD811B9DBFDA003CEA5E /* icon.png in Resources */,
+				18AC636F1C0D7ED3000C05E6 /* test.mp4 in Resources */,
 				18DFDB901BB2E5E2008FA2F6 /* delete.png in Resources */,
 				B58B15121B141F1F0019C822 /* lclChatZixun@2x.png in Resources */,
 				18765B511BF478E5000721BD /* kr-video-player-close@2x.png in Resources */,
@@ -3273,6 +3317,7 @@
 				18DEAD471B9DBD17003CEA5E /* gold@3x.png in Resources */,
 				18DEAD371B9DBD17003CEA5E /* VIP4_shop@2x.png in Resources */,
 				18DEAD291B9DBD17003CEA5E /* search_B@2x.png in Resources */,
+				18AC637F1C0D7F63000C05E6 /* share_wechatsession.png in Resources */,
 				18DEAD431B9DBD17003CEA5E /* date_type5@3x.png in Resources */,
 				180E2F0F1BC5452B002B721F /* pic_bg.png in Resources */,
 				18DEAD3C1B9DBD17003CEA5E /* date_B@3x.png in Resources */,
@@ -3287,11 +3332,13 @@
 				18DEACED1B9DBD17003CEA5E /* phone_ico.png in Resources */,
 				18FAB2CE1BA87C1700FD6143 /* LCLPeopleInfoViewController.xib in Resources */,
 				18765B591BF478E5000721BD /* kr-video-player-point@2x.png in Resources */,
+				18AC637D1C0D7F63000C05E6 /* share_platform_wechat@2x.png in Resources */,
 				18DA54031BA7055F00609D30 /* LCLMeetTypeView.xib in Resources */,
 				18EB29CF1BB595450040758B /* rsa_private_key.pkcs8 in Resources */,
 				18DEAD261B9DBD17003CEA5E /* publish_date_ico3@2x.png in Resources */,
 				18DEAD1D1B9DBD17003CEA5E /* map_point@2x.png in Resources */,
 				18DEAD251B9DBD17003CEA5E /* publish_date_ico2@2x.png in Resources */,
+				18AC637E1C0D7F63000C05E6 /* share_platform_wechattimeline@2x.png in Resources */,
 				B573BEA61B1B7133000A1196 /* LCLMeetingMineTableViewCell.xib in Resources */,
 				18FAB2AA1BA872E000FD6143 /* LCLMyPictureInfoViewController.xib in Resources */,
 				18D7E38B1C02E20C00AA3070 /* LCLMeetingMineTableViewCell_2.xib in Resources */,
@@ -3299,12 +3346,14 @@
 				18DEACF51B9DBD17003CEA5E /* search_B.png in Resources */,
 				18DEADCC1B9DD7ED003CEA5E /* menu_my_b@3x.png in Resources */,
 				18FAB2B61BA8775F00FD6143 /* LCLMyFocusTableViewCell.xib in Resources */,
+				18AC63811C0D8C39000C05E6 /* LCLPictureTableViewCell_2.xib in Resources */,
 				18DEACF41B9DBD17003CEA5E /* search_A.png in Resources */,
 				18DEAD4B1B9DBD17003CEA5E /* ico_edit@3x.png in Resources */,
 				18DEAD551B9DBD17003CEA5E /* phone_ico@3x.png in Resources */,
 				18DEAD561B9DBD17003CEA5E /* pic_num_bg@3x.png in Resources */,
 				18DEACDF1B9DBD17003CEA5E /* gold.png in Resources */,
 				B54042D61B1CA37400E9CCA5 /* LCLSearchViewController.xib in Resources */,
+				18AC637C1C0D7F63000C05E6 /* share_platform_sina@2x.png in Resources */,
 				18DEAD091B9DBD17003CEA5E /* date_ico@2x.png in Resources */,
 				18DEACE21B9DBD17003CEA5E /* home_ico.png in Resources */,
 				18EB29DF1BB595450040758B /* rsa_private_key.pem in Resources */,
@@ -3341,6 +3390,7 @@
 				B58B15161B1422AB0019C822 /* b_sanjiao@2x.png in Resources */,
 				18EB29581BB587000040758B /* LCLSelectAddressView.xib in Resources */,
 				18DEE9BB1B9F0BF6002BE929 /* LCLUnLoginView.xib in Resources */,
+				18AC637B1C0D7F63000C05E6 /* share_platform_qqfriends@2x.png in Resources */,
 				B570E5EF1B14D437007A07F4 /* smssdk.bundle in Resources */,
 				18DEAD7F1B9DBFDA003CEA5E /* icon_108_108.png in Resources */,
 				18DEAD7E1B9DBFDA003CEA5E /* icon_28_28.png in Resources */,
@@ -3364,6 +3414,7 @@
 				186540E01BFCAE9200A32B2F /* test.caf in Resources */,
 				18DEACEE1B9DBD17003CEA5E /* pic_num_bg.png in Resources */,
 				18DEADC21B9DD715003CEA5E /* menu_fruit_b.png in Resources */,
+				18AC63791C0D7F63000C05E6 /* share_platform_evernote@2x.png in Resources */,
 				18EFD4D21BAF09D200BA372D /* LCLSelectDateView.xib in Resources */,
 				1885DCB81BFB19E4004F74DF /* SelectedMapViewController.xib in Resources */,
 				18DEADC11B9DD715003CEA5E /* menu_fruit_a.png in Resources */,
@@ -3387,6 +3438,7 @@
 				18DEACEC1B9DBD17003CEA5E /* no_ico.png in Resources */,
 				18DEACF91B9DBD17003CEA5E /* title_message_a.png in Resources */,
 				18DEAD171B9DBD17003CEA5E /* ico_edit@2x.png in Resources */,
+				18AC63781C0D7F63000C05E6 /* share_platform_email@2x.png in Resources */,
 				18DEAD8D1B9DC1E6003CEA5E /* LCLForgetPassowrdViewController.xib in Resources */,
 				18DEACFA1B9DBD17003CEA5E /* title_message_b.png in Resources */,
 				18E5430B1BD9292F00FB462F /* LCLMyMeetDetailsTableViewCell.xib in Resources */,
@@ -3426,6 +3478,7 @@
 				18DEAD661B9DBD17003CEA5E /* VIP2@3x.png in Resources */,
 				18DFDB921BB2E5E2008FA2F6 /* im.png in Resources */,
 				18FAB2B01BA876E200FD6143 /* LCLMyFocusViewController.xib in Resources */,
+				18AC637A1C0D7F63000C05E6 /* share_platform_imessage@2x.png in Resources */,
 				18DFDB911BB2E5E2008FA2F6 /* error.png in Resources */,
 				186540BA1BFC263900A32B2F /* LCLShopTableViewCell_2.xib in Resources */,
 				18DEAD3E1B9DBD17003CEA5E /* date_info_ico@3x.png in Resources */,
@@ -3500,6 +3553,7 @@
 				18FAB2C11BA8796D00FD6143 /* LCLPayListAndMoneyListViewController.m in Sources */,
 				18765B961BF48EDD000721BD /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				18D7E4D11C033F8800AA3070 /* LCLBoundarySlipViewController.m in Sources */,
+				18AC636D1C0D7B6C000C05E6 /* HYActivityView.m in Sources */,
 				18E543041BD9275F00FB462F /* LCLMyMeetDetailsViewController.m in Sources */,
 				B52808301B64DF6C00A1B989 /* BaseWebViewController.m in Sources */,
 				B580641B1B161F95009C45C2 /* LCLARCImagePickerViewController.m in Sources */,

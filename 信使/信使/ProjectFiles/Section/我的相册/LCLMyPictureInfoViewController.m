@@ -43,8 +43,16 @@
     self.privateArray = [[NSMutableArray alloc] init];
 
     [self.segmentControl addTarget:self action:@selector(tabSegmentControl:) forControlEvents:UIControlEventValueChanged];
-
     self.isPublicPhotos = YES;
+    
+    if (self.isPublicPhotos==YES) {
+        self.alertLable.text=@"公开相册的相片，所有会员均可见";
+    }
+    else
+    {
+        self.alertLable.text=@"私密相册的相片，仅同级或更高级的VIP会员可见";
+
+    }
     
     @weakify(self);
     
@@ -53,7 +61,11 @@
         [self_weak_ getMyPhotos];
     }];
     
-    [self_weak_.tableView headerBeginRefreshing];}
+    [self_weak_.tableView headerBeginRefreshing];
+    setExtraCellLineHidden(self.tableView);
+
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -90,6 +102,14 @@
             
             [self getMyPhotos];
         }
+    }
+    if (self.isPublicPhotos==YES) {
+        self.alertLable.text=@"公开相册的相片，所有会员均可见";
+    }
+    else
+    {
+        self.alertLable.text=@"私密相册的相片，仅同级或更高级的VIP会员可见";
+        
     }
 }
 
@@ -289,8 +309,9 @@
     static NSString *CellIdentifier = @"homecell";
     
     LCLPictureTableViewCell  *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    NSArray *cellArr=[[NSBundle mainBundle]loadNibNamed:@"LCLPictureTableViewCell_2" owner:self options:nil];
     if (cell == nil){
-        cell = [LCLPictureTableViewCell loadXibView];
+        cell =[cellArr objectAtIndex:0];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     
@@ -329,10 +350,10 @@
     
 }
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
     
     
 }

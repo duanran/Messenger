@@ -90,7 +90,7 @@
             UIImagePickerController *imagePickerController=[[UIImagePickerController alloc] init];
             imagePickerController.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
             imagePickerController.delegate = self;
-            imagePickerController.allowsEditing = NO;
+            imagePickerController.allowsEditing = YES;
             imagePickerController.modalTransitionStyle=UIModalTransitionStyleCoverVertical;
             [viewController presentViewController:imagePickerController animated:YES completion:nil];
         }
@@ -100,7 +100,7 @@
             UIImagePickerController *imagePickerController=[[UIImagePickerController alloc] init];
             imagePickerController.sourceType=UIImagePickerControllerSourceTypeCamera;
             imagePickerController.delegate = self;
-            imagePickerController.allowsEditing = NO;
+            imagePickerController.allowsEditing = YES;
             imagePickerController.modalTransitionStyle=UIModalTransitionStyleCoverVertical;
             [viewController presentViewController:imagePickerController animated:YES completion:nil];
         }
@@ -149,6 +149,14 @@
             image=[info objectForKey:UIImagePickerControllerOriginalImage];//获取原始照片
         }
         
+        
+        
+        CGRect rect=CGRectMake(0, 0, 200, 200);
+        
+        [image drawInRect:rect];
+        
+        
+        
         self.lclBeginBlock();
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(){
@@ -191,7 +199,20 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
 
 }
-
+//截取图片
+-(UIImage*)getSubImage:(CGRect)rect OriImg:(CGImageRef)oriImg
+{
+    CGImageRef subImageRef = CGImageCreateWithImageInRect(oriImg, rect);
+    CGRect smallBounds = CGRectMake(0, 0, CGImageGetWidth(subImageRef), CGImageGetHeight(subImageRef));
+    
+    UIGraphicsBeginImageContext(smallBounds.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextDrawImage(context, smallBounds, subImageRef);
+    UIImage* smallImage = [UIImage imageWithCGImage:subImageRef];
+    UIGraphicsEndImageContext();
+    
+    return smallImage;
+}
 //视频保存后的回调
 - (void)video:(NSString *)videoPath didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
     if (error) {

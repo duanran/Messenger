@@ -20,13 +20,14 @@
 #import "LCLMyMovieViewController.h"
 #import "LCLPayListAndMoneyListViewController.h"
 #import "LCLPeopleInfoViewController.h"
-
-
 #import <SMS_SDK/SMSSDK+DeprecatedMethods.h>
 #import <SMS_SDK/SMSSDK.h>
 #import <SMS_SDK/SMSSDKAddressBook.h>
+#import <Social/Social.h>
+#import "HYActivityView.h"
+#import <MessageUI/MessageUI.h>
 
-@interface LCLMeViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface LCLMeViewController () <UITableViewDataSource, UITableViewDelegate,MFMailComposeViewControllerDelegate,MFMessageComposeViewControllerDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) LCLMeHeaderView *header;
@@ -34,6 +35,9 @@
 
 @property (strong, nonatomic) NSDictionary *myInfo;
 @property  (strong,nonatomic)NSString *shopOff;
+
+
+@property(strong,nonatomic)HYActivityView *hyActivityView;
 
 @end
 
@@ -50,7 +54,7 @@
     NSDictionary *dic = [[LCLCacheDefaults standardCacheDefaults] objectForCacheKey:UserInfoKey];
     NSString *shop_onoff=[NSString stringWithFormat:@"%@",[dic objectForKey:@"shop_onoff"]];
     self.shopOff=shop_onoff;
-    [self.navigationItem setTitle:@"个人"];
+    [self.navigationItem setTitle:@"我"];
     
     [self.view addSubview:self.tableView];
     
@@ -252,7 +256,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     if (section==0) {
-        return 2;
+        return 3;
     }else if (section==1){
         if ([self.shopOff integerValue]==1) {
             return 7;
@@ -306,8 +310,11 @@
 
             }
             //end
-        }else{
-            [cell.nameLabel setText:[NSString stringWithFormat:@"等级：%@", userObj.vip]];
+        }else if(indexPath.row==1){
+            
+            
+            NSString *vipTitle=[userObj.vipinfo objectForKey:@"title"];
+            [cell.nameLabel setText:[NSString stringWithFormat:@"等级：%@",vipTitle]];
             [cell.actionButton setTitle:@"账号升级" forState:UIControlStateNormal];
             // app review begin
             if ([self.shopOff integerValue]==1) {
@@ -321,11 +328,16 @@
             //end
 
         }
+        else
+        {
+            cell.nameLabel.text=@"邀请好友";
+            cell.actionButton.hidden=YES;
+        }
     }else if (indexPath.section==1){
         [cell.actionButton setHidden:YES];
         [cell.switchButton setHidden:YES];
         if (indexPath.row==0) {
-            [cell.nameLabel setText:@"相册"];
+            [cell.nameLabel setText:@"我的相册"];
         }else if(indexPath.row==1){
             [cell.nameLabel setText:@"我的资料"];
         }else if(indexPath.row==2){
@@ -428,19 +440,165 @@
     
     return cell;
 }
+#pragma mark-系统自带分享功能
+-(void)share
+{
+   
+//        // 首先判断新浪分享是否可用
+//        if (![SLComposeViewController isAvailableForServiceType:SLServiceTypeSinaWeibo]) {
+//            return;
+//        }
+//        // 创建控制器，并设置ServiceType
+//        SLComposeViewController *composeVC = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeSinaWeibo];
+//        // 添加要分享的图片
+////        [composeVC addImage:[UIImage imageNamed:@"Snip20150429_9"]];
+//        // 添加要分享的文字
+//        [composeVC setInitialText:@"非你FILLE能让你随心所欲，快来体验吧! Fille can let you follow one's inclinations and solve your needs in time."];
+//        // 添加要分享的url
+////        [composeVC addURL:[NSURL URLWithString:@"http://blog.csdn.net/u011058732"]];
+//        // 弹出分享控制器
+//        [self presentViewController:composeVC animated:YES completion:nil];
+//        // 监听用户点击事件
+//        composeVC.completionHandler = ^(SLComposeViewControllerResult result){
+//            if (result == SLComposeViewControllerResultDone) {
+//                NSLog(@"点击了发送");
+//            }
+//            else if (result == SLComposeViewControllerResultCancelled)
+//            {
+//                NSLog(@"点击了取消");
+//            }
+//        };
+    
+    
+    if (!self.hyActivityView) {
+        self.hyActivityView=[[HYActivityView alloc]initWithTitle:@"分享到" referView:self.view];
+        
+        ButtonView *bv=[[ButtonView alloc]initWithText:@"Email" image:[UIImage imageNamed:@"share_platform_email"] handler:^(ButtonView *buttonView) {
+            NSLog(@"你点击了邮件分享");
+            [self shareEmail];
+        }];
+        [self.hyActivityView addButtonView:bv];
+        
+        bv=[[ButtonView alloc]initWithText:@"短信" image:[UIImage imageNamed:@"share_platform_email" ] handler:^(ButtonView *buttonView) {
+            NSLog(@"你点击了短信分享");
+            [self shareSMS];
+            
+            
+        }];
+        [self.hyActivityView addButtonView:bv];
+        
+        bv=[[ButtonView alloc]initWithText:@"系统自带" image:[UIImage imageNamed:@"share_platform_email"] handler:^(ButtonView *buttonView) {
+            NSLog(@"你点击系统自带分享");
+            [self shareSystem];
+        }];
+        [self.hyActivityView addButtonView:bv];
+        
+       
+    }
+    [self.hyActivityView show];
+}
+#pragma mark
+#pragma mark -邮件分享-
+//1.导入框架<MessageUI/MessageUI.h>
+//2.加入MFMailComposeViewControllerDelegate
+-(void)shareEmail{
+    Class mailClass=(NSClassFromString(@"MFMailComposeViewController"));
+    if (mailClass!=nil) {
+        if ([mailClass canSendMail]) {
+            MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
+            picker.mailComposeDelegate=self;
+            [picker setSubject:@"非你"];
+            [picker setMessageBody:@"非你FILLE能让你随心所欲，快来体验吧! Fille can let you follow one's inclinations and solve your needs in time."isHTML:NO];
+            [self presentViewController:picker animated:YES completion:nil];
+        }
+    }else{
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"该设备不支持邮件分享" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
+    }
+}
+#pragma mark -<MFMailComposeViewControllerDelegate>-
+-(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
+    
+    // NSLog(@"%@",error);
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+
+#pragma mark-
+#pragma mark -短信分享
+//1.导入框架<MessageUI/MessageUI.h>
+//2.加入MFMessageComposeViewControllerDelegate
+
+-(void)shareSMS{
+    Class messageClass=(NSClassFromString(@"MFMessageComposeViewController"));
+    if (messageClass!=nil) {
+        if ([messageClass canSendText]) {
+            MFMessageComposeViewController *picker=[[MFMessageComposeViewController alloc]init];
+            picker.messageComposeDelegate=self;
+            picker.body=@"非你FILLE能让你随心所欲，快来体验吧! Fille can let you follow one's inclinations and solve your needs in time.";
+            [self presentViewController:picker animated:YES completion:nil];
+        }
+        else{
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"该设备不支持短信分享" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
+        }
+    }
+}
+-(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark
+#pragma mark -系统自带分享
+//1.导入框架 <Social/Social.h>
+//SLServiceTypeTencentWeibo 腾讯微博
+//SLServiceTypeSinaWeibo 新浪微博
+//SLServiceTypeTwitter twitter
+//SLServiceTypeFacebook facebook
+//SLServiceTypeLinkedIn
+
+-(void)shareSystem{
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeSinaWeibo]) {
+        
+        SLComposeViewController *slVc=[SLComposeViewController composeViewControllerForServiceType:SLServiceTypeSinaWeibo];
+        SLComposeViewControllerCompletionHandler myBlock=^(SLComposeViewControllerResult result){
+            if (result==SLComposeViewControllerResultDone) {
+                NSLog(@"done");
+            }
+            else{
+                NSLog(@"else");
+            }
+            [slVc dismissViewControllerAnimated:YES completion:nil];
+        };
+        slVc.completionHandler=myBlock;
+        [slVc setInitialText:@"分享内容"];
+        [slVc addImage:[UIImage imageNamed:@"share_platform_qqfriends@2x.png"]];
+        [slVc addURL:[NSURL URLWithString:@"http://www.sina.com"]];
+        [self presentViewController:slVc animated:YES completion:nil];
+    }
+    else{
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"您还未绑定新浪微博,请到设置里面绑定" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
+    }
+    
+}
+
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-
-
-    
-    
     if (indexPath.section==0) {
         // app review begin
-        if ([self.shopOff integerValue]==1) {
-            [self.tabBarController setSelectedIndex:3];
+        if(indexPath.row==2)
+        {
+            [self share];
+        }
+        else  {
+            if ([self.shopOff integerValue]==1) {
+                [self.tabBarController setSelectedIndex:3];
+            }
         }
         //end
     }
@@ -536,8 +694,8 @@
                 self_weak_.myInfo = [dataSourceDic objectForKey:@"info"];
                 
                 LCLUserInfoObject *uObj = [LCLUserInfoObject allocModelWithDictionary:self_weak_.myInfo];
-                [self_weak_.header.idLabel setText:[NSString stringWithFormat:@"ID:%@", userObj.uid]];
-                [self_weak_.header.nameLabel setText:userObj.nickname];
+                [self_weak_.header.idLabel setText:[NSString stringWithFormat:@"ID:%@", uObj.uid]];
+                [self_weak_.header.nameLabel setText:uObj.nickname];
                 
                 [self_weak_.header.headButton setBackgroundImageWithURL:[self_weak_.myInfo objectForKey:@"headimg"] defaultImagePath:DefaultImagePath];
                 

@@ -65,9 +65,11 @@
 - (void)setCategoryDic:(NSDictionary *)categoryDic buttonTag:(NSInteger)buttonTag i:(int)i{
 
     LCLPhotoObject *photoObj = [LCLPhotoObject allocModelWithDictionary:categoryDic];
-    
-    NSString *url = photoObj.path;
-    
+    NSLog(@"categoryDic=%@",categoryDic);
+//    NSString *url = photoObj.path;
+    NSString *url = photoObj.thumb_360;
+
+    NSString *status=[categoryDic objectForKey:@"status"];
     [self.addButton setTag:buttonTag];
     [self.addButton setHidden:YES];
 
@@ -75,7 +77,19 @@
         case 0:
             [self.oneButton setTag:buttonTag];
             if (categoryDic && categoryDic.count>0) {
+                
                 [self.oneButton setImageWithURL:url defaultImagePath:DefaultImagePath];
+                if ([status isEqualToString:@"2"]) {
+                    UILabel *waitReViewLabel=[[UILabel alloc]init];
+                    [waitReViewLabel setFrame:CGRectMake(2, self.oneButton.frame.size.height/2-10, self.oneButton.frame.size.width-4, 20)];
+                    waitReViewLabel.textColor=[UIColor whiteColor];
+                    waitReViewLabel.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+                    waitReViewLabel.text=@"待审核";
+                    waitReViewLabel.font=[UIFont systemFontOfSize:14];
+                    waitReViewLabel.textAlignment=NSTextAlignmentCenter;
+                    [self.oneButton addSubview:waitReViewLabel];
+                }
+                
             }else{
                 [self.oneButton setHidden:YES];
                 [self.addButton setHidden:NO];
@@ -85,7 +99,19 @@
         case 1:
             [self.twoButton setTag:buttonTag];
             if (categoryDic && categoryDic.count>0) {
+                
                 [self.twoButton setImageWithURL:url defaultImagePath:DefaultImagePath];
+                if ([status isEqualToString:@"2"]) {
+                    UILabel *waitReViewLabel=[[UILabel alloc]init];
+                    [waitReViewLabel setFrame:CGRectMake(2, self.oneButton.frame.size.height/2-10, self.oneButton.frame.size.width-4, 20)];
+                    waitReViewLabel.textColor=[UIColor whiteColor];
+                    waitReViewLabel.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+                    waitReViewLabel.text=@"待审核";
+                    waitReViewLabel.textAlignment=NSTextAlignmentCenter;
+                    waitReViewLabel.font=[UIFont systemFontOfSize:14];
+                    [self.twoButton addSubview:waitReViewLabel];
+                }
+
             }else{
                 [self.twoButton setHidden:YES];
                 if (!self.oneButton.isHidden) {
@@ -98,6 +124,17 @@
             [self.threeButton setTag:buttonTag];
             if (categoryDic && categoryDic.count>0) {
                 [self.threeButton setImageWithURL:url defaultImagePath:DefaultImagePath];
+                if ([status isEqualToString:@"2"]) {
+                    UILabel *waitReViewLabel=[[UILabel alloc]init];
+                    [waitReViewLabel setFrame:CGRectMake(2,self.oneButton.frame.size.height/2-10, self.oneButton.frame.size.width-4, 20)];
+                    waitReViewLabel.textColor=[UIColor whiteColor];
+                    waitReViewLabel.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+                    waitReViewLabel.text=@"待审核";
+                    waitReViewLabel.textAlignment=NSTextAlignmentCenter;
+                    waitReViewLabel.font=[UIFont systemFontOfSize:14];
+                    [self.threeButton addSubview:waitReViewLabel];
+                }
+
             }else{
                 [self.threeButton setHidden:YES];
                 if (!self.twoButton.isHidden) {

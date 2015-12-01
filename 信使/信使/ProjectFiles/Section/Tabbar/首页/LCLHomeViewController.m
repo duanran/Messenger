@@ -142,11 +142,18 @@
         NSDictionary *dataSourceDic = (NSDictionary *)reponseObject;
         if (dataSourceDic) {
             self_weak_.dataArray = [[NSMutableArray alloc] initWithArray:[dataSourceDic objectForKey:@"list"]];
+            self.page = 1;
+
             [self_weak_.tableView reloadData];
         }
 
     } failureCallback:^(NSString *errorMessage) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
+
+        self.dataArray=0;
+        self.page = 1;
+
+        [self_weak_.tableView reloadData];
 
         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:errorMessage delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
         [alert show];

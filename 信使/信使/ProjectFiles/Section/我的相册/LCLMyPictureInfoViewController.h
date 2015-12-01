@@ -11,5 +11,5 @@
 @interface LCLMyPictureInfoViewController : BaseViewController
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
-
+@property (nonatomic,strong)IBOutlet UILabel *alertLable;
 @end

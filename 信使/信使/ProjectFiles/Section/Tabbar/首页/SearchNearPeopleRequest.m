@@ -10,7 +10,7 @@
 
 @implementation SearchNearPeopleRequest
 - (NSString *)requestURL{
-    NSString *url=[NSString stringWithFormat:@"%@/ukey/%@?num=30&page=1&lon=%@&lat=%@",[RequestURL urlWithTpye:URLTypeSearchNearPeople],self.ukey,self.lon,self.lat];
+    NSString *url=[NSString stringWithFormat:@"%@/ukey/%@?near=1&num=30&page=1&lon=%@&lat=%@",[RequestURL urlWithTpye:URLTypeSearchNearPeople],self.ukey,self.lon,self.lat];
     return url;
 }
 @end
