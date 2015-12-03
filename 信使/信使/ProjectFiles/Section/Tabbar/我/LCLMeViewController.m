@@ -26,6 +26,8 @@
 #import <Social/Social.h>
 #import "HYActivityView.h"
 #import <MessageUI/MessageUI.h>
+#import "UserInstrunctionViewController.h"
+#import "SetingAppPasswordViewController.h"
 
 @interface LCLMeViewController () <UITableViewDataSource, UITableViewDelegate,MFMailComposeViewControllerDelegate,MFMessageComposeViewControllerDelegate>
 
@@ -267,14 +269,17 @@
         }
         
     }
-    
-    if ([self.shopOff integerValue]==1) {
-        return 6;
-    }
     else
     {
-        return 2;
+        if ([self.shopOff integerValue]==1) {
+            return 8;
+        }
+        else
+        {
+            return 2;
+        }
     }
+    
     
 }
 
@@ -403,7 +408,21 @@
                 [cell.switchButton setHidden:NO];
                 [cell.actionButton setHidden:YES];
                 [cell.nameLabel setText:@"振动开关"];
-            }else if(indexPath.row==5){
+            }
+            else if (indexPath.row==5)
+            {
+                [cell.actionButton setHidden:YES];
+                [cell.switchButton setHidden:YES];
+                cell.nameLabel.text=@"版本更新";
+                
+            }
+            else if(indexPath.row==6)
+            {
+                [cell.actionButton setHidden:YES];
+                [cell.switchButton setHidden:YES];
+                cell.nameLabel.text=@"用户须知";
+            }
+            else if(indexPath.row==7){
                 [cell.arrowImageView setHidden:NO];
                 [cell.actionButton setHidden:YES];
                 [cell.nameLabel setText:@"VIP通道（建设中）"];
@@ -654,6 +673,25 @@
             [myFocus setIsPayList:YES];
             [myFocus setHidesBottomBarWhenPushed:YES];
             [self.navigationController pushViewController:myFocus animated:YES];
+        }
+    }
+    else
+    {
+        
+        
+        if (indexPath.row==0) {
+            SetingAppPasswordViewController *passwordVC=[[SetingAppPasswordViewController alloc]init];
+            [self.navigationController pushViewController:passwordVC animated:YES];
+        }
+        else if (indexPath.row==5) {
+            
+        }
+        else if(indexPath.row==6)
+        {
+            UserInstrunctionViewController *instructionController=[[UserInstrunctionViewController alloc]init];
+            instructionController.urlStr=UserInstrunctions;
+            [self.navigationController pushViewController:instructionController animated:YES];
+            
         }
     }
     

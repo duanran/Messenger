@@ -88,9 +88,7 @@
                 
                 
                 for (UIView *view in [self_weak_.publicView subviews]) {
-                    
-                    NSLog(@"view=%@",view);
-                    
+                                        
                     if ([view isKindOfClass:[LCLSelectPicView class]]) {
                         [view removeFromSuperview];
                     }

@@ -113,6 +113,10 @@
 		18AC637E1C0D7F63000C05E6 /* share_platform_wechattimeline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AC63761C0D7F63000C05E6 /* share_platform_wechattimeline@2x.png */; };
 		18AC637F1C0D7F63000C05E6 /* share_wechatsession.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AC63771C0D7F63000C05E6 /* share_wechatsession.png */; };
 		18AC63811C0D8C39000C05E6 /* LCLPictureTableViewCell_2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18AC63801C0D8C39000C05E6 /* LCLPictureTableViewCell_2.xib */; };
+		18AC63891C0EBF94000C05E6 /* UserInstrunctionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AC63871C0EBF94000C05E6 /* UserInstrunctionViewController.m */; };
+		18AC638A1C0EBF94000C05E6 /* UserInstrunctionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18AC63881C0EBF94000C05E6 /* UserInstrunctionViewController.xib */; };
+		18AC638E1C0FE646000C05E6 /* SetingAppPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AC638C1C0FE646000C05E6 /* SetingAppPasswordViewController.m */; };
+		18AC638F1C0FE646000C05E6 /* SetingAppPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18AC638D1C0FE646000C05E6 /* SetingAppPasswordViewController.xib */; };
 		18D7E38B1C02E20C00AA3070 /* LCLMeetingMineTableViewCell_2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D7E38A1C02E20C00AA3070 /* LCLMeetingMineTableViewCell_2.xib */; };
 		18D7E4B41C033F8800AA3070 /* LCLBaseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7E46C1C033F8800AA3070 /* LCLBaseOperation.m */; };
 		18D7E4B51C033F8800AA3070 /* LCLFilePathHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7E46F1C033F8800AA3070 /* LCLFilePathHelper.m */; };
@@ -720,6 +724,12 @@
 		18AC63761C0D7F63000C05E6 /* share_platform_wechattimeline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "share_platform_wechattimeline@2x.png"; path = "../../../../../Desktop/分享/分享/images/share_platform_wechattimeline@2x.png"; sourceTree = "<group>"; };
 		18AC63771C0D7F63000C05E6 /* share_wechatsession.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = share_wechatsession.png; path = "../../../../../Desktop/分享/分享/images/share_wechatsession.png"; sourceTree = "<group>"; };
 		18AC63801C0D8C39000C05E6 /* LCLPictureTableViewCell_2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LCLPictureTableViewCell_2.xib; sourceTree = "<group>"; };
+		18AC63861C0EBF94000C05E6 /* UserInstrunctionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInstrunctionViewController.h; sourceTree = "<group>"; };
+		18AC63871C0EBF94000C05E6 /* UserInstrunctionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInstrunctionViewController.m; sourceTree = "<group>"; };
+		18AC63881C0EBF94000C05E6 /* UserInstrunctionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInstrunctionViewController.xib; sourceTree = "<group>"; };
+		18AC638B1C0FE646000C05E6 /* SetingAppPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetingAppPasswordViewController.h; sourceTree = "<group>"; };
+		18AC638C1C0FE646000C05E6 /* SetingAppPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetingAppPasswordViewController.m; sourceTree = "<group>"; };
+		18AC638D1C0FE646000C05E6 /* SetingAppPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetingAppPasswordViewController.xib; sourceTree = "<group>"; };
 		18D7E38A1C02E20C00AA3070 /* LCLMeetingMineTableViewCell_2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LCLMeetingMineTableViewCell_2.xib; sourceTree = "<group>"; };
 		18D7E46B1C033F8800AA3070 /* LCLBaseOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCLBaseOperation.h; sourceTree = "<group>"; };
 		18D7E46C1C033F8800AA3070 /* LCLBaseOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCLBaseOperation.m; sourceTree = "<group>"; };
@@ -3067,6 +3077,12 @@
 				B58B15011B141A4E0019C822 /* LCLMeViewController.m */,
 				182078B71C0592E000F80DFF /* SaveVideoRequest.h */,
 				182078B81C0592E000F80DFF /* SaveVideoRequest.m */,
+				18AC63861C0EBF94000C05E6 /* UserInstrunctionViewController.h */,
+				18AC63871C0EBF94000C05E6 /* UserInstrunctionViewController.m */,
+				18AC63881C0EBF94000C05E6 /* UserInstrunctionViewController.xib */,
+				18AC638B1C0FE646000C05E6 /* SetingAppPasswordViewController.h */,
+				18AC638C1C0FE646000C05E6 /* SetingAppPasswordViewController.m */,
+				18AC638D1C0FE646000C05E6 /* SetingAppPasswordViewController.xib */,
 			);
 			path = "我";
 			sourceTree = "<group>";
@@ -3414,6 +3430,7 @@
 				186540E01BFCAE9200A32B2F /* test.caf in Resources */,
 				18DEACEE1B9DBD17003CEA5E /* pic_num_bg.png in Resources */,
 				18DEADC21B9DD715003CEA5E /* menu_fruit_b.png in Resources */,
+				18AC638F1C0FE646000C05E6 /* SetingAppPasswordViewController.xib in Resources */,
 				18AC63791C0D7F63000C05E6 /* share_platform_evernote@2x.png in Resources */,
 				18EFD4D21BAF09D200BA372D /* LCLSelectDateView.xib in Resources */,
 				1885DCB81BFB19E4004F74DF /* SelectedMapViewController.xib in Resources */,
@@ -3430,6 +3447,7 @@
 				18DEACF81B9DBD17003CEA5E /* thaw_ico.png in Resources */,
 				18DEAD451B9DBD17003CEA5E /* date_type7@3x.png in Resources */,
 				18765B571BF478E5000721BD /* kr-video-player-play@2x.png in Resources */,
+				18AC638A1C0EBF94000C05E6 /* UserInstrunctionViewController.xib in Resources */,
 				18DEAD5D1B9DBD17003CEA5E /* search_B@3x.png in Resources */,
 				B58B14AA1B1407270019C822 /* Default-568h@2x.png in Resources */,
 				18DEADC01B9DD715003CEA5E /* menu_fruit_b@3x.png in Resources */,
@@ -3664,6 +3682,7 @@
 				180E2F4F1BC548A7002B721F /* MJPhotoToolbar.m in Sources */,
 				180E2F571BC548A7002B721F /* SDWebImageDownloaderOperation.m in Sources */,
 				B58064171B161F95009C45C2 /* LCLARCPicManager.m in Sources */,
+				18AC638E1C0FE646000C05E6 /* SetingAppPasswordViewController.m in Sources */,
 				18FAB29F1BA86F7F00FD6143 /* LCLEditMyInfoViewController.m in Sources */,
 				18765B8E1BF48EDD000721BD /* AFHTTPSessionManager.m in Sources */,
 				18EB29D71BB595450040758B /* base64.m in Sources */,
@@ -3680,6 +3699,7 @@
 				18D7E4BB1C033F8800AA3070 /* NSString+Crypt.m in Sources */,
 				18D7E4C11C033F8800AA3070 /* UITabBar+Badge.m in Sources */,
 				B54042E51B1CA8E900E9CCA5 /* LCLShopHeader.m in Sources */,
+				18AC63891C0EBF94000C05E6 /* UserInstrunctionViewController.m in Sources */,
 				18765B8D1BF48EDD000721BD /* AFHTTPRequestOperationManager.m in Sources */,
 				18EB29D81BB595450040758B /* DataSigner.m in Sources */,
 				18D7E4BC1C033F8800AA3070 /* NSTimer+Utils.m in Sources */,

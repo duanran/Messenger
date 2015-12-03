@@ -108,7 +108,8 @@
 #define DeletePicturURL(uKey, pid) [NSString stringWithFormat:@"%@%@/User/delAlbum/ukey/%@/id/%@", XSURL, APIFolder, uKey, pid]
 //约会详情
 #define MeetDetailsURL(uKey, mid) [NSString stringWithFormat:@"%@%@/Date/dateSignList/ukey/%@/id/%@", XSURL, APIFolder, uKey, mid]
-
+//用户须知
+#define UserInstrunctions [NSString stringWithFormat:@"%@%@/Msg/knows", XSURL, APIFolder]
 
 
 

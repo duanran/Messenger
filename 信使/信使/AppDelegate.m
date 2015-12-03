@@ -193,7 +193,25 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    NSDictionary *dic = [[LCLCacheDefaults standardCacheDefaults] objectForCacheKey:UserInfoKey];
+    NSString *mobile = [dic objectForKey:@"mobile"];
+    NSUserDefaults *userDefault=[NSUserDefaults standardUserDefaults];
+    
+    NSArray *safePasswordArr=[userDefault objectForKey:@"safePassword"];
+    NSMutableArray *arr=[NSMutableArray arrayWithArray:safePasswordArr];
+    
+    for (int i=0; i<safePasswordArr.count; i++) {
+        NSMutableDictionary *storeUserDic=(NSMutableDictionary *)[safePasswordArr objectAtIndex:i];
+        NSString *userName=[storeUserDic objectForKey:@"userName"];
+        if ([userName isEqualToString:mobile]) {
+            NSString *password=[NSString stringWithFormat:@"%@",[storeUserDic objectForKey:@"password"]];
+            if ([password length]>0) {
+                 [[NSNotificationCenter defaultCenter]postNotificationName:activePassword object:nil];
+                break;
+            }
+        }
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

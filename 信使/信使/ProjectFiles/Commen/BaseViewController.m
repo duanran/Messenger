@@ -54,9 +54,16 @@
     
     [self setNavBarBackgroundImage];
     
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showActivePasswordController) name:activePassword object:nil];
+    
     if (self.canShowNavBackItem) {
         [self setNavBackButtonItem];
     }
+}
+-(void)showActivePasswordController
+{
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -207,8 +214,6 @@
     LCLUserInfoObject *myObj = [LCLUserInfoObject allocModelWithDictionary:myInfo];
     
     NSString *listURL = [NSString stringWithFormat:@"%@", LookUserPhotosURL(myObj.ukey, uid)];
-    
-    
     
     
     LCLDownloader *downloader = [[LCLDownloader alloc] initWithURLString:listURL];
