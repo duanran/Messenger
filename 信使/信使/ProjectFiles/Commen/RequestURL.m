@@ -24,9 +24,8 @@
                           Number(URLTypeComplainDate)           :@"/index.php/Api/Date/tousu",
                           Number(URLTypeCancelComplain)         :@"/index.php/Api/Date/deltousu",
                           Number(URLTypeSearchNearPeople)       :@"/index.php/Api/Date/lists",
-                          Number(URLTypeRechargeRecord):@"/index.php/Api/User/pay_coin_list/"
-                          
-                          
+                          Number(URLTypeRechargeRecord):@"/index.php/Api/User/pay_coin_list",
+                          Number(URLTypeConsumeRecord):@"/index.php/Api/User/countList"
                           };
     }
     NSString *urlString = [urlDictionary objectForKey:Number(urltype)];

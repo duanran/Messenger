@@ -37,7 +37,6 @@
     self.moneyLabel.layer.borderColor=[[UIColor grayColor]CGColor];
     self.moneyLabel.layer.borderWidth=1.0;
     
-    
     self.DateField.backgroundColor=[UIColor clearColor];
     self.DateField.inputView=self.datePicker;
     self.DateField.inputAccessoryView = self.accessoryView;

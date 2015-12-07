@@ -29,6 +29,7 @@
 #import "UserInstrunctionViewController.h"
 #import "SetingAppPasswordViewController.h"
 #import "RechargeRecordViewController.h"
+#import "ConsumeViewController.h"
 @interface LCLMeViewController () <UITableViewDataSource, UITableViewDelegate,MFMailComposeViewControllerDelegate,MFMessageComposeViewControllerDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
@@ -679,11 +680,15 @@
         }
         else if(indexPath.row==6){
 
-            LCLPayListAndMoneyListViewController *myFocus = [[LCLPayListAndMoneyListViewController alloc] initWithNibName:@"LCLPayListAndMoneyListViewController" bundle:nil];
-            [myFocus setTitle:@"消费记录"];
-            [myFocus setIsPayList:YES];
-            [myFocus setHidesBottomBarWhenPushed:YES];
-            [self.navigationController pushViewController:myFocus animated:YES];
+            ConsumeViewController *consume=[[ConsumeViewController alloc]init];
+            [consume setTitle:@"消费记录"];
+            [consume setHidesBottomBarWhenPushed:YES];
+            [self.navigationController pushViewController:consume animated:YES];
+//            LCLPayListAndMoneyListViewController *myFocus = [[LCLPayListAndMoneyListViewController alloc] initWithNibName:@"LCLPayListAndMoneyListViewController" bundle:nil];
+//            [myFocus setTitle:@"消费记录"];
+//            [myFocus setIsPayList:YES];
+//            [myFocus setHidesBottomBarWhenPushed:YES];
+//            [self.navigationController pushViewController:myFocus animated:YES];
         }
     }
     else

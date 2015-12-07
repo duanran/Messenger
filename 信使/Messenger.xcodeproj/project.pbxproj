@@ -92,6 +92,11 @@
 		1885DCB71BFB19E4004F74DF /* SelectedMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1885DCB51BFB19E4004F74DF /* SelectedMapViewController.m */; };
 		1885DCB81BFB19E4004F74DF /* SelectedMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1885DCB61BFB19E4004F74DF /* SelectedMapViewController.xib */; };
 		1885DCBA1BFB2EF5004F74DF /* LCLPeopleInfoMeetTableViewCell_2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1885DCB91BFB2EF5004F74DF /* LCLPeopleInfoMeetTableViewCell_2.xib */; };
+		18A253CD1C15682F0090C756 /* ConsumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A253CB1C15682F0090C756 /* ConsumeViewController.m */; };
+		18A253CE1C15682F0090C756 /* ConsumeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A253CC1C15682F0090C756 /* ConsumeViewController.xib */; };
+		18A253D11C156C370090C756 /* ConsumeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A253D01C156C370090C756 /* ConsumeRequest.m */; };
+		18A253D51C156DE10090C756 /* ConsumeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A253D31C156DE10090C756 /* ConsumeTableViewCell.m */; };
+		18A253D61C156DE10090C756 /* ConsumeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A253D41C156DE10090C756 /* ConsumeTableViewCell.xib */; };
 		18A4C5541BF0CDE6001755DE /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A4C5531BF0CDE6001755DE /* libstdc++.tbd */; };
 		18A4C5561BF0CE09001755DE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A4C5551BF0CE09001755DE /* JavaScriptCore.framework */; };
 		18A4C5581BF0CE52001755DE /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A4C5571BF0CE52001755DE /* libsqlite3.0.tbd */; };
@@ -709,6 +714,14 @@
 		1885DCB51BFB19E4004F74DF /* SelectedMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectedMapViewController.m; sourceTree = "<group>"; };
 		1885DCB61BFB19E4004F74DF /* SelectedMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectedMapViewController.xib; sourceTree = "<group>"; };
 		1885DCB91BFB2EF5004F74DF /* LCLPeopleInfoMeetTableViewCell_2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LCLPeopleInfoMeetTableViewCell_2.xib; sourceTree = "<group>"; };
+		18A253CA1C15682F0090C756 /* ConsumeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsumeViewController.h; sourceTree = "<group>"; };
+		18A253CB1C15682F0090C756 /* ConsumeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsumeViewController.m; sourceTree = "<group>"; };
+		18A253CC1C15682F0090C756 /* ConsumeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsumeViewController.xib; sourceTree = "<group>"; };
+		18A253CF1C156C370090C756 /* ConsumeRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsumeRequest.h; sourceTree = "<group>"; };
+		18A253D01C156C370090C756 /* ConsumeRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsumeRequest.m; sourceTree = "<group>"; };
+		18A253D21C156DE10090C756 /* ConsumeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsumeTableViewCell.h; sourceTree = "<group>"; };
+		18A253D31C156DE10090C756 /* ConsumeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsumeTableViewCell.m; sourceTree = "<group>"; };
+		18A253D41C156DE10090C756 /* ConsumeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsumeTableViewCell.xib; sourceTree = "<group>"; };
 		18A4C5531BF0CDE6001755DE /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		18A4C5551BF0CE09001755DE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		18A4C5571BF0CE52001755DE /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
@@ -2570,6 +2583,9 @@
 				18AC639A1C11836F000C05E6 /* RechargeRecordTableViewCell.h */,
 				18AC639B1C11836F000C05E6 /* RechargeRecordTableViewCell.m */,
 				18AC639C1C11836F000C05E6 /* RechargeRecordTableViewCell.xib */,
+				18A253D21C156DE10090C756 /* ConsumeTableViewCell.h */,
+				18A253D31C156DE10090C756 /* ConsumeTableViewCell.m */,
+				18A253D41C156DE10090C756 /* ConsumeTableViewCell.xib */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -3112,6 +3128,11 @@
 				18AC63971C117A1F000C05E6 /* RechargeRecordViewController.xib */,
 				18AC639F1C11879A000C05E6 /* RechargeRequest.h */,
 				18AC63A01C11879A000C05E6 /* RechargeRequest.m */,
+				18A253CA1C15682F0090C756 /* ConsumeViewController.h */,
+				18A253CB1C15682F0090C756 /* ConsumeViewController.m */,
+				18A253CC1C15682F0090C756 /* ConsumeViewController.xib */,
+				18A253CF1C156C370090C756 /* ConsumeRequest.h */,
+				18A253D01C156C370090C756 /* ConsumeRequest.m */,
 			);
 			path = "我";
 			sourceTree = "<group>";
@@ -3430,6 +3451,7 @@
 				18DEAD341B9DBD17003CEA5E /* VIP3@2x.png in Resources */,
 				18DEAD101B9DBD17003CEA5E /* date_type6@2x.png in Resources */,
 				18DEAD151B9DBD17003CEA5E /* home_B@2x.png in Resources */,
+				18A253D61C156DE10090C756 /* ConsumeTableViewCell.xib in Resources */,
 				18DEAD421B9DBD17003CEA5E /* date_type4@3x.png in Resources */,
 				18DEAD381B9DBD17003CEA5E /* Check_no@3x.png in Resources */,
 				18DEAD651B9DBD17003CEA5E /* VIP1_shop@3x.png in Resources */,
@@ -3447,6 +3469,7 @@
 				18DEAD041B9DBD17003CEA5E /* Check_no@2x.png in Resources */,
 				B570E6201B14D78E007A07F4 /* LaunchScreen.xib in Resources */,
 				18DEACD61B9DBD17003CEA5E /* date_info_ico.png in Resources */,
+				18A253CE1C15682F0090C756 /* ConsumeViewController.xib in Resources */,
 				18DEAD301B9DBD17003CEA5E /* VIP1@2x.png in Resources */,
 				18DEAD571B9DBD17003CEA5E /* plus@3x.png in Resources */,
 				18DEAD801B9DBFDA003CEA5E /* icon_512_512.png in Resources */,
@@ -3713,6 +3736,7 @@
 				18EB29DD1BB595450040758B /* RSADataSigner.m in Sources */,
 				180E2F511BC548A7002B721F /* MKAnnotationView+WebCache.m in Sources */,
 				182078B41C0415B100F80DFF /* ComplainRequest.m in Sources */,
+				18A253CD1C15682F0090C756 /* ConsumeViewController.m in Sources */,
 				18765B8C1BF48EDD000721BD /* AFHTTPRequestOperation.m in Sources */,
 				180E2F4F1BC548A7002B721F /* MJPhotoToolbar.m in Sources */,
 				180E2F571BC548A7002B721F /* SDWebImageDownloaderOperation.m in Sources */,
@@ -3725,6 +3749,7 @@
 				18DEAD8C1B9DC1E6003CEA5E /* LCLForgetPassowrdViewController.m in Sources */,
 				18765B9B1BF48EDD000721BD /* UIRefreshControl+AFNetworking.m in Sources */,
 				180E2F541BC548A7002B721F /* SDWebImageCompat.m in Sources */,
+				18A253D51C156DE10090C756 /* ConsumeTableViewCell.m in Sources */,
 				18D7E4C81C033F8800AA3070 /* JPEngine.m in Sources */,
 				B58B14C61B140C4B0019C822 /* LCLTapMenuView.m in Sources */,
 				18765B5E1BF478E5000721BD /* KrVideoPlayerControlView.m in Sources */,
@@ -3736,6 +3761,7 @@
 				B54042E51B1CA8E900E9CCA5 /* LCLShopHeader.m in Sources */,
 				18AC63891C0EBF94000C05E6 /* UserInstrunctionViewController.m in Sources */,
 				18765B8D1BF48EDD000721BD /* AFHTTPRequestOperationManager.m in Sources */,
+				18A253D11C156C370090C756 /* ConsumeRequest.m in Sources */,
 				18EB29D81BB595450040758B /* DataSigner.m in Sources */,
 				18D7E4BC1C033F8800AA3070 /* NSTimer+Utils.m in Sources */,
 				18DEE9B51B9F048C002BE929 /* UIView+EmptyData.m in Sources */,
