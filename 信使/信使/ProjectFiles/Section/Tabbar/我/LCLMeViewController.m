@@ -28,7 +28,7 @@
 #import <MessageUI/MessageUI.h>
 #import "UserInstrunctionViewController.h"
 #import "SetingAppPasswordViewController.h"
-
+#import "RechargeRecordViewController.h"
 @interface LCLMeViewController () <UITableViewDataSource, UITableViewDelegate,MFMailComposeViewControllerDelegate,MFMessageComposeViewControllerDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
@@ -260,8 +260,8 @@
     if (section==0) {
         return 3;
     }else if (section==1){
-        if ([self.shopOff integerValue]==1) {
-            return 7;
+        if ([self.shopOff integerValue]==0) {
+            return 8;
         }
         else
         {
@@ -365,6 +365,10 @@
             [cell.nameLabel setText:@"充值记录"];
         }else if(indexPath.row==6){
             [cell.nameLabel setText:@"消费记录"];
+        }
+        else if (indexPath.row==7)
+        {
+            [cell.nameLabel setText:@"信用提取"];
         }
     }else if (indexPath.section==2){
         [cell.switchButton setHidden:YES];
@@ -661,10 +665,17 @@
         }
         else if(indexPath.row==5){
             
-            LCLPayListAndMoneyListViewController *myFocus = [[LCLPayListAndMoneyListViewController alloc] initWithNibName:@"LCLPayListAndMoneyListViewController" bundle:nil];
-            [myFocus setTitle:@"充值记录"];
-            [myFocus setHidesBottomBarWhenPushed:YES];
-            [self.navigationController pushViewController:myFocus animated:YES];
+            
+            RechargeRecordViewController *recharge=[[RechargeRecordViewController alloc]init];
+            [recharge setTitle:@"充值记录"];
+            [recharge setHidesBottomBarWhenPushed:YES];
+            
+            [self.navigationController pushViewController:recharge animated:YES];
+            
+//            LCLPayListAndMoneyListViewController *myFocus = [[LCLPayListAndMoneyListViewController alloc] initWithNibName:@"LCLPayListAndMoneyListViewController" bundle:nil];
+//            [myFocus setTitle:@"充值记录"];
+//            [myFocus setHidesBottomBarWhenPushed:YES];
+//            [self.navigationController pushViewController:myFocus animated:YES];
         }
         else if(indexPath.row==6){
 

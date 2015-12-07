@@ -7,7 +7,7 @@
 //
 
 #import "SetingAppPasswordViewController.h"
-
+#import "MBProgressHUD.h"
 typedef enum
 {
     openType        =   0,
@@ -64,11 +64,13 @@ typedef enum
     NSInteger index = seg.selectedSegmentIndex;
 
     if (index==0) {
+        saveType=openType;
         self.passwordView.hidden=NO;
         self.okBtnToTopConstrant.constant=110;
     }
     else
     {
+        saveType=colseType;
         self.okBtnToTopConstrant.constant=30;
         self.passwordView.hidden=YES;
     }
@@ -79,9 +81,20 @@ typedef enum
 }
 -(IBAction)save:(id)sender
 {
+    
+    
+    
     NSDictionary *dic = [[LCLCacheDefaults standardCacheDefaults] objectForCacheKey:UserInfoKey];
     NSString *mobile = [dic objectForKey:@"mobile"];
+    
+    BOOL isSuccess=false;
+    
     if (saveType==openType) {
+        if (self.passWordTextField.text.length!=7) {
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:@"请输入七位密码" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+            return;
+        }
         
         NSUserDefaults *userDefault=[NSUserDefaults standardUserDefaults];
         
@@ -93,6 +106,7 @@ typedef enum
             NSString *userName=[storeUserDic objectForKey:@"userName"];
             if ([userName isEqualToString:mobile]) {
                 [storeUserDic setValue:self.passWordTextField.text forKey:@"password"];
+                isSuccess=true;
                 break;
             }
             else
@@ -102,11 +116,44 @@ typedef enum
                 [userDic setValue:mobile forKey:@"userName"];
                 [userDic setValue:self.passWordTextField.text forKey:@"password"];
                 [arr addObject:userDic];
-
+                isSuccess=true;
             }
             
         }
+        
+        if (safePasswordArr.count==0) {
+            NSMutableDictionary *userDic=[[NSMutableDictionary alloc]init];
+            
+            [userDic setValue:mobile forKey:@"userName"];
+            [userDic setValue:self.passWordTextField.text forKey:@"password"];
+            [arr addObject:userDic];
+            isSuccess=true;
+        }
+        
+        
+        
+        
+        
         [userDefault setValue:arr forKey:@"safePassword"];
+        
+        
+        
+        
+        
+        if (isSuccess) {
+            MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];            
+            [self.view addSubview:hud];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = @"密码设置成功";
+            [hud showAnimated:YES whileExecutingBlock:^{
+                sleep(2);
+            } completionBlock:^{
+                [hud removeFromSuperview];
+                [self.navigationController popViewControllerAnimated:YES];
+                
+            }];
+        }
+        
         
         
     }
@@ -124,11 +171,25 @@ typedef enum
             NSString *userName=[storeUserDic objectForKey:@"userName"];
             if ([userName isEqualToString:mobile]) {
                 [arr removeObject:storeUserDic];
+                isSuccess=true;
                 break;
             }
             
         }
         [userDefault setValue:arr forKey:@"safePassword"];
+        if (isSuccess) {
+            MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
+            [self.view addSubview:hud];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = @"关闭密码成功";
+            [hud showAnimated:YES whileExecutingBlock:^{
+                sleep(2);
+            } completionBlock:^{
+                [hud removeFromSuperview];
+                [self.navigationController popViewControllerAnimated:YES];
+                
+            }];
+        }
 
     }
     

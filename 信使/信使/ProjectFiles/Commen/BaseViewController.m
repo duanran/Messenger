@@ -14,6 +14,8 @@
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
 #import "LCLVideoViewController.h"
+#import "LCLVerifyMeetingPasswordView.h"
+#import "VerifyPasswordView.h"
 @interface BaseViewController ()<MJPhotoBrowserDelegate>
 
 @property (strong, nonatomic) UIButton *messageBtn;
@@ -63,7 +65,11 @@
 }
 -(void)showActivePasswordController
 {
+    [LCLAlertController setHideStatusBar:NO];
     
+    VerifyPasswordView *verifyPassword = [VerifyPasswordView loadXibView];
+    [verifyPassword setFrame:[UIScreen mainScreen].bounds];
+    [LCLAlertController alertFromWindowWithView:verifyPassword alertStyle:LCLAlertStyleCustom tag:VerifyPasswordViewTag];
 }
 
 - (void)didReceiveMemoryWarning {

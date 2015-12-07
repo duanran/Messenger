@@ -199,7 +199,6 @@
     NSUserDefaults *userDefault=[NSUserDefaults standardUserDefaults];
     
     NSArray *safePasswordArr=[userDefault objectForKey:@"safePassword"];
-    NSMutableArray *arr=[NSMutableArray arrayWithArray:safePasswordArr];
     
     for (int i=0; i<safePasswordArr.count; i++) {
         NSMutableDictionary *storeUserDic=(NSMutableDictionary *)[safePasswordArr objectAtIndex:i];

@@ -117,6 +117,13 @@
 		18AC638A1C0EBF94000C05E6 /* UserInstrunctionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18AC63881C0EBF94000C05E6 /* UserInstrunctionViewController.xib */; };
 		18AC638E1C0FE646000C05E6 /* SetingAppPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AC638C1C0FE646000C05E6 /* SetingAppPasswordViewController.m */; };
 		18AC638F1C0FE646000C05E6 /* SetingAppPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18AC638D1C0FE646000C05E6 /* SetingAppPasswordViewController.xib */; };
+		18AC63921C113449000C05E6 /* VerifyPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AC63911C113449000C05E6 /* VerifyPasswordView.m */; };
+		18AC63941C1134B1000C05E6 /* VerifyPasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18AC63931C1134B1000C05E6 /* VerifyPasswordView.xib */; };
+		18AC63981C117A1F000C05E6 /* RechargeRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AC63961C117A1F000C05E6 /* RechargeRecordViewController.m */; };
+		18AC63991C117A1F000C05E6 /* RechargeRecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18AC63971C117A1F000C05E6 /* RechargeRecordViewController.xib */; };
+		18AC639D1C11836F000C05E6 /* RechargeRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AC639B1C11836F000C05E6 /* RechargeRecordTableViewCell.m */; };
+		18AC639E1C11836F000C05E6 /* RechargeRecordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18AC639C1C11836F000C05E6 /* RechargeRecordTableViewCell.xib */; };
+		18AC63A11C11879A000C05E6 /* RechargeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AC63A01C11879A000C05E6 /* RechargeRequest.m */; };
 		18D7E38B1C02E20C00AA3070 /* LCLMeetingMineTableViewCell_2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D7E38A1C02E20C00AA3070 /* LCLMeetingMineTableViewCell_2.xib */; };
 		18D7E4B41C033F8800AA3070 /* LCLBaseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7E46C1C033F8800AA3070 /* LCLBaseOperation.m */; };
 		18D7E4B51C033F8800AA3070 /* LCLFilePathHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7E46F1C033F8800AA3070 /* LCLFilePathHelper.m */; };
@@ -730,6 +737,17 @@
 		18AC638B1C0FE646000C05E6 /* SetingAppPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetingAppPasswordViewController.h; sourceTree = "<group>"; };
 		18AC638C1C0FE646000C05E6 /* SetingAppPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetingAppPasswordViewController.m; sourceTree = "<group>"; };
 		18AC638D1C0FE646000C05E6 /* SetingAppPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetingAppPasswordViewController.xib; sourceTree = "<group>"; };
+		18AC63901C113449000C05E6 /* VerifyPasswordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyPasswordView.h; sourceTree = "<group>"; };
+		18AC63911C113449000C05E6 /* VerifyPasswordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyPasswordView.m; sourceTree = "<group>"; };
+		18AC63931C1134B1000C05E6 /* VerifyPasswordView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VerifyPasswordView.xib; sourceTree = "<group>"; };
+		18AC63951C117A1F000C05E6 /* RechargeRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RechargeRecordViewController.h; sourceTree = "<group>"; };
+		18AC63961C117A1F000C05E6 /* RechargeRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RechargeRecordViewController.m; sourceTree = "<group>"; };
+		18AC63971C117A1F000C05E6 /* RechargeRecordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RechargeRecordViewController.xib; sourceTree = "<group>"; };
+		18AC639A1C11836F000C05E6 /* RechargeRecordTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RechargeRecordTableViewCell.h; sourceTree = "<group>"; };
+		18AC639B1C11836F000C05E6 /* RechargeRecordTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RechargeRecordTableViewCell.m; sourceTree = "<group>"; };
+		18AC639C1C11836F000C05E6 /* RechargeRecordTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RechargeRecordTableViewCell.xib; sourceTree = "<group>"; };
+		18AC639F1C11879A000C05E6 /* RechargeRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RechargeRequest.h; sourceTree = "<group>"; };
+		18AC63A01C11879A000C05E6 /* RechargeRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RechargeRequest.m; sourceTree = "<group>"; };
 		18D7E38A1C02E20C00AA3070 /* LCLMeetingMineTableViewCell_2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LCLMeetingMineTableViewCell_2.xib; sourceTree = "<group>"; };
 		18D7E46B1C033F8800AA3070 /* LCLBaseOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCLBaseOperation.h; sourceTree = "<group>"; };
 		18D7E46C1C033F8800AA3070 /* LCLBaseOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCLBaseOperation.m; sourceTree = "<group>"; };
@@ -2549,6 +2567,9 @@
 				B54042EC1B1CABD400E9CCA5 /* LCLMeTableViewCell.m */,
 				B54042ED1B1CABD400E9CCA5 /* LCLMeTableViewCell.xib */,
 				182078B51C04997800F80DFF /* LCLMeTableViewCell_2.xib */,
+				18AC639A1C11836F000C05E6 /* RechargeRecordTableViewCell.h */,
+				18AC639B1C11836F000C05E6 /* RechargeRecordTableViewCell.m */,
+				18AC639C1C11836F000C05E6 /* RechargeRecordTableViewCell.xib */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -3083,6 +3104,14 @@
 				18AC638B1C0FE646000C05E6 /* SetingAppPasswordViewController.h */,
 				18AC638C1C0FE646000C05E6 /* SetingAppPasswordViewController.m */,
 				18AC638D1C0FE646000C05E6 /* SetingAppPasswordViewController.xib */,
+				18AC63901C113449000C05E6 /* VerifyPasswordView.h */,
+				18AC63911C113449000C05E6 /* VerifyPasswordView.m */,
+				18AC63931C1134B1000C05E6 /* VerifyPasswordView.xib */,
+				18AC63951C117A1F000C05E6 /* RechargeRecordViewController.h */,
+				18AC63961C117A1F000C05E6 /* RechargeRecordViewController.m */,
+				18AC63971C117A1F000C05E6 /* RechargeRecordViewController.xib */,
+				18AC639F1C11879A000C05E6 /* RechargeRequest.h */,
+				18AC63A01C11879A000C05E6 /* RechargeRequest.m */,
 			);
 			path = "我";
 			sourceTree = "<group>";
@@ -3213,11 +3242,13 @@
 				18DEAD671B9DBD17003CEA5E /* VIP2_shop@3x.png in Resources */,
 				18DEAD681B9DBD17003CEA5E /* VIP3@3x.png in Resources */,
 				18DEAD1E1B9DBD17003CEA5E /* my_A@2x.png in Resources */,
+				18AC63941C1134B1000C05E6 /* VerifyPasswordView.xib in Resources */,
 				18DEAD4D1B9DBD17003CEA5E /* login_logo@3x.png in Resources */,
 				B5654CB31B154EEB003C1419 /* SMS_SDKLocalizable.strings in Resources */,
 				18DEAD601B9DBD17003CEA5E /* thaw_ico@3x.png in Resources */,
 				18DEAD691B9DBD17003CEA5E /* VIP3_shop@3x.png in Resources */,
 				18DEACEB1B9DBD17003CEA5E /* my_B.png in Resources */,
+				18AC639E1C11836F000C05E6 /* RechargeRecordTableViewCell.xib in Resources */,
 				18DEADCA1B9DD7ED003CEA5E /* menu_my_a@3x.png in Resources */,
 				18DEACFD1B9DBD17003CEA5E /* VIP1_shop.png in Resources */,
 				B54042EF1B1CABD400E9CCA5 /* LCLMeTableViewCell.xib in Resources */,
@@ -3456,6 +3487,7 @@
 				18DEACEC1B9DBD17003CEA5E /* no_ico.png in Resources */,
 				18DEACF91B9DBD17003CEA5E /* title_message_a.png in Resources */,
 				18DEAD171B9DBD17003CEA5E /* ico_edit@2x.png in Resources */,
+				18AC63991C117A1F000C05E6 /* RechargeRecordViewController.xib in Resources */,
 				18AC63781C0D7F63000C05E6 /* share_platform_email@2x.png in Resources */,
 				18DEAD8D1B9DC1E6003CEA5E /* LCLForgetPassowrdViewController.xib in Resources */,
 				18DEACFA1B9DBD17003CEA5E /* title_message_b.png in Resources */,
@@ -3547,6 +3579,7 @@
 				18FAB2BB1BA8783E00FD6143 /* LCLMyMovieViewController.m in Sources */,
 				180E2F491BC548A7002B721F /* MBProgressHUD.m in Sources */,
 				B58B150B1B141A800019C822 /* LCLHomeViewController.m in Sources */,
+				18AC63A11C11879A000C05E6 /* RechargeRequest.m in Sources */,
 				18765B981BF48EDD000721BD /* UIButton+AFNetworking.m in Sources */,
 				18DF44B61BB6DAB000B3035D /* LCLAddPicButton.m in Sources */,
 				18D7E4CC1C033F8800AA3070 /* README-CN.md in Sources */,
@@ -3639,6 +3672,7 @@
 				B58B14DF1B140C7A0019C822 /* LCLBaseRefreshView.m in Sources */,
 				B54042FE1B1CB05C00E9CCA5 /* LCLCreateMeetingViewController.m in Sources */,
 				18765B9C1BF48EDD000721BD /* UIWebView+AFNetworking.m in Sources */,
+				18AC639D1C11836F000C05E6 /* RechargeRecordTableViewCell.m in Sources */,
 				180E2F531BC548A7002B721F /* SDImageCache.m in Sources */,
 				18D7E4BD1C033F8800AA3070 /* NSURL+Utils.m in Sources */,
 				180E2F591BC548A7002B721F /* SDWebImageManager.m in Sources */,
@@ -3648,6 +3682,7 @@
 				18EB29DA1BB595450040758B /* MD5DataSigner.m in Sources */,
 				180E2F471BC548A7002B721F /* MBProgressHUD+Add.m in Sources */,
 				1885DCB71BFB19E4004F74DF /* SelectedMapViewController.m in Sources */,
+				18AC63921C113449000C05E6 /* VerifyPasswordView.m in Sources */,
 				18DEE9BA1B9F0BF6002BE929 /* LCLUnLoginView.m in Sources */,
 				18DEE9BE1B9F15C9002BE929 /* LCLIndexObject.m in Sources */,
 				B58B14D01B140C5F0019C822 /* UIView+ResponseData.m in Sources */,
@@ -3716,6 +3751,7 @@
 				18765B5F1BF478E5000721BD /* READEME.md in Sources */,
 				B58B14E31B140C7A0019C822 /* UIScrollView+Refresh.m in Sources */,
 				B570E5EB1B14D437007A07F4 /* NSDictionary-DeepMutableCopy.m in Sources */,
+				18AC63981C117A1F000C05E6 /* RechargeRecordViewController.m in Sources */,
 				18E66EA21C0806CF00436D7B /* SearchNearPeopleRequest.m in Sources */,
 				18EB29F61BB5A5820040758B /* LCLSelectPickerView.m in Sources */,
 				18D7E4B41C033F8800AA3070 /* LCLBaseOperation.m in Sources */,

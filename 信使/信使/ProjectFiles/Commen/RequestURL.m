@@ -23,7 +23,9 @@
                           Number(URLTypeSaveVideo)             :@"/index.php/Api/User/saveVideo",
                           Number(URLTypeComplainDate)           :@"/index.php/Api/Date/tousu",
                           Number(URLTypeCancelComplain)         :@"/index.php/Api/Date/deltousu",
-                          Number(URLTypeSearchNearPeople)       :@"/index.php/Api/Date/lists"
+                          Number(URLTypeSearchNearPeople)       :@"/index.php/Api/Date/lists",
+                          Number(URLTypeRechargeRecord):@"/index.php/Api/User/pay_coin_list/"
+                          
                           
                           };
     }
