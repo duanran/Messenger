@@ -30,6 +30,8 @@
 #import "SetingAppPasswordViewController.h"
 #import "RechargeRecordViewController.h"
 #import "ConsumeViewController.h"
+#import "CreditExtractionViewController.h"
+
 @interface LCLMeViewController () <UITableViewDataSource, UITableViewDelegate,MFMailComposeViewControllerDelegate,MFMessageComposeViewControllerDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
@@ -689,6 +691,13 @@
 //            [myFocus setIsPayList:YES];
 //            [myFocus setHidesBottomBarWhenPushed:YES];
 //            [self.navigationController pushViewController:myFocus animated:YES];
+        }
+        else if (indexPath.row==7)
+        {
+            CreditExtractionViewController *credit=[[CreditExtractionViewController alloc]init];
+            [credit setTitle:@"信用提取"];
+            [credit setHidesBottomBarWhenPushed:YES];
+            [self.navigationController pushViewController:credit animated:YES];
         }
     }
     else

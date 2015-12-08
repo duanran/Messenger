@@ -97,6 +97,14 @@
 		18A253D11C156C370090C756 /* ConsumeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A253D01C156C370090C756 /* ConsumeRequest.m */; };
 		18A253D51C156DE10090C756 /* ConsumeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A253D31C156DE10090C756 /* ConsumeTableViewCell.m */; };
 		18A253D61C156DE10090C756 /* ConsumeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A253D41C156DE10090C756 /* ConsumeTableViewCell.xib */; };
+		18A253DA1C1592B00090C756 /* CreditExtractionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A253D81C1592B00090C756 /* CreditExtractionViewController.m */; };
+		18A253DB1C1592B00090C756 /* CreditExtractionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A253D91C1592B00090C756 /* CreditExtractionViewController.xib */; };
+		18A253DF1C1672E80090C756 /* CreditExtractionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A253DD1C1672E80090C756 /* CreditExtractionTableViewCell.m */; };
+		18A253E01C1672E80090C756 /* CreditExtractionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A253DE1C1672E80090C756 /* CreditExtractionTableViewCell.xib */; };
+		18A253E31C1680540090C756 /* WithdrawCash.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A253E21C1680540090C756 /* WithdrawCash.m */; };
+		18A253E61C1685A60090C756 /* CustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A253E51C1685A60090C756 /* CustomAlertView.m */; };
+		18A253E81C1687B60090C756 /* CusomAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A253E71C1687B60090C756 /* CusomAlertView.xib */; };
+		18A253EB1C16ACA90090C756 /* CreditApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A253EA1C16ACA90090C756 /* CreditApplication.m */; };
 		18A4C5541BF0CDE6001755DE /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A4C5531BF0CDE6001755DE /* libstdc++.tbd */; };
 		18A4C5561BF0CE09001755DE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A4C5551BF0CE09001755DE /* JavaScriptCore.framework */; };
 		18A4C5581BF0CE52001755DE /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A4C5571BF0CE52001755DE /* libsqlite3.0.tbd */; };
@@ -722,6 +730,19 @@
 		18A253D21C156DE10090C756 /* ConsumeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsumeTableViewCell.h; sourceTree = "<group>"; };
 		18A253D31C156DE10090C756 /* ConsumeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsumeTableViewCell.m; sourceTree = "<group>"; };
 		18A253D41C156DE10090C756 /* ConsumeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsumeTableViewCell.xib; sourceTree = "<group>"; };
+		18A253D71C1592B00090C756 /* CreditExtractionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditExtractionViewController.h; sourceTree = "<group>"; };
+		18A253D81C1592B00090C756 /* CreditExtractionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditExtractionViewController.m; sourceTree = "<group>"; };
+		18A253D91C1592B00090C756 /* CreditExtractionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreditExtractionViewController.xib; sourceTree = "<group>"; };
+		18A253DC1C1672E80090C756 /* CreditExtractionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditExtractionTableViewCell.h; sourceTree = "<group>"; };
+		18A253DD1C1672E80090C756 /* CreditExtractionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditExtractionTableViewCell.m; sourceTree = "<group>"; };
+		18A253DE1C1672E80090C756 /* CreditExtractionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreditExtractionTableViewCell.xib; sourceTree = "<group>"; };
+		18A253E11C1680540090C756 /* WithdrawCash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WithdrawCash.h; sourceTree = "<group>"; };
+		18A253E21C1680540090C756 /* WithdrawCash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WithdrawCash.m; sourceTree = "<group>"; };
+		18A253E41C1685A60090C756 /* CustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAlertView.h; sourceTree = "<group>"; };
+		18A253E51C1685A60090C756 /* CustomAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAlertView.m; sourceTree = "<group>"; };
+		18A253E71C1687B60090C756 /* CusomAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CusomAlertView.xib; sourceTree = "<group>"; };
+		18A253E91C16ACA90090C756 /* CreditApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditApplication.h; sourceTree = "<group>"; };
+		18A253EA1C16ACA90090C756 /* CreditApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditApplication.m; sourceTree = "<group>"; };
 		18A4C5531BF0CDE6001755DE /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		18A4C5551BF0CE09001755DE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		18A4C5571BF0CE52001755DE /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
@@ -2586,6 +2607,9 @@
 				18A253D21C156DE10090C756 /* ConsumeTableViewCell.h */,
 				18A253D31C156DE10090C756 /* ConsumeTableViewCell.m */,
 				18A253D41C156DE10090C756 /* ConsumeTableViewCell.xib */,
+				18A253DC1C1672E80090C756 /* CreditExtractionTableViewCell.h */,
+				18A253DD1C1672E80090C756 /* CreditExtractionTableViewCell.m */,
+				18A253DE1C1672E80090C756 /* CreditExtractionTableViewCell.xib */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -2866,6 +2890,9 @@
 				18765BA21BF5C3C5000721BD /* RequestURL.m */,
 				182078B21C0415B100F80DFF /* ComplainRequest.h */,
 				182078B31C0415B100F80DFF /* ComplainRequest.m */,
+				18A253E41C1685A60090C756 /* CustomAlertView.h */,
+				18A253E51C1685A60090C756 /* CustomAlertView.m */,
+				18A253E71C1687B60090C756 /* CusomAlertView.xib */,
 			);
 			path = Commen;
 			sourceTree = "<group>";
@@ -3133,6 +3160,13 @@
 				18A253CC1C15682F0090C756 /* ConsumeViewController.xib */,
 				18A253CF1C156C370090C756 /* ConsumeRequest.h */,
 				18A253D01C156C370090C756 /* ConsumeRequest.m */,
+				18A253D71C1592B00090C756 /* CreditExtractionViewController.h */,
+				18A253D81C1592B00090C756 /* CreditExtractionViewController.m */,
+				18A253D91C1592B00090C756 /* CreditExtractionViewController.xib */,
+				18A253E11C1680540090C756 /* WithdrawCash.h */,
+				18A253E21C1680540090C756 /* WithdrawCash.m */,
+				18A253E91C16ACA90090C756 /* CreditApplication.h */,
+				18A253EA1C16ACA90090C756 /* CreditApplication.m */,
 			);
 			path = "我";
 			sourceTree = "<group>";
@@ -3297,6 +3331,7 @@
 				18DEAD5C1B9DBD17003CEA5E /* search_A@3x.png in Resources */,
 				18DEAD581B9DBD17003CEA5E /* publish_date_ico1@3x.png in Resources */,
 				18DEAD131B9DBD17003CEA5E /* gold@2x.png in Resources */,
+				18A253DB1C1592B00090C756 /* CreditExtractionViewController.xib in Resources */,
 				18DEAD2F1B9DBD17003CEA5E /* video_v@2x.png in Resources */,
 				18DEACE11B9DBD17003CEA5E /* home_B.png in Resources */,
 				18DEAD701B9DBD17003CEA5E /* start_640x960.png in Resources */,
@@ -3329,6 +3364,7 @@
 				18D7E4CA1C033F8800AA3070 /* JSPatch.js in Resources */,
 				18DEAD061B9DBD17003CEA5E /* close@2x.png in Resources */,
 				B54042F41B1CAC4700E9CCA5 /* LCLMeHeaderView.xib in Resources */,
+				18A253E81C1687B60090C756 /* CusomAlertView.xib in Resources */,
 				18DEAD871B9DBFDA003CEA5E /* Logo_144_144.png in Resources */,
 				B58B15181B1423450019C822 /* bottom.png in Resources */,
 				18765B551BF478E5000721BD /* kr-video-player-pause@2x.png in Resources */,
@@ -3558,6 +3594,7 @@
 				B54042FF1B1CB05C00E9CCA5 /* LCLCreateMeetingViewController.xib in Resources */,
 				18DEACD41B9DBD17003CEA5E /* date_B.png in Resources */,
 				18DEAD851B9DBFDA003CEA5E /* Logo_72_72.png in Resources */,
+				18A253E01C1672E80090C756 /* CreditExtractionTableViewCell.xib in Resources */,
 				18DEADBE1B9DD715003CEA5E /* menu_fruit_a@3x.png in Resources */,
 				18FAB2DA1BA87EED00FD6143 /* LCLPeopleInfoMeetTableViewCell.xib in Resources */,
 				18DEAD231B9DBD17003CEA5E /* plus@2x.png in Resources */,
@@ -3639,6 +3676,7 @@
 				18DF54141BB856FE00DAF4F4 /* LCLMoviePlayerViewController.m in Sources */,
 				18D7E4BA1C033F8800AA3070 /* NSObject+Util.m in Sources */,
 				18765BA91BF5D335000721BD /* WatchVideoRequest.m in Sources */,
+				18A253DA1C1592B00090C756 /* CreditExtractionViewController.m in Sources */,
 				18765B921BF48EDD000721BD /* AFURLRequestSerialization.m in Sources */,
 				B580641C1B161F95009C45C2 /* LCLARCImagePickerTableViewCell.m in Sources */,
 				B58B14871B1406F30019C822 /* AppDelegate.m in Sources */,
@@ -3722,6 +3760,7 @@
 				18D7E4C21C033F8800AA3070 /* UIView+Animation.m in Sources */,
 				180E2F4D1BC548A7002B721F /* MJPhotoLoadingView.m in Sources */,
 				18EB29D61BB595450040758B /* Order.m in Sources */,
+				18A253E31C1680540090C756 /* WithdrawCash.m in Sources */,
 				18EB29CD1BB595450040758B /* Alipay.m in Sources */,
 				B58B14841B1406F30019C822 /* main.m in Sources */,
 				B54043031B1CB14D00E9CCA5 /* LCLVerifyMeetingPasswordView.m in Sources */,
@@ -3760,9 +3799,11 @@
 				18D7E4C11C033F8800AA3070 /* UITabBar+Badge.m in Sources */,
 				B54042E51B1CA8E900E9CCA5 /* LCLShopHeader.m in Sources */,
 				18AC63891C0EBF94000C05E6 /* UserInstrunctionViewController.m in Sources */,
+				18A253EB1C16ACA90090C756 /* CreditApplication.m in Sources */,
 				18765B8D1BF48EDD000721BD /* AFHTTPRequestOperationManager.m in Sources */,
 				18A253D11C156C370090C756 /* ConsumeRequest.m in Sources */,
 				18EB29D81BB595450040758B /* DataSigner.m in Sources */,
+				18A253DF1C1672E80090C756 /* CreditExtractionTableViewCell.m in Sources */,
 				18D7E4BC1C033F8800AA3070 /* NSTimer+Utils.m in Sources */,
 				18DEE9B51B9F048C002BE929 /* UIView+EmptyData.m in Sources */,
 				18E0B4F61BA30F1D00A43C98 /* LCLChangePasswordView.m in Sources */,
@@ -3786,6 +3827,7 @@
 				18EE6DA01BF9C5EF00D8D14A /* GiveCoinRequest.m in Sources */,
 				B58B14FB1B1419E90019C822 /* LCLRegistDetailsViewController.m in Sources */,
 				18DF44C11BB834C000B3035D /* LCLPickerView.m in Sources */,
+				18A253E61C1685A60090C756 /* CustomAlertView.m in Sources */,
 				180E2F5F1BC548A7002B721F /* UIImageView+MJWebCache.m in Sources */,
 				18FAB2CD1BA87C1700FD6143 /* LCLPeopleInfoViewController.m in Sources */,
 				18D7E4B91C033F8800AA3070 /* NSData+Crypt.m in Sources */,

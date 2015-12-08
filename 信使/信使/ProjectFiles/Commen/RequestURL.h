@@ -23,6 +23,9 @@ typedef NS_ENUM(NSInteger, URLType){
     URLTypeSearchNearPeople,           /* 搜索附近的人 */
     URLTypeRechargeRecord,             /* 充值记录 */
     URLTypeConsumeRecord,              /* 消费记录 */
+    URLTypeWithdrawCash,               /* 提现记录 */
+    URLTypeCreditApplication,          /* 提现申请 */
+    
 };
 /*
  * 根据URL类型获取url
