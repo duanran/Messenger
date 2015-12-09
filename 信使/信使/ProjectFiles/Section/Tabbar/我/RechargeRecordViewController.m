@@ -12,9 +12,16 @@
 
 #define  DefaultPage 1
 
+#define DefaultPageCount 10
+
 @interface RechargeRecordViewController ()
+{
+    NSInteger currentPage;
+}
 @property(nonatomic,strong)NSMutableArray *itemArr;
 @property(nonatomic,strong)NSString *selectTime;
+@property(nonatomic,strong)NSString *selectInquiryTime;
+
 @end
 
 @implementation RechargeRecordViewController
@@ -23,7 +30,8 @@
     [super viewDidLoad];
     
     NSString *nowTime=[self getNowDate];
-    
+    currentPage=DefaultPage;
+
     NSArray *timeArr=[nowTime componentsSeparatedByString:@"-"];
     
     NSString *year=[timeArr objectAtIndex:0];
@@ -50,7 +58,8 @@
 - (IBAction)doneEditing:(id)sender {
     
     [self.DateField resignFirstResponder];
-    
+    currentPage=DefaultPage;
+
     if (self.selectTime) {
         
         [self loadData:self.selectTime];
@@ -89,18 +98,84 @@
     
     
     request.time=inqueryTime;
+    self.selectInquiryTime=inqueryTime;
     
     [request GETRequest:^(id reponseObject) {
         NSArray *listArr=[reponseObject objectForKey:@"list"];
-        self.itemArr=[NSMutableArray arrayWithArray:listArr];
-        if (listArr>0) {
-            [self.tableView reloadData];
+        
+        [self.tableView footerEndRefreshing];
+        if (listArr.count>=DefaultPageCount) {
+            @weakify(self);
+            
+            [self_weak_.tableView addFooterWithCallback:^{
+                [self_weak_ loadNextPageData];
+            }];
+            
         }
+        else
+        {
+            [self.tableView removeFooters];
+        }
+        if (listArr!=nil) {
+            self.itemArr=[NSMutableArray arrayWithArray:listArr];
+        }
+        
     } failureCallback:^(NSString *errorMessage) {
         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:errorMessage delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
         [alert show];
+        [self.tableView footerEndRefreshing];
+        
+        if ([errorMessage isEqualToString:@"未查找到数据"]) {
+            [self.itemArr removeAllObjects];
+            [self.tableView removeFooters];
+            [self.tableView reloadData];
+        }
+
     }];
     
+}
+-(void)loadNextPageData
+{
+    
+    NSDictionary *userInfo = [LCLGetToken checkHaveLoginWithShowLoginView:NO];
+    
+    LCLUserInfoObject *userObj = [LCLUserInfoObject allocModelWithDictionary:userInfo];
+    RechargeRequest *request=[[RechargeRequest alloc]init];
+    request.ukey=userObj.ukey;
+    request.page=[NSString stringWithFormat:@"%ld",(long)currentPage];
+    request.time=self.selectInquiryTime;
+    
+    [request GETRequest:^(id reponseObject) {
+        NSArray *listArr=[reponseObject objectForKey:@"list"];
+        
+        [self.tableView footerEndRefreshing];
+        if (listArr.count>=DefaultPageCount) {
+            @weakify(self);
+            
+            [self_weak_.tableView addFooterWithCallback:^{
+                [self_weak_ loadNextPageData];
+            }];
+            
+        }
+        else
+        {
+            [self.tableView removeFooters];
+        }
+        if (listArr!=nil) {
+            self.itemArr=[NSMutableArray arrayWithArray:listArr];
+        }
+        
+    } failureCallback:^(NSString *errorMessage) {
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:errorMessage delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [alert show];
+        
+        if ([errorMessage isEqualToString:@"未查找到数据"]) {
+            [self.tableView removeFooters];
+        }
+        [self.tableView footerEndRefreshing];
+        
+    }];
+
 }
 -(NSString *)getNowDate
 {

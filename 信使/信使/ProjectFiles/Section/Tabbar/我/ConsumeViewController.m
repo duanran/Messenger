@@ -11,12 +11,21 @@
 #import "ConsumeTableViewCell.h"
 #import "UIImageView+WebCache.h"
 #import "MBProgressHUD.h"
+//#import "MJRefresh.h"
 
+#import "LCLRefresh.h"
 #define  DefaultPage 1
 
+
+#define DefaultPageCount 10
+
 @interface ConsumeViewController ()
+{
+    NSInteger currentPage;
+}
 @property(nonatomic,strong)NSString *selectTime;
 @property(nonatomic,strong)NSMutableArray *itemArr;
+@property(nonatomic,strong)NSString *selectInquiryTime;
 
 @end
 
@@ -24,6 +33,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    currentPage=DefaultPage;
+    self.itemArr=[[NSMutableArray alloc]init];
     NSString *nowTime=[self getNowDate];
     
     NSArray *timeArr=[nowTime componentsSeparatedByString:@"-"];
@@ -49,13 +60,16 @@
     
     [self loadData:nowtimeStr];
     
+    
+   
+   
 }
 
 #pragma mark-关闭日期
 - (IBAction)doneEditing:(id)sender {
     
     [self.DateField resignFirstResponder];
-    
+    currentPage=DefaultPage;
     if (self.selectTime) {
         
         [self loadData:self.selectTime];
@@ -98,28 +112,48 @@
         
         request.time=inqueryTime;
         
+        self.selectInquiryTime=inqueryTime;
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         
         [request GETRequest:^(id reponseObject) {
             NSArray *listArr=[reponseObject objectForKey:@"list"];
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             
-            self.itemArr=[NSMutableArray arrayWithArray:listArr];
+            [self.tableView footerEndRefreshing];
+            if (listArr.count>=DefaultPageCount) {
+                @weakify(self);
+                
+                [self_weak_.tableView addFooterWithCallback:^{
+                    [self_weak_ loadNextPageData];
+
+                }];
+
+            }
+            else
+            {
+                [self.tableView removeFooters];
+            }
+            if (listArr!=nil) {
+                self.itemArr=[NSMutableArray arrayWithArray:listArr];
+            }
+            
             [self.tableView reloadData];
+            
+            
             
             self.totalMoney.text=[NSString stringWithFormat:@"金额:%@信用豆",[reponseObject objectForKey:@"coin"]];
             self.expendLabel.text=[NSString stringWithFormat:@"支出:%@",[reponseObject objectForKey:@"out"]];
             self.incomeLabel.text=[NSString stringWithFormat:@"收入:%@",[reponseObject objectForKey:@"in"]];
             
-        
-            
         } failureCallback:^(NSString *errorMessage) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:errorMessage delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
             [alert show];
-            
+            [self.tableView footerEndRefreshing];
+
             if ([errorMessage isEqualToString:@"未查找到数据"]) {
                 [self.itemArr removeAllObjects];
+                [self.tableView removeFooters];
                 [self.tableView reloadData];
             }
             
@@ -152,16 +186,68 @@
                 }
                 
 //                [self_weak_.tableView headerEndRefreshing];
-                
+                [self.tableView footerEndRefreshing];
+
                 [self_weak_.tableView reloadData];
             }];
             [downloader startToDownloadWithIntelligence:NO];
         }
 
     }
+}
+-(void)loadNextPageData
+{
     
+        currentPage++;
+        NSDictionary *userInfo = [LCLGetToken checkHaveLoginWithShowLoginView:NO];
+        
+        LCLUserInfoObject *userObj = [LCLUserInfoObject allocModelWithDictionary:userInfo];
+        ConsumeRequest *request=[[ConsumeRequest alloc]init];
+        request.ukey=userObj.ukey;
+        request.page=[NSString stringWithFormat:@"%ld",(long)currentPage];
     
+        
+        request.time=self.selectInquiryTime;
     
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+        [request GETRequest:^(id reponseObject) {
+            NSArray *listArr=[reponseObject objectForKey:@"list"];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self.tableView footerEndRefreshing];
+
+            if (listArr.count>=DefaultPageCount) {
+                @weakify(self);
+                
+                [self_weak_.tableView addFooterWithCallback:^{
+                    [self_weak_ loadNextPageData];
+                }];
+            }
+            else
+            {
+                [self.tableView removeFooters];
+            }
+            if (listArr!=nil) {
+                [self.itemArr addObjectsFromArray:listArr];
+            }
+            
+            [self.tableView reloadData];
+            
+            self.totalMoney.text=[NSString stringWithFormat:@"金额:%@信用豆",[reponseObject objectForKey:@"coin"]];
+            self.expendLabel.text=[NSString stringWithFormat:@"支出:%@",[reponseObject objectForKey:@"out"]];
+            self.incomeLabel.text=[NSString stringWithFormat:@"收入:%@",[reponseObject objectForKey:@"in"]];
+            
+        } failureCallback:^(NSString *errorMessage) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:errorMessage delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+            
+            if ([errorMessage isEqualToString:@"未查找到数据"]) {
+                [self.tableView removeFooters];
+            }
+            [self.tableView footerEndRefreshing];
+
+        }];
     
 }
 -(NSString *)getNowDate

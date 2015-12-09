@@ -131,7 +131,7 @@ static char LCLRefreshFooterViewKey;
 /**
  *  移除上拉刷新尾部控件
  */
-- (void)removeFooter{
+- (void)removeFooters{
     
     if (self.footer) {
         [self.footer removeFromSuperview];
