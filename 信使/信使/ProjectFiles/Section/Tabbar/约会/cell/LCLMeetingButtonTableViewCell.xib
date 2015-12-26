@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="178"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="约会说明" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lt3-GV-tRU">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="说明" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lt3-GV-tRU">
                     <rect key="frame" x="41" y="8" width="177" height="21"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <animations/>
@@ -33,7 +33,7 @@
                     <animations/>
                     <color key="backgroundColor" red="8.1607698583235916e-05" green="0.8151436237373737" blue="0.010999936903561562" alpha="1" colorSpace="calibratedRGB"/>
                     <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <state key="normal" title="发起约会" image="date_ico.png">
+                    <state key="normal" title="发布意向" image="date_ico.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -54,8 +54,8 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <animations/>
                     <segments>
-                        <segment title="我的发布"/>
-                        <segment title="我的私约"/>
+                        <segment title="我的意向"/>
+                        <segment title="我的互动"/>
                     </segments>
                     <color key="tintColor" red="0.56715134129313949" green="0.15519235247532592" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </segmentedControl>

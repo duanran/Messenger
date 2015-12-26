@@ -463,7 +463,7 @@
             }
             else
             {
-                [cell.meeButton setTitle:@"报名约会" forState:UIControlStateNormal];
+                [cell.meeButton setTitle:@"点击报名" forState:UIControlStateNormal];
 
             }
             

@@ -35,7 +35,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self.navigationItem setTitle:@"约会"];
+    [self.navigationItem setTitle:@"意向"];
     
      [self.view addSubview:self.tableView];
     
@@ -406,7 +406,7 @@
         
         LCLMyMeetDetailsViewController *meet = [[LCLMyMeetDetailsViewController alloc] initWithNibName:@"LCLMyMeetDetailsViewController" bundle:nil];
         [meet setMeetDetailsObj:meetObj];
-        [meet setTitle:@"我的发布"];
+        [meet setTitle:@"我的意向"];
         [self.navigationController pushViewController:meet animated:YES];
     }
 }

@@ -254,10 +254,10 @@
         [self.navigationController pushViewController:createMeet animated:NO];
         
     }
-    else if([indexObj.style integerValue]==1)
-    {
-        return;
-    }
+//    else if([indexObj.style integerValue]==1)
+//    {
+//        return;
+//    }
     else{
     
         @weakify(self);
@@ -272,7 +272,7 @@
         
         
         
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"报名约会" message:[NSString stringWithFormat:@"约会地点：%@\n需要冻结【%@信用豆】，系统将扣取手续费【%@】？", indexObj.location,freezCoin,sxf] delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"点击报名" message:[NSString stringWithFormat:@"报名地点：%@\n需要冻结【%@信用豆】，系统将扣取手续费【%@信用豆】？", indexObj.location,freezCoin,sxf] delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         
         [alertView.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
             if ([index integerValue]==1) {
@@ -457,6 +457,7 @@
     
     
     [contentLabel setText:indexObj.title];
+    
     [cell setPeopleNameWithName:indexObj.nickname];
     [cell.peopleInfoLabel setText:[NSString stringWithFormat:@"%@岁  %@cm  %@kg", indexObj.age, indexObj.height, indexObj.weight]];
     [photoLabel setText:[NSString stringWithFormat:@"%@张", indexObj.pic_count]];
@@ -488,7 +489,7 @@
     
     
     if ([indexObj.style integerValue]==2) {
-        [cell.yuehuiButton setTitle:@"邀请约会" forState:UIControlStateNormal];
+        [cell.yuehuiButton setTitle:@"发起邀请" forState:UIControlStateNormal];
     }
     
     
@@ -500,7 +501,7 @@
         }
         else
         {
-            [cell.yuehuiButton setTitle:@"报名约会" forState:UIControlStateNormal];
+            [cell.yuehuiButton setTitle:@"点击报名" forState:UIControlStateNormal];
 
         }
         

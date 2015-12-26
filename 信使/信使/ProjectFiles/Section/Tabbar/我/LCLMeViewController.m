@@ -275,7 +275,7 @@
     else
     {
         if ([self.shopOff integerValue]==1) {
-            return 8;
+            return 7;
         }
         else
         {
@@ -416,20 +416,20 @@
                 [cell.actionButton setHidden:YES];
                 [cell.nameLabel setText:@"振动开关"];
             }
-            else if (indexPath.row==5)
-            {
-                [cell.actionButton setHidden:YES];
-                [cell.switchButton setHidden:YES];
-                cell.nameLabel.text=@"版本更新";
-                
-            }
-            else if(indexPath.row==6)
+//            else if (indexPath.row==5)
+//            {
+//                [cell.actionButton setHidden:YES];
+//                [cell.switchButton setHidden:YES];
+//                cell.nameLabel.text=@"版本更新";
+//                
+//            }
+            else if(indexPath.row==5)
             {
                 [cell.actionButton setHidden:YES];
                 [cell.switchButton setHidden:YES];
                 cell.nameLabel.text=@"用户须知";
             }
-            else if(indexPath.row==7){
+            else if(indexPath.row==6){
                 [cell.arrowImageView setHidden:NO];
                 [cell.actionButton setHidden:YES];
                 [cell.nameLabel setText:@"VIP通道（建设中）"];

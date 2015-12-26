@@ -35,9 +35,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    [self.navigationItem setTitle:@"发布约会"];
+    [self.navigationItem setTitle:@"发布意向"];
     if (self.isInviteMeet) {
-        [self.navigationItem setTitle:@"邀请约会"];
+        [self.navigationItem setTitle:@"发起邀请"];
     }
     
     UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStyleBordered target:self action:@selector(createAction:)];
@@ -64,7 +64,7 @@
     
     [LCLSelectAddressView showWithTypeCompleteBlock:^(NSString *type) {
        
-        if ([type isEqualToString:@"获取红包"]) {
+        if ([type isEqualToString:@"获取酬金"]) {
             self_weak_.isGetMoneyType = YES;
         }else{
             self_weak_.isGetMoneyType = NO;
@@ -76,7 +76,7 @@
         
         self_weak_.money = m;
 
-        [self_weak_.coinButton setTitle:[NSString stringWithFormat:@"%@[%@美元]", self_weak_.isGetMoneyType ? @"获取红包" : @"赠送红包", self_weak_.money] forState:UIControlStateNormal];
+        [self_weak_.coinButton setTitle:[NSString stringWithFormat:@"%@[%@美元]", self_weak_.isGetMoneyType ? @"获取酬金" : @"赠送酬金", self_weak_.money] forState:UIControlStateNormal];
     }];
 }
 
@@ -87,7 +87,7 @@
     
     NSString *freezCoin=[userDic objectForKey:@"freezing_coin"];
     NSString *sxf=[userDic objectForKey:@"sxf"];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"发布约会" message:[NSString stringWithFormat:@"将冻结保证金【%@信用豆】，约会成功将扣除手续费【%@信用豆】",freezCoin,sxf] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"发布意向" message:[NSString stringWithFormat:@"将冻结保证金【%@信用豆】，履约成功将扣除手续费【%@信用豆】",freezCoin,sxf] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     alertView.delegate=self;
     [alertView show];
     
@@ -183,21 +183,21 @@
 
     if (!self.cid) {
         
-        [LCLTipsView showTips:@"请选择约会类型" location:LCLTipsLocationMiddle];
+        [LCLTipsView showTips:@"请选择发布意向类型" location:LCLTipsLocationMiddle];
         
         return;
     }
     
     if (!self.place) {
         
-        [LCLTipsView showTips:@"请选择约会地点" location:LCLTipsLocationMiddle];
+        [LCLTipsView showTips:@"请选择发布意向地点" location:LCLTipsLocationMiddle];
 
         return;
     }
 
     if (!self.time) {
         
-        [LCLTipsView showTips:@"请选择约会时间" location:LCLTipsLocationMiddle];
+        [LCLTipsView showTips:@"请选择发布意向时间" location:LCLTipsLocationMiddle];
 
         return;
     }
@@ -232,7 +232,7 @@
         [login setHttpBodyData:[registString dataUsingEncoding:NSUTF8StringEncoding]];
         [login setDownloadCompleteBlock:^(NSString *errorString, NSMutableData *fileData, NSString *urlString) {
             
-            NSDictionary *dataDic = [self_weak_.view getResponseDataDictFromResponseData:fileData withSuccessString:self_weak_.isGetMoneyType ? @"发布成功" : @"邀请约会成功" error:@""];
+            NSDictionary *dataDic = [self_weak_.view getResponseDataDictFromResponseData:fileData withSuccessString:self_weak_.isGetMoneyType ? @"发布成功" : @"发起邀请成功" error:@""];
             if (dataDic) {
                 
                 [self_weak_.navigationController popViewControllerAnimated:YES];
@@ -272,7 +272,7 @@
                 CGRect oriFram=self_weak_.topMeetInfoLabel.frame;
                 UILabel *contentLabel=[[UILabel alloc]init];
                 contentLabel.frame=oriFram;
-                contentLabel.lineBreakMode=NSLineBreakByWordWrapping;
+                contentLabel.lineBreakMode=NSLineBreakByTruncatingTail;
                 contentLabel.numberOfLines=0;
                 NSString *describeStr=self_weak_.topMeetInfoLabel.text;
                 contentLabel.text=describeStr;

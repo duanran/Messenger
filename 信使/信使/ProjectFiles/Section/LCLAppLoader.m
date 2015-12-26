@@ -148,7 +148,7 @@
     LCLMeetingViewController *meetViewController = [[LCLMeetingViewController alloc] init];
     [meetViewController setCanShowNavBackItem:NO];
     UINavigationController *meetNavViewController = [[UINavigationController alloc] initWithRootViewController:meetViewController];
-    UITabBarItem *item2 = [[UITabBarItem alloc] initWithTitle:@"约会" image:secondImage tag:1];
+    UITabBarItem *item2 = [[UITabBarItem alloc] initWithTitle:@"意向" image:secondImage tag:1];
     [item2 setSelectedImage:secondSelectImage];
     [item2 setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:normalColor, NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
     [item2 setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:selectColor, NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];

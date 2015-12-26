@@ -42,7 +42,7 @@
                     <color key="backgroundColor" red="0.3028185941" green="0.078460509040000001" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <inset key="imageEdgeInsets" minX="-5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <state key="normal" title="报名约会" image="date_ico.png">
+                    <state key="normal" title="点击报名" image="date_ico.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>

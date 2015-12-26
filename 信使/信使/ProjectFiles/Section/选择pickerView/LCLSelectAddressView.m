@@ -33,7 +33,7 @@
 
 + (void)showWithTypeCompleteBlock:(LCLSelectBolck)typeBlock moneyCompleteBlock:(LCLSelectBolck)moneyBlock{
 
-    NSMutableArray *type = [[NSMutableArray alloc] initWithObjects:@"获取红包", @"赠送红包", nil];
+    NSMutableArray *type = [[NSMutableArray alloc] initWithObjects:@"获取酬金", @"赠送酬金", nil];
     NSMutableArray *money = [[NSMutableArray alloc] initWithObjects:@"100", @"200", @"300", @"400", @"500", @"800", @"1000", nil];
 
     [LCLAlertController setHideStatusBar:NO];
