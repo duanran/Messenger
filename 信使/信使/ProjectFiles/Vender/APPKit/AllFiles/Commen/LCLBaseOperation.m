@@ -23,10 +23,13 @@
 //返回json对象
 - (id)jsonObject{
     
+
     id obj = [NSJSONSerialization JSONObjectWithData:self options:kNilOptions error:nil];
     
     return obj;
 }
+
+
 
 @end
 

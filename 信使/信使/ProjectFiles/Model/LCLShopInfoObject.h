@@ -17,10 +17,12 @@
 @property (strong, nonatomic) NSString *money;
 @property (strong, nonatomic) NSString *more;
 @property (strong, nonatomic) NSString *pic;
+@property (strong, nonatomic) NSString *product_id;
 
 //vip
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *vip;
+
 
 @property(strong,nonatomic)NSString *is_click;
 @end

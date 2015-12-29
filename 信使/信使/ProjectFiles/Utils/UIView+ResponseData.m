@@ -7,7 +7,7 @@
 //
 
 #import "UIView+ResponseData.h"
-
+#import "JSONKit.h"
 @implementation UIView (ResponseData)
 
 //处理下载回来的数据
@@ -16,7 +16,7 @@
     LCLTipsLocation location = LCLTipsLocationMiddle;
     
     if (responseData) {
-        NSDictionary *responseDic = [responseData jsonObject];
+        NSDictionary *responseDic = [responseData objectFromJSONData];
         if (responseDic) {
             int code = [[responseDic objectForKey:@"success"] intValue];
             if (code==1) {
@@ -53,6 +53,7 @@
     
     return nil;
 }
+
 
 @end
 

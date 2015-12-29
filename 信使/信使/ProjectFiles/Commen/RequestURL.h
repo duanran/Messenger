@@ -25,6 +25,7 @@ typedef NS_ENUM(NSInteger, URLType){
     URLTypeConsumeRecord,              /* 消费记录 */
     URLTypeWithdrawCash,               /* 提现记录 */
     URLTypeCreditApplication,          /* 提现申请 */
+    URLTypeIapPay,                     /* Iap支付成功*/
     
 };
 /*

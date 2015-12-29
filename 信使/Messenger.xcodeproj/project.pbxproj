@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18004B991C31306B00B7652E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18004B981C31306B00B7652E /* StoreKit.framework */; };
+		18004B9F1C32646700B7652E /* CHANGELOG.md in Sources */ = {isa = PBXBuildFile; fileRef = 18004B9B1C32646700B7652E /* CHANGELOG.md */; };
+		18004BA01C32646700B7652E /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 18004B9D1C32646700B7652E /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		18004BA11C32646700B7652E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 18004B9E1C32646700B7652E /* README.md */; };
+		18004BA71C3294F300B7652E /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 18004BA41C3294F300B7652E /* GTMBase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		18004BA81C3294F300B7652E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 18004BA61C3294F300B7652E /* README.md */; };
+		18004BAB1C32D1DC00B7652E /* IapRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18004BAA1C32D1DC00B7652E /* IapRequest.m */; };
 		180E2F0F1BC5452B002B721F /* pic_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 180E2F0E1BC5452B002B721F /* pic_bg.png */; };
 		180E2F471BC548A7002B721F /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 180E2F131BC548A7002B721F /* MBProgressHUD+Add.m */; };
 		180E2F481BC548A7002B721F /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 180E2F141BC548A7002B721F /* MBProgressHUD.bundle */; };
@@ -579,6 +586,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18004B981C31306B00B7652E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		18004B9B1C32646700B7652E /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
+		18004B9C1C32646700B7652E /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		18004B9D1C32646700B7652E /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		18004B9E1C32646700B7652E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		18004BA31C3294F300B7652E /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
+		18004BA41C3294F300B7652E /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
+		18004BA51C3294F300B7652E /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		18004BA61C3294F300B7652E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		18004BA91C32D1DC00B7652E /* IapRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IapRequest.h; sourceTree = "<group>"; };
+		18004BAA1C32D1DC00B7652E /* IapRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IapRequest.m; sourceTree = "<group>"; };
 		180E2F0E1BC5452B002B721F /* pic_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic_bg.png; sourceTree = "<group>"; };
 		180E2F121BC548A7002B721F /* MBProgressHUD+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Add.h"; sourceTree = "<group>"; };
 		180E2F131BC548A7002B721F /* MBProgressHUD+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Add.m"; sourceTree = "<group>"; };
@@ -1463,6 +1481,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18004B991C31306B00B7652E /* StoreKit.framework in Frameworks */,
 				18AC63691C0D748C000C05E6 /* Social.framework in Frameworks */,
 				18A4C55A1BF0CE61001755DE /* libz.tbd in Frameworks */,
 				186540E41BFCAED500A32B2F /* CoreTelephony.framework in Frameworks */,
@@ -1505,9 +1524,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18004B9A1C32646700B7652E /* JSONKit-master */ = {
+			isa = PBXGroup;
+			children = (
+				18004B9B1C32646700B7652E /* CHANGELOG.md */,
+				18004B9C1C32646700B7652E /* JSONKit.h */,
+				18004B9D1C32646700B7652E /* JSONKit.m */,
+				18004B9E1C32646700B7652E /* README.md */,
+			);
+			path = "JSONKit-master";
+			sourceTree = "<group>";
+		};
+		18004BA21C3294F300B7652E /* GTMBase64-master */ = {
+			isa = PBXGroup;
+			children = (
+				18004BA31C3294F300B7652E /* GTMBase64.h */,
+				18004BA41C3294F300B7652E /* GTMBase64.m */,
+				18004BA51C3294F300B7652E /* GTMDefines.h */,
+				18004BA61C3294F300B7652E /* README.md */,
+			);
+			path = "GTMBase64-master";
+			sourceTree = "<group>";
+		};
 		180E2F101BC548A7002B721F /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				18004BA21C3294F300B7652E /* GTMBase64-master */,
+				18004B9A1C32646700B7652E /* JSONKit-master */,
 				18A253EC1C17CAF80090C756 /* MJRefresh */,
 				18AC636A1C0D7B6C000C05E6 /* HYActivityView */,
 				18765B651BF48EDD000721BD /* AFNetworking */,
@@ -3012,8 +3055,8 @@
 				18DF44B81BB6E07100B3035D /* LCLFocusPeopleObject.m */,
 				18E5430C1BD92F9D00FB462F /* LCLMeetBaomingObject.h */,
 				18E5430D1BD92F9D00FB462F /* LCLMeetBaomingObject.m */,
-				18765BAB1BF5E473000721BD /* BaseResponseObject.h */,
 				18765BAC1BF5E473000721BD /* BaseResponseObject.m */,
+				18765BAB1BF5E473000721BD /* BaseResponseObject.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3111,6 +3154,7 @@
 		B58B14B61B140B590019C822 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18004B981C31306B00B7652E /* StoreKit.framework */,
 				18AC63681C0D748C000C05E6 /* Social.framework */,
 				186540E31BFCAED500A32B2F /* CoreTelephony.framework */,
 				186540E11BFCAEC800A32B2F /* Foundation.framework */,
@@ -3201,6 +3245,8 @@
 				18E66EA31C08470200436D7B /* WebPayViewController.h */,
 				18E66EA41C08470200436D7B /* WebPayViewController.m */,
 				18E66EA51C08470200436D7B /* WebPayViewController.xib */,
+				18004BA91C32D1DC00B7652E /* IapRequest.h */,
+				18004BAA1C32D1DC00B7652E /* IapRequest.m */,
 			);
 			path = "商店";
 			sourceTree = "<group>";
@@ -3762,6 +3808,7 @@
 				18D7E4CE1C033F8800AA3070 /* LCLNetworkManager.m in Sources */,
 				18A2540E1C17CAF80090C756 /* MJRefreshFooter.m in Sources */,
 				18D7E4C01C033F8800AA3070 /* UIImageView+ImageCache.m in Sources */,
+				18004BA81C3294F300B7652E /* README.md in Sources */,
 				18D7E4D21C033F8800AA3070 /* LCLTipsView.m in Sources */,
 				18D7E4B81C033F8800AA3070 /* NSData+CommonCrypto.m in Sources */,
 				18DFDB9A1BB2FD12008FA2F6 /* LCLPhotoButton.m in Sources */,
@@ -3801,6 +3848,7 @@
 				18D7E4C31C033F8800AA3070 /* UIView+Badge.m in Sources */,
 				B58B14BF1B140C000019C822 /* BaseViewController.m in Sources */,
 				180E2F5D1BC548A7002B721F /* UIImage+MultiFormat.m in Sources */,
+				18004B9F1C32646700B7652E /* CHANGELOG.md in Sources */,
 				180E2F561BC548A7002B721F /* SDWebImageDownloader.m in Sources */,
 				18EB29DE1BB595450040758B /* RSADataVerifier.m in Sources */,
 				18765B8F1BF48EDD000721BD /* AFNetworkReachabilityManager.m in Sources */,
@@ -3841,6 +3889,7 @@
 				18EB29CD1BB595450040758B /* Alipay.m in Sources */,
 				18A254171C17CAF80090C756 /* README.md in Sources */,
 				B58B14841B1406F30019C822 /* main.m in Sources */,
+				18004BA11C32646700B7652E /* README.md in Sources */,
 				B54043031B1CB14D00E9CCA5 /* LCLVerifyMeetingPasswordView.m in Sources */,
 				18DEADB21B9DD3BA003CEA5E /* LCLCommentTableViewCell.m in Sources */,
 				180E2F521BC548A7002B721F /* NSData+GIF.m in Sources */,
@@ -3858,6 +3907,7 @@
 				180E2F4F1BC548A7002B721F /* MJPhotoToolbar.m in Sources */,
 				180E2F571BC548A7002B721F /* SDWebImageDownloaderOperation.m in Sources */,
 				B58064171B161F95009C45C2 /* LCLARCPicManager.m in Sources */,
+				18004BA01C32646700B7652E /* JSONKit.m in Sources */,
 				18AC638E1C0FE646000C05E6 /* SetingAppPasswordViewController.m in Sources */,
 				18FAB29F1BA86F7F00FD6143 /* LCLEditMyInfoViewController.m in Sources */,
 				18765B8E1BF48EDD000721BD /* AFHTTPSessionManager.m in Sources */,
@@ -3876,6 +3926,7 @@
 				18A254151C17CAF80090C756 /* UIScrollView+MJRefresh.m in Sources */,
 				18D7E4BB1C033F8800AA3070 /* NSString+Crypt.m in Sources */,
 				18D7E4C11C033F8800AA3070 /* UITabBar+Badge.m in Sources */,
+				18004BA71C3294F300B7652E /* GTMBase64.m in Sources */,
 				B54042E51B1CA8E900E9CCA5 /* LCLShopHeader.m in Sources */,
 				18AC63891C0EBF94000C05E6 /* UserInstrunctionViewController.m in Sources */,
 				18A253EB1C16ACA90090C756 /* CreditApplication.m in Sources */,
@@ -3910,6 +3961,7 @@
 				180E2F5F1BC548A7002B721F /* UIImageView+MJWebCache.m in Sources */,
 				18A254111C17CAF80090C756 /* MJRefreshHeader.m in Sources */,
 				18FAB2CD1BA87C1700FD6143 /* LCLPeopleInfoViewController.m in Sources */,
+				18004BAB1C32D1DC00B7652E /* IapRequest.m in Sources */,
 				18D7E4B91C033F8800AA3070 /* NSData+Crypt.m in Sources */,
 				18DEAD961B9DC2CA003CEA5E /* LCLUserInfoObject.m in Sources */,
 				B54042F71B1CAD4A00E9CCA5 /* LCLMeFooterView.m in Sources */,

@@ -12,6 +12,20 @@
 #import "LCLShopSectionHeaderView.h"
 #import "LCLShopHeader.h"
 #import "WebPayViewController.h"
+#import <StoreKit/StoreKit.h>
+#import "MBProgressHUD.h"
+#import "GTMBase64.h"
+#import "JSONKit.h"
+#import "IapRequest.h"
+
+#define SANDBOX_VERIFY_RECEIPT_URL          [NSURL URLWithString:@"https://sandbox.itunes.apple.com/verifyReceipt"]
+#define APP_STORE_VERIFY_RECEIPT_URL        [NSURL URLWithString:@"https://buy.itunes.apple.com/verifyReceipt"]
+
+#ifdef DEBUG
+#define VERIFY_RECEIPT_URL SANDBOX_VERIFY_RECEIPT_URL
+#else
+#define VERIFY_RECEIPT_URL APP_STORE_VERIFY_RECEIPT_URL
+#endif
 // Set the environment:
 // - For live charges, use PayPalEnvironmentProduction (default).// 真实模式,
 // - To use the PayPal sandbox, use PayPalEnvironmentSandbox.// 测试(网络)
@@ -20,7 +34,7 @@
 
 #define kPayPalEnvironment PayPalEnvironmentProduction
 
-@interface LCLShopViewController () <UITableViewDataSource, UITableViewDelegate,UIAlertViewDelegate>
+@interface LCLShopViewController () <UITableViewDataSource, UITableViewDelegate,UIAlertViewDelegate,SKPaymentTransactionObserver,SKProductsRequestDelegate>
 @property (strong, nonatomic) UITableView *tableView;
 
 @property (nonatomic, strong) NSMutableArray *coinArray;
@@ -31,6 +45,9 @@
 @property(nonatomic, strong, readwrite) PayPalConfiguration *payPalConfig;//配置贝宝账号信息,如邮箱,电话等
 @property (strong, nonatomic) LCLShopHeader *header;
 @property(strong,nonatomic)NSString *shopOff;
+@property(strong,nonatomic)NSString *productId;
+@property(strong,nonatomic)NSString *myUkey;
+@property(strong,nonatomic)NSString *order_no;
 
 @end
 
@@ -38,6 +55,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+
+    
     // Do any additional setup after loading the view.
     NSDictionary *dic = [[LCLCacheDefaults standardCacheDefaults] objectForCacheKey:UserInfoKey];
     NSString *shop_onoff=[NSString stringWithFormat:@"%@",[dic objectForKey:@"shop_onoff"]];
@@ -271,17 +291,15 @@
     NSDictionary *userInfo = [LCLGetToken checkHaveLoginWithShowLoginView:NO];
     LCLUserInfoObject *userObj = [LCLUserInfoObject allocModelWithDictionary:userInfo];
     
-    NSString *type = sender.restorationIdentifier;
-    NSString *tag = [NSString stringWithFormat:@"%li", sender.tag];
-
     
+    NSString *type = sender.restorationIdentifier;
+    NSString *tag = [NSString stringWithFormat:@"%li", (long)sender.tag];
     //type: 1：充值，2：购买vip
     NSString *orderString = PayURL(userObj.ukey, tag, type);
-    
+    self.myUkey=userObj.ukey;
     
     NSString *messeage=[NSString stringWithFormat:@"需要收取%@信用豆",shopObj.coin];
 
-    
     if ([type integerValue]==2) {
         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"账户升级" message:messeage delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         [alert show];
@@ -302,69 +320,274 @@
         NSDictionary *dataDic = [self_weak_.view getResponseDataDictFromResponseData:fileData withSuccessString:[type integerValue]==1 ? nil : @"" error:@""];
         
         if (dataDic) {
-            
             if ([type integerValue]==1) {
-                
                 NSDictionary *info = [dataDic objectForKey:@"info"];
-                
                 NSString *orderNo = [info objectForKey:@"order_no"];
-                NSString *alipayPrice = [info objectForKey:@"money"];
-                NSString *wechatPayPrice = [NSString stringWithFormat:@"%i", [alipayPrice intValue]*100];
-                NSString *coin = [info objectForKey:@"coin"];
-                NSString *subject = [NSString stringWithFormat:@"充值信用豆%@", coin];
-                if ([type integerValue]==2) {
-                    subject = @"购买VIP";
-                }
-                UIActionSheet *actionSheet;
-                if ([self.shopOff integerValue]==1) {
-//                    actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择支付方式" delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"支付宝", @"PayPal支付", nil];
-                    actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择支付方式" delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"支付宝",@"PayPal支付", nil];
-                }
-                else
-                {
-                    actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择支付方式" delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles: @"支付宝",@"PayPal支付", nil];
-                }
-                
-                [actionSheet showFromTabBar:self.tabBarController.tabBar];
-                [actionSheet.rac_buttonClickedSignal subscribeNext:^(NSNumber *indexButton) {
-                    NSInteger tag = [indexButton integerValue];
-                    if ([self.shopOff integerValue]==1) {
-                        if (tag==0) {
-                            //支付宝
-//                            Product *product = [Alipay getProduceWithTradeNo:orderNo price:alipayPrice subject:subject body:subject invokeIP:AliPayInvokeIP notifyURL:AliPayNotifyURL sellerID:AliPaySellerID parnerID:AliPayParnerId];
-//                            [Alipay payWithProductDic:product];
-                            
-                            
-                            NSString *urlStr=AliPayWebUrl(orderNo);
-                            WebPayViewController *webPay=[[WebPayViewController alloc]init];
-                            webPay.payUrl=urlStr;
-
-                            [self.navigationController pushViewController:webPay animated:YES];
-                            
-                            
-//                            [self PayPalPay:alipayPrice DescribeTion:subject OrderId:orderNo];
-                            
-                        }else if (tag==1){
-                            //paypal
-                            
-                            [self PayPalPay:alipayPrice DescribeTion:subject OrderId:orderNo];
-                            
-                        }
-                    }
-                    else
-                    {
-                        
-                        
-                        [self PayPalPay:alipayPrice DescribeTion:subject OrderId:orderNo];
-                    }
+                self.order_no=orderNo;
+                if ([SKPaymentQueue canMakePayments]) {
+                    //            shopObj.product_id=@"com.fille.slidnet_60t";
+                    self.productId=@"com.fille.slidnet_60t";
+                    [self requestProductData:self.productId];
                     
-                }];
+                } else {
+                    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"购买失败" message:@"用户禁止应用内付费购买" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+                    [alert show];
+                }
+
+//                NSString *alipayPrice = [info objectForKey:@"money"];
+//                NSString *wechatPayPrice = [NSString stringWithFormat:@"%i", [alipayPrice intValue]*100];
+//                NSString *coin = [info objectForKey:@"coin"];
+//                NSString *subject = [NSString stringWithFormat:@"充值信用豆%@", coin];
+//                if ([type integerValue]==2) {
+//                    subject = @"购买VIP";
+//                }
+//                UIActionSheet *actionSheet;
+//                if ([self.shopOff integerValue]==1) {
+////                    actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择支付方式" delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"支付宝", @"PayPal支付", nil];
+//                    actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择支付方式" delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"支付宝",@"PayPal支付", nil];
+//                }
+//                else
+//                {
+//                    actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择支付方式" delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles: @"支付宝",@"PayPal支付", nil];
+//                }
+//                
+//                [actionSheet showFromTabBar:self.tabBarController.tabBar];
+//                [actionSheet.rac_buttonClickedSignal subscribeNext:^(NSNumber *indexButton) {
+//                    NSInteger tag = [indexButton integerValue];
+//                    if ([self.shopOff integerValue]==1) {
+//                        if (tag==0) {
+//                            //支付宝
+////                            Product *product = [Alipay getProduceWithTradeNo:orderNo price:alipayPrice subject:subject body:subject invokeIP:AliPayInvokeIP notifyURL:AliPayNotifyURL sellerID:AliPaySellerID parnerID:AliPayParnerId];
+////                            [Alipay payWithProductDic:product];
+//                            
+//                            
+//                            NSString *urlStr=AliPayWebUrl(orderNo);
+//                            WebPayViewController *webPay=[[WebPayViewController alloc]init];
+//                            webPay.payUrl=urlStr;
+//
+//                            [self.navigationController pushViewController:webPay animated:YES];
+//                            
+//                            
+////                            [self PayPalPay:alipayPrice DescribeTion:subject OrderId:orderNo];
+//                            
+//                        }else if (tag==1){
+//                            //paypal
+//                            
+//                            [self PayPalPay:alipayPrice DescribeTion:subject OrderId:orderNo];
+//                            
+//                        }
+//                    }
+//                    else
+//                    {
+//                        
+//                        
+//                        [self PayPalPay:alipayPrice DescribeTion:subject OrderId:orderNo];
+//                    }
+//                    
+//                }];
             }
         }
         
         [LCLWaitView showIndicatorView:NO];
     }];
     [payOrder startToDownloadWithIntelligence:NO];
+}
+
+#pragma mark -iap内购方法
+//请求商品
+- (void)requestProductData:(NSString *)type{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
+    NSLog(@"-------------请求对应的产品信息----------------");
+    NSArray *product = [[NSArray alloc] initWithObjects:type,nil];
+    
+    NSSet *nsset = [NSSet setWithArray:product];
+    SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:nsset];
+    request.delegate = self;
+    [request start];
+    
+}
+//收到产品返回信息
+- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    NSArray *product = response.products;
+    if([product count] == 0){
+        NSLog(@"--------------没有商品------------------");
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"购买失败" message:@"没有找到商品" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [alert show];
+        return;
+    }
+    
+    NSLog(@"productID:%@", response.invalidProductIdentifiers);
+    NSLog(@"产品付费数量:%lu",(unsigned long)[product count]);
+    
+    SKProduct *p = nil;
+    for (SKProduct *pro in product) {
+        NSLog(@"%@", [pro description]);
+        NSLog(@"%@", [pro localizedTitle]);
+        NSLog(@"%@", [pro localizedDescription]);
+        NSLog(@"%@", [pro price]);
+        NSLog(@"%@", [pro productIdentifier]);
+        
+        if([pro.productIdentifier isEqualToString:self.productId]){
+            p = pro;
+        }
+    }
+    
+    SKPayment *payment = [SKPayment paymentWithProduct:p];
+    
+    NSLog(@"发送购买请求");
+    [[SKPaymentQueue defaultQueue] addPayment:payment];
+}
+//请求失败
+- (void)request:(SKRequest *)request didFailWithError:(NSError *)error{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"购买失败" message:    error.localizedDescription delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+    [alert show];
+    NSLog(@"------------------错误-----------------:%@", error);
+}
+
+- (void)requestDidFinish:(SKRequest *)request{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+
+    NSLog(@"------------反馈信息结束-----------------");
+}
+//监听购买结果
+- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transaction{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+
+    for(SKPaymentTransaction *tran in transaction){
+        
+        switch (tran.transactionState) {
+            case SKPaymentTransactionStatePurchased:
+                NSLog(@"交易完成");
+                [self completeTransaction:tran];
+                break;
+            case SKPaymentTransactionStatePurchasing:
+//                [self loadServerData];
+                NSLog(@"-----商品添加进列表 --------");
+                break;
+            case SKPaymentTransactionStateRestored:
+                [self restoreTransaction:tran];
+                break;
+            case SKPaymentTransactionStateFailed:
+                NSLog(@"交易失败");
+                [self failedTransaction:tran];
+                break;
+            default:
+                break;
+        }
+    }
+}
+- (void) restoreTransaction: (SKPaymentTransaction *)transaction
+
+{
+    NSLog(@" 交易恢复处理");
+    
+}
+- (void) completeTransaction: (SKPaymentTransaction *)transaction
+
+{
+
+    // Your application should implement these two methods.
+    NSString *product = transaction.payment.productIdentifier;
+    if ([product length] > 0) {
+        
+        NSArray *tt = [product componentsSeparatedByString:@"."];
+        NSString *bookid = [tt lastObject];
+        if ([bookid length] > 0) {
+            [self recordTransaction:bookid];
+            [self provideContent:bookid];
+        }
+    }
+
+    // Remove the transaction from the payment queue.
+    [self verifyTransaction:transaction];
+
+    [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+    
+//    [self loadServerData];
+
+    
+}
+//记录交易
+-(void)recordTransaction:(NSString *)product{
+    NSLog(@"-----记录交易--------");
+}
+//处理下载内容
+-(void)provideContent:(NSString *)product{
+    NSLog(@"-----下载--------");
+}
+- (void) failedTransaction: (SKPaymentTransaction *)transaction{
+    NSLog(@"失败");
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"购买失败" message:@"请重新尝试购买" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+    [alert show];
+
+    if (transaction.error.code != SKErrorPaymentCancelled)
+    {
+    }
+    [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+    
+}
+//二次验证
+- (void)verifyTransaction:(SKPaymentTransaction *)transaction
+{
+    NSData *transactionReceipt = transaction.transactionReceipt;
+    NSString *base64String = [GTMBase64 stringByEncodingData:transactionReceipt];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:VERIFY_RECEIPT_URL];
+    [request setHTTPMethod:@"POST"];
+    //设置contentType
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    //设置Content-Length
+    [request setValue:[NSString stringWithFormat:@"%d", [base64String length]] forHTTPHeaderField:@"Content-Length"];
+    NSDictionary* body = [NSDictionary dictionaryWithObjectsAndKeys:base64String, @"receipt-data", nil];
+    
+ 
+    NSString *dataStr=[body JSONString];
+    NSData *dataBody=[dataStr dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    [request setHTTPBody:dataBody];
+    NSHTTPURLResponse *urlResponse=nil;
+    NSError *errorr=nil;
+    NSData *receivedData = [NSURLConnection sendSynchronousRequest:request
+                                                 returningResponse:&urlResponse
+                                                             error:&errorr];
+    
+    //解析
+    NSString *results=[[NSString alloc]initWithBytes:[receivedData bytes] length:[receivedData length] encoding:NSUTF8StringEncoding];
+    NSLog(@"-Himi-  %@",results);
+    NSDictionary*dic = (NSDictionary *)[results objectFromJSONString];
+    if([[dic objectForKey:@"status"] intValue]==0){//注意，status=@"0" 是验证收据成功
+        IapRequest *request=[[IapRequest alloc]init];
+        request.uKey=self.myUkey;
+        request.order_no=self.order_no;
+        request.iap_sign=transaction.transactionIdentifier;
+        
+        [request GETRequest:^(id reponseObject) {
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"购买成功" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+
+        } failureCallback:^(NSString *errorMessage) {
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"购买失败" message:errorMessage delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+        }];
+        
+    }
+    else
+    {
+        if ([[dic objectForKey:@"status"] intValue]==21007) {
+            
+        }
+    }
+    
+}
+////交易结束
+//- (void)completeTransaction:(SKPaymentTransaction *)transaction{
+//
+//    [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+//}
+- (void)dealloc{
+    [[SKPaymentQueue defaultQueue] removeTransactionObserver:self];
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -457,16 +680,15 @@
     
     if (indexPath.section==0) {
         [cell.desLabel setText:shopObj.des];
-        [cell.nameLabel setText:shopObj.coin];
-        [cell.buyButton setTitle:[NSString stringWithFormat:@"%@元", shopObj.money] forState:UIControlStateNormal];
+        [cell.nameLabel setText:[NSString stringWithFormat:@"%@信用豆",shopObj.coin]];
+        [cell.buyButton setTitle:[NSString stringWithFormat:@"$%@", shopObj.money] forState:UIControlStateNormal];
         [cell.buyButton setBackgroundColor:APPGreenColor];
         [cell.buyButton setRestorationIdentifier:@"1"];
     }else{
         [cell.desLabel setText:[NSString stringWithFormat:@"%@信用豆",shopObj.coin]];
         [cell.nameLabel setText:shopObj.title];
-        
        
-        [cell.buyButton setTitle:@"立即购买" forState:UIControlStateNormal];
+        [cell.buyButton setTitle:@"会员升级" forState:UIControlStateNormal];
         
         if ([shopObj.is_click integerValue]==0) {
             [cell.buyButton setBackgroundColor:[UIColor grayColor]];

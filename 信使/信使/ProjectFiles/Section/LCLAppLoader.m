@@ -10,18 +10,13 @@
 
 #import "AppDelegate.h"
 #import "LCLLoginViewController.h"
-
 #import "LCLHomeViewController.h"
 #import "LCLMeetingViewController.h"
 #import "LCLSearchViewController.h"
 #import "LCLShopViewController.h"
 #import "LCLMeViewController.h"
-
 #import <SMS_SDK/SMSSDK.h>
-
 #import <SMS_SDK/SMSSDK+DeprecatedMethods.h>
-
-
 #define appKey @"c5ba6a3c9de0"
 #define appSecret @"0a4b257a32c1dd7e0472c001ca6c21fe"
 
@@ -148,7 +143,7 @@
     LCLMeetingViewController *meetViewController = [[LCLMeetingViewController alloc] init];
     [meetViewController setCanShowNavBackItem:NO];
     UINavigationController *meetNavViewController = [[UINavigationController alloc] initWithRootViewController:meetViewController];
-    UITabBarItem *item2 = [[UITabBarItem alloc] initWithTitle:@"意向" image:secondImage tag:1];
+    UITabBarItem *item2 = [[UITabBarItem alloc] initWithTitle:@"发布" image:secondImage tag:1];
     [item2 setSelectedImage:secondSelectImage];
     [item2 setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:normalColor, NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
     [item2 setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:selectColor, NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
