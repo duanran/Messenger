@@ -275,7 +275,7 @@
     else
     {
         if ([self.shopOff integerValue]==1) {
-            return 7;
+            return 6;
         }
         else
         {
@@ -321,7 +321,12 @@
         }else if(indexPath.row==1){
             
             
-            NSString *vipTitle=[userObj.vipinfo objectForKey:@"title"];
+            NSString *vipTitle=[NSString stringWithFormat:@"%@",[userObj.vipinfo objectForKey:@"title"]];
+            
+            if (vipTitle==NULL||[vipTitle isEqualToString:@"(null)"]||vipTitle==nil) {
+                vipTitle=@"非VIP会员";
+            }
+            
             [cell.nameLabel setText:[NSString stringWithFormat:@"等级：%@",vipTitle]];
             [cell.actionButton setTitle:@"账号升级" forState:UIControlStateNormal];
             // app review begin
@@ -499,13 +504,13 @@
     if (!self.hyActivityView) {
         self.hyActivityView=[[HYActivityView alloc]initWithTitle:@"分享到" referView:self.view];
         
-        ButtonView *bv=[[ButtonView alloc]initWithText:@"Email" image:[UIImage imageNamed:@"share_platform_email"] handler:^(ButtonView *buttonView) {
+        ButtonView *bv=[[ButtonView alloc]initWithText:@"Email" image:[UIImage imageNamed:@"emailIcon"] handler:^(ButtonView *buttonView) {
             NSLog(@"你点击了邮件分享");
             [self shareEmail];
         }];
         [self.hyActivityView addButtonView:bv];
         
-        bv=[[ButtonView alloc]initWithText:@"短信" image:[UIImage imageNamed:@"share_platform_email" ] handler:^(ButtonView *buttonView) {
+        bv=[[ButtonView alloc]initWithText:@"短信" image:[UIImage imageNamed:@"messageIcon" ] handler:^(ButtonView *buttonView) {
             NSLog(@"你点击了短信分享");
             [self shareSMS];
             
@@ -513,8 +518,7 @@
         }];
         [self.hyActivityView addButtonView:bv];
         
-        bv=[[ButtonView alloc]initWithText:@"系统自带" image:[UIImage imageNamed:@"share_platform_email"] handler:^(ButtonView *buttonView) {
-            NSLog(@"你点击系统自带分享");
+        bv=[[ButtonView alloc]initWithText:@"新浪微博" image:[UIImage imageNamed:@"sinaIcon"] handler:^(ButtonView *buttonView) {
             [self shareSystem];
         }];
         [self.hyActivityView addButtonView:bv];
@@ -534,7 +538,8 @@
             MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
             picker.mailComposeDelegate=self;
             [picker setSubject:@"非你"];
-            [picker setMessageBody:@"非你FILLE能让你随心所欲，快来体验吧! Fille can let you follow one's inclinations and solve your needs in time."isHTML:NO];
+            NSString *urlStr=@"http://www.sildnet.com/fille/app.php";
+            [picker setMessageBody:[NSString stringWithFormat:@"非你FILLE能让你随心所欲，快来体验吧! Fille can let you follow one's inclinations and solve your needs in time.%@",urlStr]isHTML:NO];
             [self presentViewController:picker animated:YES completion:nil];
         }
     }else{
@@ -562,7 +567,9 @@
         if ([messageClass canSendText]) {
             MFMessageComposeViewController *picker=[[MFMessageComposeViewController alloc]init];
             picker.messageComposeDelegate=self;
-            picker.body=@"非你FILLE能让你随心所欲，快来体验吧! Fille can let you follow one's inclinations and solve your needs in time.";
+            
+            NSString *urlStr=@"http://www.sildnet.com/fille/app.php";
+            picker.body=[NSString stringWithFormat:@"非你FILLE能让你随心所欲，快来体验吧! Fille can let you follow one's inclinations and solve your needs in time.%@",urlStr];
             [self presentViewController:picker animated:YES completion:nil];
         }
         else{
@@ -598,7 +605,8 @@
             [slVc dismissViewControllerAnimated:YES completion:nil];
         };
         slVc.completionHandler=myBlock;
-        [slVc setInitialText:@"分享内容"];
+        NSString *urlStr=@"http://www.sildnet.com/fille/app.php";
+        [slVc setInitialText:[NSString stringWithFormat:@"非你FILLE能让你随心所欲，快来体验吧! Fille can let you follow one's inclinations and solve your needs in time.%@",urlStr]];
         [slVc addImage:[UIImage imageNamed:@"share_platform_qqfriends@2x.png"]];
         [slVc addURL:[NSURL URLWithString:@"http://www.sina.com"]];
         [self presentViewController:slVc animated:YES completion:nil];
@@ -709,13 +717,13 @@
             [self.navigationController pushViewController:passwordVC animated:YES];
         }
         else if (indexPath.row==5) {
-            
-        }
-        else if(indexPath.row==6)
-        {
             UserInstrunctionViewController *instructionController=[[UserInstrunctionViewController alloc]init];
             instructionController.urlStr=UserInstrunctions;
             [self.navigationController pushViewController:instructionController animated:YES];
+        }
+        else if(indexPath.row==6)
+        {
+           
             
         }
     }

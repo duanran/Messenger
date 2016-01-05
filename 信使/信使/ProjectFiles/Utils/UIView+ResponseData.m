@@ -8,6 +8,8 @@
 
 #import "UIView+ResponseData.h"
 #import "JSONKit.h"
+#import "CJSONDeserializer.h"
+
 @implementation UIView (ResponseData)
 
 //处理下载回来的数据
@@ -16,7 +18,11 @@
     LCLTipsLocation location = LCLTipsLocationMiddle;
     
     if (responseData) {
-        NSDictionary *responseDic = [responseData objectFromJSONData];
+//        NSDictionary *responseDic = [responseData objectFromJSONData];
+        CJSONDeserializer *theDeserializer = [CJSONDeserializer deserializer];
+        NSError *theError = NULL;
+        theDeserializer.options |= kJSONDeserializationOptions_AllowFragments;
+        NSDictionary *responseDic  = (NSDictionary *)[theDeserializer deserialize:responseData error:&theError];
         if (responseDic) {
             int code = [[responseDic objectForKey:@"success"] intValue];
             if (code==1) {

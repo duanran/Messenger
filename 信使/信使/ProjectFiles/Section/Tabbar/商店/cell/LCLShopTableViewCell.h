@@ -16,4 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *buyButton;
 
+@property(nonatomic,strong) IBOutlet UILabel *describetionLabel;
+@property(nonatomic,weak) IBOutlet NSLayoutConstraint *describeConstant;
+
 @end

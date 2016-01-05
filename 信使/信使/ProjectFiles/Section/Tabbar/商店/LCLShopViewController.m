@@ -17,7 +17,8 @@
 #import "GTMBase64.h"
 #import "JSONKit.h"
 #import "IapRequest.h"
-
+#import "RequestURL.h"
+#import "NSString+URL.h"
 #define SANDBOX_VERIFY_RECEIPT_URL          [NSURL URLWithString:@"https://sandbox.itunes.apple.com/verifyReceipt"]
 #define APP_STORE_VERIFY_RECEIPT_URL        [NSURL URLWithString:@"https://buy.itunes.apple.com/verifyReceipt"]
 
@@ -42,13 +43,14 @@
 
 @property (strong, nonatomic) NSString *gonggao;
 @property(nonatomic,strong)NSString *payUrl;
+@property(nonatomic,assign)int receiptStatus;
 @property(nonatomic, strong, readwrite) PayPalConfiguration *payPalConfig;//配置贝宝账号信息,如邮箱,电话等
 @property (strong, nonatomic) LCLShopHeader *header;
 @property(strong,nonatomic)NSString *shopOff;
 @property(strong,nonatomic)NSString *productId;
 @property(strong,nonatomic)NSString *myUkey;
 @property(strong,nonatomic)NSString *order_no;
-
+@property(strong,nonatomic)NSString *netError;
 @end
 
 @implementation LCLShopViewController
@@ -57,7 +59,8 @@
     [super viewDidLoad];
     [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
 
-    
+    self.receiptStatus=0;
+    self.netError=nil;
     // Do any additional setup after loading the view.
     NSDictionary *dic = [[LCLCacheDefaults standardCacheDefaults] objectForCacheKey:UserInfoKey];
     NSString *shop_onoff=[NSString stringWithFormat:@"%@",[dic objectForKey:@"shop_onoff"]];
@@ -326,7 +329,7 @@
                 self.order_no=orderNo;
                 if ([SKPaymentQueue canMakePayments]) {
                     //            shopObj.product_id=@"com.fille.slidnet_60t";
-                    self.productId=@"com.fille.slidnet_60t";
+                    self.productId=shopObj.product_id;
                     [self requestProductData:self.productId];
                     
                 } else {
@@ -480,10 +483,8 @@
     }
 }
 - (void) restoreTransaction: (SKPaymentTransaction *)transaction
-
 {
     NSLog(@" 交易恢复处理");
-    
 }
 - (void) completeTransaction: (SKPaymentTransaction *)transaction
 
@@ -532,55 +533,180 @@
 //二次验证
 - (void)verifyTransaction:(SKPaymentTransaction *)transaction
 {
-    NSData *transactionReceipt = transaction.transactionReceipt;
-    NSString *base64String = [GTMBase64 stringByEncodingData:transactionReceipt];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:VERIFY_RECEIPT_URL];
-    [request setHTTPMethod:@"POST"];
-    //设置contentType
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    //设置Content-Length
-    [request setValue:[NSString stringWithFormat:@"%d", [base64String length]] forHTTPHeaderField:@"Content-Length"];
-    NSDictionary* body = [NSDictionary dictionaryWithObjectsAndKeys:base64String, @"receipt-data", nil];
     
- 
-    NSString *dataStr=[body JSONString];
-    NSData *dataBody=[dataStr dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    [request setHTTPBody:dataBody];
+   NSDictionary *dic=[self sentToAppStoreVerifyRequest:transaction];
+    
+    if (dic.count>0) {
+        BOOL isSuccess=(BOOL)[dic objectForKey:@"success"];
+        if (isSuccess==YES) {
+            NSString *message=[dic objectForKey:@"message"];
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"购买成功" message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+        }
+        else
+        {
+            NSString *message=[dic objectForKey:@"message"];
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+        }
+    }
+    else
+    {
+        if (self.netError) {
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"购买失败" message:self.netError delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+        }
+    }
+//    if([[dic objectForKey:@"status"] intValue]==0){//注意，status=@"0" 是验证收据成功
+//        IapRequest *request=[[IapRequest alloc]init];
+//        request.uKey=self.myUkey;
+//        request.order_no=self.order_no;
+//        request.iap_sign=[dic JSONString];
+//        
+//        [request POSTRequest:^(id reponseObject) {
+//            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"购买成功" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+//            [alert show];
+//        } failureCallback:^(NSString *errorMessage) {
+//            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"购买失败" message:errorMessage delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+//            [alert show];
+//        }];
+    
+        
+//        [request GETRequest:^(id reponseObject) {
+//            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"购买成功" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+//            [alert show];
+//
+//        } failureCallback:^(NSString *errorMessage) {
+//            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"购买失败" message:errorMessage delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+//            [alert show];
+//        }];
+        
+//    }
+//    else if([[dic objectForKey:@"status"] intValue]==21007)
+//    {
+//        self.receiptStatus=21007;
+//        NSDictionary *verifyDic=[self sentToAppStoreVerifyRequest:transaction];
+//        
+//        self.receiptStatus=0;
+//        if ([[verifyDic objectForKey:@"status"] intValue]==0)
+//        {
+//            IapRequest *request=[[IapRequest alloc]init];
+//            request.uKey=self.myUkey;
+//            request.order_no=self.order_no;
+//            request.iap_sign=[verifyDic JSONString];
+//            
+//            
+//            [request POSTRequest:^(id reponseObject) {
+//                UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"购买成功" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+//                [alert show];
+//            } failureCallback:^(NSString *errorMessage) {
+//                UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"购买失败" message:errorMessage delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+//                [alert show];
+//            }];
+
+            
+//            [request GETRequest:^(id reponseObject) {
+//                UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"购买成功" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+//                [alert show];
+//                
+//            } failureCallback:^(NSString *errorMessage) {
+//                UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"购买失败" message:errorMessage delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+//                [alert show];
+//            }];
+//        }
+//    }
+    
+}
+-(NSDictionary *)sentToAppStoreVerifyRequest:(SKPaymentTransaction *)transaction
+{
+    
+
+    NSData *receiptData;
+//    if ([[[UIDevice currentDevice] systemVersion] floatValue] >6.9) {
+//        NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
+//        receiptData = [NSData dataWithContentsOfURL:receiptURL];
+//
+//    }
+//    else
+//    {
+        receiptData=transaction.transactionReceipt;
+//    }
+//    NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
+//    NSData *receiptData = [NSData dataWithContentsOfURL:receiptURL];
+    
+
+    NSString *base64String  = [[NSString alloc] initWithData:receiptData encoding:NSUTF8StringEncoding];
+    
+    base64String=[base64String URLEncodedString];
+    
+    
+//    base64String = [base64String stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+//    base64String = [base64String stringByReplacingOccurrencesOfString:@"+" withString:@""];
+//    base64String = [base64String stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    
+    
+    
+//    NSString *base64String = [NSString stringWithFormat:@"%@",[receiptData dataToString]];
+//    NSString *base64String = [GTMBase64 stringByEncodingData:receiptData];
+
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+
+    
+    NSURL *verifyUrl;
+    
+//    if (self.receiptStatus==21007) {
+//        verifyUrl=[NSURL URLWithString:@"https://sandbox.itunes.apple.com/verifyReceipt"];
+//    }
+//    else
+//    {
+//        verifyUrl=VERIFY_RECEIPT_URL;
+//    }
+    
+    
+    
+    
+    
+    
+    NSString *urlStr=[NSString stringWithFormat:@"%@/ukey/%@",[RequestURL urlWithTpye:URLTypeIapPay],self.myUkey];
+    urlStr=[urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    urlStr=[urlStr URLEncodedString];
+    verifyUrl=[NSURL URLWithString:urlStr];
+    [request setURL:verifyUrl];
+    [request setHTTPMethod:@"POST"];
+    request.timeoutInterval=40;
+    
+    //设置contentType
+//    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    //设置Content-Length
+//    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[base64String length]] forHTTPHeaderField:@"Content-Length"];
+//    NSDictionary* body = [NSDictionary dictionaryWithObjectsAndKeys:base64String, @"iap_sign",self.order_no,@"order_no",nil];
+    
+    
+    
+    NSString *body=[NSString stringWithFormat:@"order_no=%@&iap_sign=%@",self.order_no,base64String];
+    
+    request.HTTPBody=[body dataUsingEncoding:NSUTF8StringEncoding];
+//    NSError *jsonError;
+//    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:body options:NSJSONWritingPrettyPrinted error:&jsonError];
+//    NSString *dataStr=[body JSONString];
+//    NSData *dataBody=[dataStr dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+//    [request setHTTPBody:jsonData];
     NSHTTPURLResponse *urlResponse=nil;
     NSError *errorr=nil;
     NSData *receivedData = [NSURLConnection sendSynchronousRequest:request
                                                  returningResponse:&urlResponse
                                                              error:&errorr];
+    self.netError=errorr.localizedDescription;
     
     //解析
     NSString *results=[[NSString alloc]initWithBytes:[receivedData bytes] length:[receivedData length] encoding:NSUTF8StringEncoding];
     NSLog(@"-Himi-  %@",results);
     NSDictionary*dic = (NSDictionary *)[results objectFromJSONString];
-    if([[dic objectForKey:@"status"] intValue]==0){//注意，status=@"0" 是验证收据成功
-        IapRequest *request=[[IapRequest alloc]init];
-        request.uKey=self.myUkey;
-        request.order_no=self.order_no;
-        request.iap_sign=transaction.transactionIdentifier;
-        
-        [request GETRequest:^(id reponseObject) {
-            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"购买成功" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-            [alert show];
-
-        } failureCallback:^(NSString *errorMessage) {
-            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"购买失败" message:errorMessage delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-            [alert show];
-        }];
-        
-    }
-    else
-    {
-        if ([[dic objectForKey:@"status"] intValue]==21007) {
-            
-        }
-    }
     
+    
+    return dic;
 }
+
 ////交易结束
 //- (void)completeTransaction:(SKPaymentTransaction *)transaction{
 //
@@ -615,8 +741,24 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    return 50;
+    if (indexPath.section==1) {
+      NSDictionary  *dic = [self.vipArray objectAtIndex:indexPath.row];
+
+        NSString *des=[dic objectForKey:@"des"];
+        UILabel *contentLabel=[[UILabel alloc]init];
+        contentLabel.frame=CGRectMake(6,36, [UIScreen mainScreen].bounds.size.width-12, 40);
+        contentLabel.lineBreakMode=NSLineBreakByCharWrapping;
+        contentLabel.numberOfLines=0;
+        NSString *describeStr=des;
+        contentLabel.text=describeStr;
+        contentLabel.font = [UIFont systemFontOfSize:13];
+        CGSize size = [contentLabel sizeThatFits:CGSizeMake(contentLabel.frame.size.width, MAXFLOAT)];
+        contentLabel.textColor=[UIColor blackColor];
+        return size.height+60;
+    }
+    else{
+        return 50;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -661,6 +803,15 @@
     if (cell==nil) {
         cell = (LCLShopTableViewCell *)[[[NSBundle mainBundle] loadNibNamed:@"LCLShopTableViewCell_2" owner:self options:nil] lastObject];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        
+        
+        if (indexPath.section==1) {
+            UILabel  *contentLabel=[[UILabel alloc]initWithFrame:CGRectMake(6,40, [UIScreen mainScreen].bounds.size.width-12, 40)];;
+            contentLabel.tag=1000+indexPath.row;
+            [cell addSubview:contentLabel];
+
+        }
+        
     }
     
     NSDictionary *dic = nil;
@@ -684,7 +835,10 @@
         [cell.buyButton setTitle:[NSString stringWithFormat:@"$%@", shopObj.money] forState:UIControlStateNormal];
         [cell.buyButton setBackgroundColor:APPGreenColor];
         [cell.buyButton setRestorationIdentifier:@"1"];
+        cell.describetionLabel.hidden=YES;
     }else{
+        cell.describetionLabel.hidden=YES;
+
         [cell.desLabel setText:[NSString stringWithFormat:@"%@信用豆",shopObj.coin]];
         [cell.nameLabel setText:shopObj.title];
        
@@ -699,7 +853,21 @@
             [cell.buyButton setBackgroundColor:[UIColor orangeColor]];
 
         }
-        
+                NSString *des=[dic objectForKey:@"des"];
+                cell.describetionLabel.text=des;
+            UILabel *contentLabel=(UILabel *)[cell viewWithTag:indexPath.row+1000];
+                contentLabel.frame=CGRectMake(6,CGRectGetMaxY(cell.coinImageView.frame)+5, [UIScreen mainScreen].bounds.size.width-12, 40);
+                contentLabel.lineBreakMode=NSLineBreakByCharWrapping;
+                contentLabel.numberOfLines=0;
+                NSString *describeStr=des;
+                contentLabel.text=describeStr;
+        NSLog(@"contentLabel=%@",contentLabel.text);
+                contentLabel.font = [UIFont systemFontOfSize:13];
+                CGSize size = [contentLabel sizeThatFits:CGSizeMake(contentLabel.frame.size.width, MAXFLOAT)];
+                contentLabel.textColor=[UIColor blackColor];
+            contentLabel.frame=CGRectMake(6, CGRectGetMaxY(cell.coinImageView.frame)+5,[UIScreen mainScreen].bounds.size.width-12, size.height);
+        [cell.describetionLabel setFrame:CGRectMake(6, 40, [UIScreen mainScreen].bounds.size.width-12, size.height)];
+        cell.describeConstant.constant=size.height;
         [cell.buyButton setRestorationIdentifier:@"2"];
     }
     

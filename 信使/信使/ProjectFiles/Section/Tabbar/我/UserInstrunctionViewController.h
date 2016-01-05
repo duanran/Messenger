@@ -10,5 +10,6 @@
 
 @interface UserInstrunctionViewController : BaseViewController<UIWebViewDelegate>
 @property(nonatomic,strong)NSString *urlStr;
+@property(nonatomic,strong)IBOutlet  UIWebView *userWebView;
 
 @end

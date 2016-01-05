@@ -9,18 +9,15 @@
 #import "UserInstrunctionViewController.h"
 #import "MBProgressHUD.h"
 @interface UserInstrunctionViewController ()
-{
-    UIWebView *userWebView;
 
-}
 @end
 
 @implementation UserInstrunctionViewController
-
+@synthesize userWebView;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title=@"用户须知";
-    userWebView=[[UIWebView alloc]initWithFrame:self.view.frame];
+//    userWebView=[[UIWebView alloc]initWithFrame:self.view.frame];
     
     NSURL *url=[NSURL URLWithString:self.urlStr];
     
